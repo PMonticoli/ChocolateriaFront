@@ -1,0 +1,38 @@
+<div class="container-fluid fondo">
+    <div class="login">
+        <h1>Iniciar Sesión</h1>
+        <form [formGroup]="formulario" method="post">
+            <label for="inputUsuario" class="form-label text-white" style="font-size: 1.2rem;">Nombre de usuario</label>
+            <input type="text" placeholder="Ingrese su usuario" required="required"
+            formControlName="usuario"
+            class="form-control"
+            [class.is-invalid]="controlUsuario.touched && controlUsuario.hasError('required')"
+            />
+            <span *ngIf="controlUsuario.touched && controlUsuario.hasError('required')"
+            class="invalid-feedback">
+              Nombre de usuario es requerido,complete el campo por favor.
+            </span>
+            <label for="inputContrasenia" class="form-label text-white" style="font-size: 1.2rem;">Contraseña</label>
+            <input type="password" name="p" placeholder="Ingrese su contraseña" required="required" 
+            formControlName="contrasenia"
+            class="form-control"
+            [class.is-invalid]="controlContrasenia.touched && controlContrasenia.hasError('required')"/>
+            <span *ngIf="controlContrasenia.touched && controlContrasenia.hasError('required')"
+            class="invalid-feedback">
+                Contraseña es requerida,complete el campo por favor.
+            </span>
+            <button type="submit" class="btn btn-primary btn-block btn-large" (click)="iniciarSesion()">Iniciar Sesión</button>
+        </form>
+        <br>
+       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9155049400353686"
+         data-ad-slot="2205382250"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    </div>
+</div>
