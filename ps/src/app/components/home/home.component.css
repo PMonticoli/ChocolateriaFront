@@ -1,0 +1,56 @@
+.fondo {
+  background-image: url("../../../assets/img/fondoHome.jfif");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.contenido {
+  /* position: relative;
+  width: 100%;
+  display: flex; */
+  /* justify-content: space-between;
+  align-items: center; */
+  /* padding-left: 30px; */
+}
+
+.contenido .tituloBox {
+  position: relative;
+  max-width: 800px;
+}
+
+.contenido .tituloBox h2 {
+  font-size: 3.0em;
+  text-transform: uppercase;
+  color: #ffff;
+  line-height: 1.2em;
+}
+.contenido h1 {
+  text-transform: uppercase;
+}
+
+
+.contenido .tituloBox h2 span {
+  background: #9b7239;
+  color: #ffffd5;
+  padding: 0 10px;
+  font-family: "Lora", serif;
+  font-weight: 700;
+}
+
+.contenido .tituloBox p {
+  font-size: 1.5em;
+  line-height: 4.5;
+  color: #ffff;
+  font-family: "Lora", serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
