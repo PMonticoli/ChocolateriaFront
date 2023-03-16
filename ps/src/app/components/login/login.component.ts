@@ -6,6 +6,7 @@ import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { UsuarioLogin } from 'src/app/models/usuario-login';
 import { SesionIniciadaService } from 'src/app/services/sesion-iniciada.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+const Swal = require('sweetalert2');
 
 @Component({
   selector: 'app-login',
@@ -43,27 +44,27 @@ export class LoginComponent {
 
   iniciarSesion(): void {
 
-    // if (this.formulario.valid) {
-    //   let usuarioLogin = new UsuarioLogin();
-    //   usuarioLogin = this.formulario.value as UsuarioLogin;
-    //   this.subscription.add(
-    //     this.servicioUsuario.login(usuarioLogin).subscribe({
-    //       next: (res: ResultadoGenerico) => {
-    //         if (res.ok && res.resultado != null) {
-    //           localStorage.setItem('token',res.resultado[0]);
-    //           swal({title:'Bienvenido/a!', icon:'success'});
-    //           this.servicioSesion.cambiarEstadoSesion(true);
-    //           this.router.navigate(['home']);
-    //         } else {
-    //           swal({title:'Error', text:`${res.mensaje}`, icon: 'error'})
-    //         }
-    //       },
-    //       error: (err) => { swal({title:'Error al iniciar sesión', text: `${err.message}`, icon: 'error'}); }
-    //     })
-    //   );
-    // }
-    // else {
-    //   swal({title:'Atención', text: 'Complete los campos por favor', icon: 'warning'});
-    // }
+    if (this.formulario.valid) {
+      let usuarioLogin = new UsuarioLogin();
+      usuarioLogin = this.formulario.value as UsuarioLogin;
+      this.subscription.add(
+        this.servicioUsuario.login(usuarioLogin).subscribe({
+          next: (res: ResultadoGenerico) => {
+            if (res.ok && res.resultado != null) {
+              localStorage.setItem('token',res.resultado[0]);
+              Swal.fire({title:'Bienvenido/a!', icon:'success'});
+              this.servicioSesion.cambiarEstadoSesion(true);
+              this.router.navigate(['home']);
+            } else {
+              Swal.fire({title:'Error', text:`${res.mensaje}`, icon: 'error'})
+            }
+          },
+          error: (err) => { Swal.fire({title:'Error al iniciar sesión', text: `${err.message}`, icon: 'error'}); }
+        })
+      );
+    }
+    else {
+      Swal.fire({title:'Atención', text: 'Complete los campos por favor', icon: 'warning'});
+    }
   }
 }
