@@ -21,7 +21,7 @@
             class="invalid-feedback">
                 Contraseña es requerida,complete el campo por favor.
             </span>
-            <button type="submit" class="btn btn-primary btn-block btn-large" (click)="iniciarSesion()">Iniciar Sesión</button>
+            <button type="submit" class="btn btn-primary btn-block btn-large" [disabled]="!formulario.valid" (click)="iniciarSesion()">Iniciar Sesión</button>
         </form>
         <br>
        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
