@@ -1,0 +1,86 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Producto } from '../models/producto';
+import { ResultadoGenerico } from '../models/resultado-generico';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductoService {
+  private API_URL : string = 'http://localhost:3000/productos/';
+  constructor(private http : HttpClient) { }
+
+  obtenerTodos(): Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+
+    return this.http.get<ResultadoGenerico>(this.API_URL,requestOptions);
+  }
+
+
+  agregar(producto : Producto) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+
+    return this.http.post<ResultadoGenerico>(this.API_URL,producto,requestOptions);
+  }
+
+
+  eliminar(producto : Producto) : Observable<any>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+    return this.http.delete(this.API_URL+producto.id,requestOptions)
+  }
+
+  obtenerActivos(): Observable<ResultadoGenerico>{
+    return this.http.get<ResultadoGenerico>(this.API_URL + 'activos');
+  }
+
+  modificar(body : Producto) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+    return this.http.put<ResultadoGenerico>(this.API_URL,body,requestOptions);
+   }
+
+   getProducto(id : number) : Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+      return this.http.get<ResultadoGenerico>(this.API_URL +id,requestOptions);
+   }
+}
