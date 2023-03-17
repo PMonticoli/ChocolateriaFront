@@ -10,13 +10,15 @@ import { UsuarioService } from './services/usuario.service';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AltaPedidoComponent } from './components/pedidos/alta-pedido/alta-pedido.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    AltaPedidoComponent
   ],
   imports: [
     BrowserModule,
