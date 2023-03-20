@@ -22,7 +22,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 1130px;">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{producto.nombre}}</h5>
+          <h4 class="modal-title" id="exampleModalLabel">{{producto.nombre}}</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -31,7 +31,7 @@
                     <img [src]="producto.urlImagen? producto.urlImagen : rutaImgDefault" [alt]="producto.nombre" class="img-fluid" style="max-height: 445px;">
                 </div>
                 <div class="col-7 px-5">
-                    <p>{{producto.descripcion}}</p>
+                    <p class="fs-4">{{producto.descripcion}}</p>
                     <div class="mb-3">
                       <label [for]="'comentarios'+modalId" class="form-label">Comentarios</label>
                       <textarea class="form-control" [id]="'comentarios'+modalId" rows="3" [formControl]="gestorComentarios"></textarea>
@@ -45,9 +45,9 @@
                 Cantidad: 
             </span>
             <div class="input-group border-secondary me-5" style="max-width: 150px;">
-                <button class="btn btn-outline-danger" (click)="modificoCantidad(false)"><strong>-</strong></button>
+                <button class="btn btn-danger" (click)="modificoCantidad(false)"><strong>-</strong></button>
                 <span class="input-group-text">{{cantidad}}</span>
-                <button class="btn btn-outline-success" (click)="modificoCantidad(true)"><strong>+</strong></button> 
+                <button class="btn btn-success" (click)="modificoCantidad(true)"><strong>+</strong></button> 
               </div>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarModal()">Cancelar</button>
           <button type="button" class="btn btn-primary" (click)="agregar()" data-bs-dismiss="modal">Agregar producto</button>
