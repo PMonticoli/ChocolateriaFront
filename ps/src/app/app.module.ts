@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AltaPedidoComponent } from './components/pedidos/alta-pedido/alta-pedido.component';
+import { ElementoProductoComponent } from './components/pedidos/elemento-producto/elemento-producto.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AltaPedidoComponent } from './components/pedidos/alta-pedido/alta-pedid
     HomeComponent,
     LoginComponent,
     NavbarComponent,
-    AltaPedidoComponent
+    AltaPedidoComponent,
+    ElementoProductoComponent
   ],
   imports: [
     BrowserModule,

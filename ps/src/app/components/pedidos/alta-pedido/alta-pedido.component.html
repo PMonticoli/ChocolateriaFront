@@ -1,1 +1,64 @@
-<p>alta-pedido works!</p>
+<div class="fondo">
+    <div class="container-fluid px-5">
+        <div class="row">
+            <div class="col-lg-9 col-md-6 col-sm-12 py-5">
+                <div class="container-fluid">
+                    <h1>Productos</h1>
+                    <h5 class="text-muted">Seleccione el producto que desee agregar al pedido:</h5>
+                </div>
+                <div class="container overflow-auto d-flex justify-content-around flex-wrap" style="max-height: 500px;">
+                    <app-elemento-producto *ngFor="let p of productos" [modalId]="p.id" [producto]="p"
+                        (onAgregar)="agregarDetalle($event)" [disabled]="estaAgregado(p)"></app-elemento-producto>
+                </div>
+            </div>
+    
+    
+    
+    
+            <!-- Lado lateral derecho alta pedido -->
+            <div class="col-lg-3 col-md-6 col-sm-12 py-5">
+                <div class="container-fluid">                
+                    <div class="row">
+                        <h1>Pedido</h1>
+                    </div>
+                    <div class="row">
+                        <ol class="list-group">
+                            <li *ngFor="let d of pedido.detalles"
+                                class="list-group-item d-flex justify-content-between align-items-start">
+                                <span class="badge align-self-center bg-primary rounded-pill">{{d.cantidad}}x</span>
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">{{d.producto.nombre}}</div>
+                                    ${{d.producto.precio * d.cantidad}}
+                                </div>
+                                <button class="btn btn-close align-self-center ms-2" (click)="quitarDetalle(d)"></button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start"
+                                [ngClass]="(cantidadTotal > 50) ? 'list-group-item-danger' : 'list-group-item-primary' ">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">TOTAL: ${{montoTotal}}</div>
+                                </div>
+                                <p class="m-0">Items: {{cantidadTotal}} / 50</p>
+                            </li>
+                            <div class="text-danger" *ngIf="(cantidadTotal > 50)">
+                                <p>
+                                    Se excedió el limite de 50 productos
+                                </p>
+                            </div>
+                        </ol>
+                        <div class="row">
+                            <div class="container-fluid p-0">
+                                <div class="mb-3 mt-5">
+                                    <label for="observaciones" class="form-label">Observaciones</label>
+                                    <textarea class="form-control" id="observaciones" rows="3"
+                                        [formControl]="controlObservaciones"></textarea>
+                                </div>
+                                <button class="btn btn-primary btn-block btn-large" [disabled]="cantidadTotal > 50"
+                                    (click)="guardarPedido()">Enviar Pedido</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
