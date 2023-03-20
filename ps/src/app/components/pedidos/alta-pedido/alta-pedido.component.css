@@ -131,3 +131,8 @@ html {
 .list-group-item-brown{
   background-color: #F5DEB3;
 }
+
+.bg-brown {
+  background-color: #F5DEB3;
+  color: #000000;
+}
