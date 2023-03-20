@@ -12,6 +12,9 @@ import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AltaPedidoComponent } from './components/pedidos/alta-pedido/alta-pedido.component';
 import { ElementoProductoComponent } from './components/pedidos/elemento-producto/elemento-producto.component';
+import { ListadoPedidosComponent } from './components/pedidos/listados/listado-pedidos/listado-pedidos.component';
+import { ProductoService } from './services/producto.service';
+import { PedidoService } from './services/pedido.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { ElementoProductoComponent } from './components/pedidos/elemento-product
     LoginComponent,
     NavbarComponent,
     AltaPedidoComponent,
-    ElementoProductoComponent
+    ElementoProductoComponent,
+    ListadoPedidosComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { ElementoProductoComponent } from './components/pedidos/elemento-product
   ],
   providers: [
     UsuarioService,
-    SesionIniciadaService
+    SesionIniciadaService,
+    ProductoService,
+    PedidoService
   ],
   bootstrap: [AppComponent]
 })
