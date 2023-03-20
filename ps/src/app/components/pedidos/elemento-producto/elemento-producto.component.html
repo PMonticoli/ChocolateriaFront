@@ -1,0 +1,57 @@
+<button class="btn btn-secondary rounded ms-2 mt-3" [disabled]="!producto.disponible || disabled" data-bs-toggle="modal" attr.data-bs-target="#modal{{modalId}}">
+  <div style="max-width: 300px;">
+    <div class="row p-1">
+      <div class="col-8 text-start">
+        <p class="m-0" style="font-size: 20px;">{{producto.nombre}}</p>
+        <p class="text-muted m-0" style="font-size: 12px; min-height: 36px;">{{producto.descripcion}}</p>
+        <p *ngIf="producto.disponible" class=" m-0"><strong>$ {{producto.precio}}</strong></p>
+        <p *ngIf="!producto.disponible" class=" m-0 text-danger"><strong>NO DISPONIBLE</strong></p>
+    </div>
+    <div class="col-4 d-flex align-items-center">
+      <img [src]="producto.urlImagen? producto.urlImagen : rutaImgDefault" class="img-fluid rounded ms-2" style="max-height: 80px;" [alt]="producto.nombre">
+    </div>
+    </div>
+  </div>
+</button>
+
+
+
+  <!-- Ventana Modal -->
+  <div class="modal fade" [id]="'modal'+modalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 1130px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{producto.nombre}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-5" >
+                    <img [src]="producto.urlImagen? producto.urlImagen : rutaImgDefault" [alt]="producto.nombre" class="img-fluid" style="max-height: 445px;">
+                </div>
+                <div class="col-7 px-5">
+                    <p>{{producto.descripcion}}</p>
+                    <div class="mb-3">
+                      <label [for]="'comentarios'+modalId" class="form-label">Comentarios</label>
+                      <textarea class="form-control" [id]="'comentarios'+modalId" rows="3" [formControl]="gestorComentarios"></textarea>
+                    </div>
+                </div>
+            </div>
+              
+        </div>
+        <div class="modal-footer">
+            <span class="text-muted">
+                Cantidad: 
+            </span>
+            <div class="input-group border-secondary me-5" style="max-width: 150px;">
+                <button class="btn btn-secondary" (click)="modificoCantidad(false)"><strong>-</strong></button>
+                <span class="input-group-text">{{cantidad}}</span>
+                <button class="btn btn-secondary" (click)="modificoCantidad(true)"><strong>+</strong></button> 
+              </div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="agregar()" data-bs-dismiss="modal">Agregar producto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
