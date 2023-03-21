@@ -15,6 +15,7 @@ import { ElementoProductoComponent } from './components/pedidos/elemento-product
 import { ListadoPedidosComponent } from './components/pedidos/listados/listado-pedidos/listado-pedidos.component';
 import { ProductoService } from './services/producto.service';
 import { PedidoService } from './services/pedido.service';
+import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/detalles-pedido.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PedidoService } from './services/pedido.service';
     NavbarComponent,
     AltaPedidoComponent,
     ElementoProductoComponent,
-    ListadoPedidosComponent
+    ListadoPedidosComponent,
+    DetallesPedidoComponent
   ],
   imports: [
     BrowserModule,
