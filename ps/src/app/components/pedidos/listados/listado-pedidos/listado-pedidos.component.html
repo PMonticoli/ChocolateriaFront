@@ -1,9 +1,9 @@
 <div class="fondo">
-  <div class="container">
-    <h1 class="display-4 text-white fw-semibold text-center">
+  <div class="container-fluid">
+    <h1 class="display-4 text-white fw-semibold text-center py-3">
       Listado de Pedidos
     </h1>
-    <div class="table-responsive-md">
+    <!-- <div class="table-responsive-md">
       <table class="table table-dark">
         <thead>
           <tr class="">
@@ -31,6 +31,56 @@
           </tr>
         </tbody>
       </table>
+    </div> -->
+
+     <div class="table-responsive-md bg-dark text-white">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="Punto de Venta">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Punto de Venta</th>
+          <td mat-cell *matCellDef="let row"> {{row.puntoVenta}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Socio">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Socio</th>
+          <td mat-cell *matCellDef="let row"> {{row.socio ? row.socio : "-"}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Empleado">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Empleado</th>
+          <td mat-cell *matCellDef="let row"> {{row.empleado ? row.empleado : "-"}} </td>
+        </ng-container>
+    
+
+        <ng-container matColumnDef="Estado">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+          <td mat-cell *matCellDef="let row"> {{row.estado}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Observaciones">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Observaciones</th>
+          <td mat-cell *matCellDef="let row"> {{row.observaciones}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Fecha">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+          <td mat-cell *matCellDef="let row"> {{row.fechaPedido | date : "mediumDate" : "UTC"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Acciones"> 
+          <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" colspan="2">Acciones</th>
+          <td mat-cell *matCellDef="let row">
+            <app-detalles-pedido [pedido]="row"></app-detalles-pedido>
+            <app-estado-pedido (onActualizado)="cargarTabla()" [pedido]="row"></app-estado-pedido>  
+          </td>
+        </ng-container> 
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSize]="8"
+      [pageSizeOptions]="[5, 8, 10]" 
+      aria-label="Selecciona la pagina de pedidos"></mat-paginator>      
     </div>
   </div>
 </div>

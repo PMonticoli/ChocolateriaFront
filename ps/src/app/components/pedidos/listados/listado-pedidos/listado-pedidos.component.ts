@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Pedido } from 'src/app/models/pedido';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PedidoService } from 'src/app/services/pedido.service';
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-listado-pedidos',
@@ -9,19 +14,31 @@ import { PedidoService } from 'src/app/services/pedido.service';
   styleUrls: ['./listado-pedidos.component.css'],
 })
 export class ListadoPedidosComponent implements OnInit {
+  displayedColumns: string[] = [
+    'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Acciones'
+  ];
+  dataSource!: MatTableDataSource<Pedido>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // @ViewChild(MatSort) sort!: MatSort;
   private subscription = new Subscription();
-  constructor(private servicioPedido: PedidoService) {}
   listado: any;
+
+  constructor(private servicioPedido: PedidoService) {}
+
   ngOnInit(): void {
     this.subscription = new Subscription();
     this.cargarTabla();
   }
+
   cargarTabla(): void{
     this.subscription.add(
       this.servicioPedido.obtenerTodos().subscribe({
         next: (r: ResultadoGenerico) => {
           if(r.ok) {
             this.listado = r.resultado;
+            this.dataSource = new MatTableDataSource(this.listado);
+            this.dataSource.paginator = this.paginator;
+            // this.dataSource.sort = this.sort;
           }
           else {
             console.error(r.mensaje);
@@ -33,6 +50,8 @@ export class ListadoPedidosComponent implements OnInit {
       })
     )
   }
+}
+
 
   
-}
+

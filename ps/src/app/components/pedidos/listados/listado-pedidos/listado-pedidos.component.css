@@ -1,8 +1,25 @@
 .fondo {
     background-image: url("../../../../../assets/img/listadoPedidos.jpg");
     background-size: cover;
-    height: 100%;
-    width: 100%;
     background-position: center;
-    min-height: 120vh;
+    min-height: 100vh;
   }
+/* 
+  table {
+    width: 100%;
+  } 
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 50%;
+  }
+  
+  .th-center{
+    text-align: center;
+  }
+  .th-left{
+    text-align: left;
+  }
+  .th-right{
+    text-align: right;
+  }  */

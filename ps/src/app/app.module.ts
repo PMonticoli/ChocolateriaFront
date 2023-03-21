@@ -19,6 +19,13 @@ import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/de
 import { EstadoPedidoComponent } from './components/pedidos/estado-pedido/estado-pedido.component';
 import { EstadoPedidoService } from './services/estado-pedido.service';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +42,13 @@ import { EstadoPedidoService } from './services/estado-pedido.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     UsuarioService,
