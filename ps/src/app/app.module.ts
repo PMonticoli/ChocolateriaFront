@@ -16,6 +16,8 @@ import { ListadoPedidosComponent } from './components/pedidos/listados/listado-p
 import { ProductoService } from './services/producto.service';
 import { PedidoService } from './services/pedido.service';
 import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/detalles-pedido.component';
+import { EstadoPedidoComponent } from './components/pedidos/estado-pedido/estado-pedido.component';
+import { EstadoPedidoService } from './services/estado-pedido.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/de
     AltaPedidoComponent,
     ElementoProductoComponent,
     ListadoPedidosComponent,
-    DetallesPedidoComponent
+    DetallesPedidoComponent,
+    EstadoPedidoComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/de
     UsuarioService,
     SesionIniciadaService,
     ProductoService,
-    PedidoService
+    PedidoService,
+    EstadoPedidoService
   ],
   bootstrap: [AppComponent]
 })

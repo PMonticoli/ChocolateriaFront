@@ -13,7 +13,7 @@
             <th scope="col">Estado</th>
             <th scope="col">Observaciones</th>
             <th scope="col">Fecha</th>
-            <th scope="col" colspan="2">Acciones</th>
+            <th class="text-center" scope="col" colspan="2">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
             <td>{{ p.fechaPedido | date : "mediumDate" : "UTC" }}</td>
             <td>
               <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
-              <!-- <app-actualizar-estado (onActualizado)="cargarPedidos()" [pedido]="p"></app-actualizar-estado>  -->
+              <app-estado-pedido (onActualizado)="cargarTabla()" [pedido]="p"></app-estado-pedido>
             </td>
           </tr>
         </tbody>
