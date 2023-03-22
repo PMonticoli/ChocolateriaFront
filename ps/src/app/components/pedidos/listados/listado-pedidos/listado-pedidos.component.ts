@@ -15,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ListadoPedidosComponent implements OnInit {
   displayedColumns: string[] = [
-    'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Acciones'
+    'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Detalles' ,'Acciones'
   ];
   dataSource!: MatTableDataSource<Pedido>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
