@@ -3,11 +3,9 @@ import { Subscription } from 'rxjs';
 import { Pedido } from 'src/app/models/pedido';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PedidoService } from 'src/app/services/pedido.service';
-
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
+const Swal = require('sweetalert2');
 @Component({
   selector: 'app-listado-pedidos',
   templateUrl: './listado-pedidos.component.html',
@@ -15,11 +13,10 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ListadoPedidosComponent implements OnInit {
   displayedColumns: string[] = [
-    'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Detalles' ,'Acciones'
+    'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Detalles' ,'Accion'
   ];
   dataSource!: MatTableDataSource<Pedido>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  // @ViewChild(MatSort) sort!: MatSort;
   private subscription = new Subscription();
   listado: any;
 
@@ -45,6 +42,7 @@ export class ListadoPedidosComponent implements OnInit {
           }
         },
         error: (e) => {
+          Swal.fire({title:'Error!', text: `Error al intentar cargar listado pedidos`, icon: 'error'});
           console.error(e);
         }
       })

@@ -1,67 +1,76 @@
 <div class="fondo">
   <div class="container-fluid">
-
     <h1 class="display-4 text-white fw-semibold text-center py-3">
       Listado de Pedidos
     </h1>
 
-      <div class="table-responsive-md bg-dark text-white">
-      <table mat-table [dataSource]="dataSource" matSort>
-
+    <div class="table-responsive-md bg-dark text-white">
+      <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="Punto de Venta">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Punto de Venta</th>
-          <td mat-cell *matCellDef="let row"> {{row.puntoVenta}} </td>
+          <th mat-header-cell *matHeaderCellDef>
+            Punto de Venta
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.puntoVenta }}</td>
         </ng-container>
-    
+
         <ng-container matColumnDef="Socio">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Socio</th>
-          <td mat-cell *matCellDef="let row"> {{row.socio ? row.socio : "-"}} </td>
+          <th mat-header-cell *matHeaderCellDef>Socio</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.socio ? row.socio : "-" }}
+          </td>
         </ng-container>
-    
+
         <ng-container matColumnDef="Empleado">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Empleado</th>
-          <td mat-cell *matCellDef="let row"> {{row.empleado ? row.empleado : "-"}} </td>
+          <th mat-header-cell *matHeaderCellDef>Empleado</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.empleado ? row.empleado : "-" }}
+          </td>
         </ng-container>
-    
 
         <ng-container matColumnDef="Estado">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
-          <td mat-cell *matCellDef="let row"> {{row.estado}} </td>
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let row">{{ row.estado }}</td>
         </ng-container>
 
         <ng-container matColumnDef="Observaciones">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Observaciones</th>
-          <td mat-cell *matCellDef="let row"> {{row.observaciones ? row.observaciones : "-"}} </td>
+          <th mat-header-cell *matHeaderCellDef>
+            Observaciones
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.observaciones ? row.observaciones : "-" }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="Fecha">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
-          <td mat-cell *matCellDef="let row"> {{row.fechaPedido | date : "mediumDate" : "UTC"}} </td>
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.fechaPedido | date : "mediumDate" : "UTC" }}
+          </td>
         </ng-container>
 
-        <ng-container matColumnDef="Detalles"> 
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Detalles</th>
+        <ng-container matColumnDef="Detalles">
+          <th mat-header-cell *matHeaderCellDef>Detalles</th>
           <td mat-cell *matCellDef="let row">
             <app-detalles-pedido [pedido]="row"></app-detalles-pedido>
           </td>
-        </ng-container> 
+        </ng-container>
 
-
-        <ng-container matColumnDef="Acciones"> 
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+        <ng-container matColumnDef="Accion">
+          <th mat-header-cell *matHeaderCellDef>Accion</th>
           <td mat-cell *matCellDef="let row">
-            <app-estado-pedido (onActualizado)="cargarTabla()" [pedido]="row"></app-estado-pedido>  
+            <app-estado-pedido
+              (onActualizado)="cargarTabla()"
+              [pedido]="row"
+            ></app-estado-pedido>
           </td>
-        </ng-container> 
+        </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
 
-      <mat-paginator [pageSize]="8"></mat-paginator>      
-    </div>
-
+      <mat-paginator [pageSize]="8"></mat-paginator>
+      </div>
   </div>
 </div>
 
@@ -69,10 +78,7 @@
 
 
 
-
-
-
-    <!-- <div class="table-responsive-md">
+  <!-- <div class="table-responsive-md">
       <table class="table table-dark">
         <thead>
           <tr>
@@ -101,3 +107,4 @@
         </tbody>
       </table>
     </div> -->
+

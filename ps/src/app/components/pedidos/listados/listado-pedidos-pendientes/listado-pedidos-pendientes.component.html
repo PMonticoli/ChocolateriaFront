@@ -1,0 +1,40 @@
+<div class="fondo">
+    <div class="container-fluid">
+        <h1 class="display-4 text-white fw-semibold text-center">
+            Listado Pedidos Pendientes
+        </h1>
+        <table class="table table-responsive-md bg-dark text-white">
+            <thead>
+                <tr>
+                    <th scope="col">Punto de Venta</th>
+                    <th scope="col">Socio</th>
+                    <th scope="col">Empleado</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Observaciones</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Detalles</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of listado">
+                    <td>{{p.puntoVenta}}</td>
+                    <td>{{p.socio ? p.socio : '-'}}</td>
+                    <td>{{p.empleado ? p.empleado : '-'}}</td>
+                    <td>{{p.estado}}</td>
+                    <td>{{p.observaciones}}</td>
+                    <td>{{p.fechaPedido | date:'mediumDate':'UTC'}}</td>
+                    <td>
+                        <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
+                        <!-- <app-estado-pedido (onActualizado)="cargarTabla()" [pedido]="p"></app-estado-pedido> -->
+                        <!-- <app-cobro (onCobrado)="cargarTabla()" [pedido]="p.estado=='Creado'?p:{}" [pagaCliente]="false"></app-cobro> -->
+                    </td>
+                    <td>
+                        <app-estado-pedido (onActualizado)="cargarTabla()" [pedido]="p"></app-estado-pedido>
+                    </td>
+    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
