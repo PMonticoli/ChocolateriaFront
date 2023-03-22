@@ -25,6 +25,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListadoPedidosPendientesComponent } from './components/pedidos/listados/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ElementoProductoComponent,
     ListadoPedidosComponent,
     DetallesPedidoComponent,
-    EstadoPedidoComponent
+    EstadoPedidoComponent,
+    ListadoPedidosPendientesComponent
   ],
   imports: [
     BrowserModule,
