@@ -1,6 +1,6 @@
-<button class="btn btn-secondary rounded ms-2 mt-3" style="height: 150px;" 
+<button class="btn btn-secondary rounded ms-2 mt-3" style="height: 220px; width: 350px;" 
 [disabled]="!producto.disponible || disabled" data-bs-toggle="modal" attr.data-bs-target="#modal{{modalId}}">
-  <div style="max-width: 300px;">
+  <div style="max-width: 320px;">
     <div class="row p-1">
       <div class="col-8 text-start">
         <p class="m-0 fs-5 text fw-semibold">{{producto.nombre}}</p>
@@ -28,7 +28,7 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-5 zoom-img" >
-                    <img [src]="producto.urlImagen? producto.urlImagen : rutaImgDefault" [alt]="producto.nombre" class="img-fluid" style="max-height: 445px;">
+                    <img [src]="producto.urlImagen? producto.urlImagen : rutaImgDefault" [alt]="producto.nombre" class="img-fluid" style="max-height: 500px;">
                 </div>
                 <div class="col-7 px-5">
                     <p class="fs-4">{{producto.descripcion}}</p>
