@@ -35,7 +35,6 @@ export class ListadoPedidosComponent implements OnInit {
             this.listado = r.resultado;
             this.dataSource = new MatTableDataSource(this.listado);
             this.dataSource.paginator = this.paginator;
-            // this.dataSource.sort = this.sort;
           }
           else {
             console.error(r.mensaje);

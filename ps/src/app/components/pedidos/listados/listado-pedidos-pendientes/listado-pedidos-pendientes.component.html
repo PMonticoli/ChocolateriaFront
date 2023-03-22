@@ -1,40 +1,76 @@
 <div class="fondo">
     <div class="container-fluid">
-        <h1 class="display-4 text-white fw-semibold text-center">
-            Listado Pedidos Pendientes
-        </h1>
-        <table class="table table-responsive-md bg-dark text-white">
-            <thead>
-                <tr>
-                    <th scope="col">Punto de Venta</th>
-                    <th scope="col">Socio</th>
-                    <th scope="col">Empleado</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Observaciones</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Detalles</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let p of listado">
-                    <td>{{p.puntoVenta}}</td>
-                    <td>{{p.socio ? p.socio : '-'}}</td>
-                    <td>{{p.empleado ? p.empleado : '-'}}</td>
-                    <td>{{p.estado}}</td>
-                    <td>{{p.observaciones}}</td>
-                    <td>{{p.fechaPedido | date:'mediumDate':'UTC'}}</td>
-                    <td>
-                        <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
-                        <!-- <app-estado-pedido (onActualizado)="cargarTabla()" [pedido]="p"></app-estado-pedido> -->
-                        <!-- <app-cobro (onCobrado)="cargarTabla()" [pedido]="p.estado=='Creado'?p:{}" [pagaCliente]="false"></app-cobro> -->
-                    </td>
-                    <td>
-                        <app-estado-pedido (onActualizado)="cargarTabla()" [pedido]="p"></app-estado-pedido>
-                    </td>
-    
-                </tr>
-            </tbody>
+      <h1 class="display-4 text-white fw-semibold text-center py-3">
+        Listado de Pedidos
+      </h1>
+  
+      <div class="table-responsive-md bg-dark text-white">
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="Punto de Venta">
+            <th mat-header-cell *matHeaderCellDef>
+              Punto de Venta
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.puntoVenta }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Socio">
+            <th mat-header-cell *matHeaderCellDef>Socio</th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.socio ? row.socio : "-" }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Empleado">
+            <th mat-header-cell *matHeaderCellDef>Empleado</th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.empleado ? row.empleado : "-" }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Estado">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let row">{{ row.estado }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Observaciones">
+            <th mat-header-cell *matHeaderCellDef>
+              Observaciones
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.observaciones ? row.observaciones : "-" }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Fecha">
+            <th mat-header-cell *matHeaderCellDef>Fecha</th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.fechaPedido | date : "mediumDate" : "UTC" }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Detalles">
+            <th mat-header-cell *matHeaderCellDef>Detalles</th>
+            <td mat-cell *matCellDef="let row">
+              <app-detalles-pedido [pedido]="row"></app-detalles-pedido>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Accion">
+            <th mat-header-cell *matHeaderCellDef>Accion</th>
+            <td mat-cell *matCellDef="let row">
+              <app-estado-pedido
+                (onActualizado)="cargarTabla()"
+                [pedido]="row"
+              ></app-estado-pedido>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
+  
+        <mat-paginator [pageSize]="8"></mat-paginator>
+        </div>
     </div>
-</div>
+  </div>
+  
