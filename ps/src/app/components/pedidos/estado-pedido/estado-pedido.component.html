@@ -1,4 +1,4 @@
-<button class="btn btn-primary mx-3" data-bs-toggle="modal" attr.data-bs-target="#modalEstado{{pedido.id}}" 
+<button class="btn btn-primary" data-bs-toggle="modal" attr.data-bs-target="#modalEstado{{pedido.id}}" 
 (click)="getEstados()">Actualizar Estado</button>
 
 <!-- Modal -->
@@ -7,7 +7,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 900px;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Actualizar el estado del pedido</h5>
+                <h5 class="modal-title fs-4 text text" id="exampleModalLabel" style="color: black;">Actualizar el estado del pedido</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -16,11 +16,11 @@
                 <form [formGroup]="formulario">
                     <div class="form-group">
                         <div class="mb-3">
-                            <label for="selectTipoPago" class="form-label">Estado</label>
+                            <label for="selectTipoPago" class="form-label fs-4 text" style="color:black" >Estado</label>
                             <select id="selectTipoPago" class="form-select" 
                             formControlName="estadoPedido"
                             [class.is-invalid]="controlEstado.touched && controlEstado.hasError('required')">
-                                <option *ngFor="let estado of estadosPedido" [ngValue]="estado">{{ estado.nombre }}</option>
+                                <option *ngFor="let estado of estadosPedido" [ngValue]="estado" class="fs-6 text">{{ estado.nombre }}</option>
                             </select>
                             <span class="invalid-feedback">
                                 Estado es requerido
