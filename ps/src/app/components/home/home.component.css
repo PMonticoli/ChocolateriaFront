@@ -12,14 +12,7 @@ a {
   color: white;
 }
 
-.contenido {
-  /* position: relative;
-  width: 100%;
-  display: flex; */
-  /* justify-content: space-between;
-  align-items: center; */
-  /* padding-left: 30px; */
-}
+
 
 .contenido .tituloBox {
   position: relative;
