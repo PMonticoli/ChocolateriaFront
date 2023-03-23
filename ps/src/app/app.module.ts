@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CobroComponent } from './components/pedidos/cobro/cobro.component';
 import { CobroService } from './services/cobro.service';
 import { TipoPagoService } from './services/tipo-pago.service';
+import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/listado-pedidos-propios/listado-pedidos-propios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { TipoPagoService } from './services/tipo-pago.service';
     DetallesPedidoComponent,
     EstadoPedidoComponent,
     ListadoPedidosPendientesComponent,
-    CobroComponent
+    CobroComponent,
+    ListadoPedidosPropiosComponent
   ],
   imports: [
     BrowserModule,
