@@ -16,7 +16,7 @@ export class ListadoPedidosPendientesComponent implements OnInit {
   private subscription : Subscription;
   listado : any;
   displayedColumns: string[] = [
-    'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Detalles' ,'Accion'
+    'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Detalles' ,'Accion', 'Cobro'
   ];
   dataSource!: MatTableDataSource<Pedido>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;

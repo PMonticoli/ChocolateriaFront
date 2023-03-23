@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,EventEmitter,Input,OnDestroy,OnInit,Output,} from '@angular/core';
+import {FormBuilder,FormControl,FormGroup,Validators,} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DetallePedido } from 'src/app/models/detalle-pedido';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
@@ -12,35 +13,41 @@ const Swal = require('sweetalert2');
 @Component({
   selector: 'app-cobro',
   templateUrl: './cobro.component.html',
-  styleUrls: ['./cobro.component.css']
+  styleUrls: ['./cobro.component.css'],
 })
-export class CobroComponent implements OnInit,OnDestroy {
-private subscription : Subscription;
-private formulario : FormGroup;
-tiposPago : TipoPago[];
-cobraConTarjeta: boolean;
-mostrarCodQr: boolean = false;
-labelBoton: string;
-@Input() abonaCliente: boolean;
-@Input() disabled: boolean;
-@Input() pedido: any;
-@Output() onCobrado = new EventEmitter();
-detalles: DetallePedido[];
-montoTotal: number = 0;
+export class CobroComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+  tiposPago: TipoPago[];
+  cobraConTarjeta: boolean;
+  labelBoton: string;
+  formulario: FormGroup;
+  mostrarCodQr: boolean = false;
+  @Input() abonaCliente: boolean;
+  @Input() disabled: boolean;
+  @Input() pedido: any;
+  @Output() onCobrado = new EventEmitter();
+  detalles: DetallePedido[];
+  montoTotal: number = 0;
 
-
-constructor(private servicioPedido : PedidoService,
-           private servicioCobro : CobroService,
-           private servicioTipoPago : TipoPagoService,
-           private formBuilder : FormBuilder){}
+  constructor(
+    private formBuilder: FormBuilder,
+    private servicioTipoPago: TipoPagoService,
+    private servicioPedido: PedidoService,
+    private servicioCobro: CobroService
+  ) { }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit(): void {
+    this.disabled = this.pedido.estado != 'Creado';
+    this.labelBoton = this.abonaCliente? 'Pagar' : 'Cobrar'
     this.subscription = new Subscription();
     this.formulario = this.formBuilder.group({
-      tiposPago : [,Validators.required],
-      codigoAutorizacion : [,Validators.required]
+      tipoPago: [,Validators.required],
+      codigoAutorizacion: [,Validators.required],
     })
-
+    this.obtenerTiposPago();
     this.formulario.controls["tipoPago"].valueChanges.subscribe(x => {
       if(x.nombre == 'Tarjeta de Débito' || x.nombre == 'Tarjeta de Crédito') {
         this.formulario.controls['codigoAutorizacion'].setValidators([Validators.required]);
@@ -58,12 +65,14 @@ constructor(private servicioPedido : PedidoService,
       this.formulario.controls['codigoAutorizacion'].reset();
       this.formulario.controls['codigoAutorizacion'].updateValueAndValidity();
    })
-
   }
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  calcularTotal(): void {
+    let total = 0;
+    this.detalles.forEach(x => {
+      total = total + x.precioUnitario * x.cantidad;
+    });
+    this.montoTotal = total;
   }
-
   obtenerTiposPago(): void {
     this.subscription.add(
       this.servicioTipoPago.obtenerTodos().subscribe({
@@ -84,18 +93,9 @@ constructor(private servicioPedido : PedidoService,
       })
     )
   }
-  
-  calcularTotal(): void {
-    let total = 0;
-    this.detalles.forEach(x => {
-      total = total + x.precioUnitario * x.cantidad;
-    });
-    this.montoTotal = total;
-  }
-
   obtenerDetalles(): void {
     if(!this.pedido.id){
-      console.error("Pedido id no definido");
+      console.error("Pedido id is undefined");
       return;
     }
     this.subscription.add(
@@ -115,8 +115,6 @@ constructor(private servicioPedido : PedidoService,
       })
     )
   }
-
-  
   guardarCobro(): void {
     if(this.formulario.valid) {
       const { tipoPago, codigoAutorizacion } = this.formulario.value;
@@ -131,27 +129,29 @@ constructor(private servicioPedido : PedidoService,
           next: (r: ResultadoGenerico) => {
             if(r.ok){
               this.onCobrado.emit();
-              const condicion = this.abonaCliente ? 'Pago' : 'Cobro';
-              Swal.fire({ title: 'Éxito!', text:  condicion + ' '+ 'realizado con éxito.', icon: 'success' });
+              const verbo = this.abonaCliente ? 'Pago' : 'Cobro';
+              Swal.fire({title:'Listo!', text:`${verbo} realizado con éxito`, icon: 'success'});
             } else {
+              Swal.fire({title:'Oops!', text:`Ocurrió un error`, icon: 'error'});
               console.error(r.mensaje);
             }
 
           },
           error: (e) => {
-            Swal.fire({ title: 'Error!', text: 'Se produjo un error', icon: 'error' });
+            Swal.fire({title:'Error!', text:`Ocurrió un error`, icon: 'error'});
+            console.error(e);
           }
         })
       )
     } else {
-      Swal.fire({ title: 'Error!', text: 'Se produjo un error', icon: 'error' });
+      Swal.fire({title:'Atención!', text:`Revise los campos!`, icon: 'warning'});
     }
   }
+
   get controlTipoPago(): FormControl {
     return this.formulario.controls['tipoPago'] as FormControl;
   }
   get controlCodAutorizacion(): FormControl {
     return this.formulario.controls['codigoAutorizacion'] as FormControl;
   }
-
 }
