@@ -16,6 +16,6 @@ export class CobroService {
       'Authorization': `Bearer ${auth_token}`
     })
     const requestOptions= {headers : headers};
-    return this.http.post<ResultadoGenerico>(this.API_URL,requestOptions);
+    return this.http.post<ResultadoGenerico>(this.API_URL,body,requestOptions);
   }
 }
