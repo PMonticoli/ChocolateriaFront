@@ -18,16 +18,13 @@ import { PedidoService } from './services/pedido.service';
 import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/detalles-pedido.component';
 import { EstadoPedidoComponent } from './components/pedidos/estado-pedido/estado-pedido.component';
 import { EstadoPedidoService } from './services/estado-pedido.service';
-
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListadoPedidosPendientesComponent } from './components/pedidos/listados/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
-
-
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,8 +47,8 @@ import { ListadoPedidosPendientesComponent } from './components/pedidos/listados
     MatSortModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule,
     BrowserAnimationsModule,
+    MatInputModule
   ],
   providers: [
     UsuarioService,
