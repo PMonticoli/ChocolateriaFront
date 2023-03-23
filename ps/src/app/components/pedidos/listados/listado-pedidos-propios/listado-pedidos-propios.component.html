@@ -1,0 +1,49 @@
+<div class="fondo">
+    <div class="container-fluid">
+        <h1 class="display-4 text-white fw-semibold text-center py-3">
+            Listado de Pedidos
+        </h1>
+
+
+        <div class="table-responsive-md bg-dark text-white">
+            <table mat-table [dataSource]="dataSource">
+              <ng-container matColumnDef="Estado">
+                <th mat-header-cell *matHeaderCellDef>
+                  Estado
+                </th>
+                <td mat-cell *matCellDef="let row">{{ row.estado }}</td>
+              </ng-container>
+                  
+      
+      
+              <ng-container matColumnDef="FechaPedido">
+                <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                <td mat-cell *matCellDef="let row">
+                  {{ row.fechaPedido | date : "mediumDate" : "UTC" }}
+                </td>
+              </ng-container>
+      
+              <ng-container matColumnDef="Detalles">
+                <th mat-header-cell *matHeaderCellDef>Detalles</th>
+                <td mat-cell *matCellDef="let row">
+                  <app-detalles-pedido [pedido]="row"></app-detalles-pedido>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Acciones">
+                <th mat-header-cell *matHeaderCellDef>Pagar</th>
+                <td mat-cell *matCellDef="let row">
+                <app-cobro (onCobrado)="cargarTabla()" [pedido]="row.estado=='Creado'?row:{}" [abonaCliente]="true"></app-cobro>
+                </td>
+              </ng-container>
+      
+      
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+      
+            <mat-paginator [pageSize]="8"></mat-paginator>
+            </div>
+
+    </div>
+</div>
