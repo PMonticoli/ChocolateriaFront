@@ -25,6 +25,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CobroComponent } from './components/pedidos/cobro/cobro.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { MatInputModule } from '@angular/material/input';
     ListadoPedidosComponent,
     DetallesPedidoComponent,
     EstadoPedidoComponent,
-    ListadoPedidosPendientesComponent
+    ListadoPedidosPendientesComponent,
+    CobroComponent
   ],
   imports: [
     BrowserModule,
