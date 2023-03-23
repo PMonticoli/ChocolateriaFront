@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResultadoGenerico } from '../models/resultado-generico';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CobroService {
   private API_URL: string = 'http://localhost:3000/cobros/';
   constructor(private http : HttpClient) { }
