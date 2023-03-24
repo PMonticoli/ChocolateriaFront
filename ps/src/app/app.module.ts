@@ -29,6 +29,7 @@ import { CobroComponent } from './components/pedidos/cobro/cobro.component';
 import { CobroService } from './services/cobro.service';
 import { TipoPagoService } from './services/tipo-pago.service';
 import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/listado-pedidos-propios/listado-pedidos-propios.component';
+import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/li
     EstadoPedidoComponent,
     ListadoPedidosPendientesComponent,
     CobroComponent,
-    ListadoPedidosPropiosComponent
+    ListadoPedidosPropiosComponent,
+    AltaSocioComponent
   ],
   imports: [
     BrowserModule,
