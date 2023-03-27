@@ -1,7 +1,7 @@
 <div class="fondo">
     <div class="container">
         <h1 class="text-center py-3">{{!isEdit ? 'Registrar Socio' : 'Editar Socio'}}</h1>
-        <form>
+        <form [formGroup]="formulario">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
@@ -14,7 +14,13 @@
                                     </div>
                                 </div>
                                 <input type="text" class="form-control" id="inputNombre" 
-                                placeholder="Ingrese el nombre">
+                                placeholder="Ingrese el nombre"
+                                formControlName="nombre"
+                                [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
+                                <span *ngIf="controlNombre.touched && controlNombre.hasError('required')"
+                                class="invalid-feedback">
+                                  Nombre es requerido,complete el campo por favor.
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -29,7 +35,12 @@
                                     </div>
                                 </div>
                                 <input type="text" class="form-control" id="inputApellido" 
-                                placeholder="Ingrese el apellido">
+                                placeholder="Ingrese el apellido" formControlName="apellido"
+                                [class.is-invalid]="controlApellido.touched && controlApellido.hasError('required')">
+                                <span *ngIf="controlApellido.touched && controlApellido.hasError('required')"
+                                class="invalid-feedback">
+                                  Apellido es requerido,complete el campo por favor.
+                                </span>
                             </div>
                           </div>
                     </div>
@@ -45,7 +56,11 @@
                             <div class="input-group">
                                 <div class="input-group-text">@</div>
                                 <input type="text" class="form-control" id="inputEmail" 
-                                placeholder="Ingrese el email">
+                                placeholder="Ingrese el email" formControlName="email"
+                                [class.is-invalid]="controlEmail.touched && controlEmail.hasError('required')">
+                                <span class="invalid-feedback" *ngIf="controlEmail.touched && controlEmail.hasError('required')">
+                                    Email es requerido,complete el campo por favor.
+                                </span>
                               </div>
                         </div>
                     </div>
@@ -54,7 +69,12 @@
                         <div class="mb-3">
                             <label for="inputDni" class="form-label">DNI</label>
                             <input type="number" class="form-control" id="inputDni" 
-                            placeholder="Ingrese el DNI">
+                            placeholder="Ingrese el DNI" formControlName="dni"
+                            [class.is-invalid]="controlDni.touched && controlDni.hasError('required')">
+                            <span *ngIf="controlDni.touched && controlDni.hasError('required')"
+                            class="invalid-feedback">
+                              Dni es requerido,complete el campo por favor.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -97,7 +117,8 @@
             </div>
     
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button type="submit" class="btn btn-success">Registrar</button>
+                <button type="submit" class="btn btn-success" *ngIf="!isEdit" (click)="registrar()">Registrar</button>
+                <button type="submit" class="btn btn-success" *ngIf="isEdit" (click)="editar()">Editar</button>
                 <button type="button" class="btn btn-danger ms-3">Cancelar</button>
             </div>
     
