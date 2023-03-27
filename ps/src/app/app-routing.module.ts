@@ -7,6 +7,7 @@ import { ListadoPedidosPendientesComponent } from './components/pedidos/listados
 import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/listado-pedidos-propios/listado-pedidos-propios.component';
 import { ListadoPedidosComponent } from './components/pedidos/listados/listado-pedidos/listado-pedidos.component';
 import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
+import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
 
 const routes: Routes = [
   {path : 'home', component : HomeComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'pedido/listado', component: ListadoPedidosComponent},
   {path: 'pedido/pendiente', component: ListadoPedidosPendientesComponent},
   {path: 'pedido/propios', component: ListadoPedidosPropiosComponent},
-  {path: 'socio/nuevo', component: AltaSocioComponent}
+  {path: 'socio/nuevo', component: AltaSocioComponent},
+  {path: 'socio/listado', component: ListadoSociosComponent},
 ];
 
 @NgModule({

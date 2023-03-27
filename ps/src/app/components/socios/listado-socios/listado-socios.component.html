@@ -1,0 +1,37 @@
+<div class="fondo">
+    <div class="container-fluid">
+      <h1 class="display-4 text-white fw-semibold text-center py-3">
+        Listado de Socios
+      </h1>
+  
+      <div class="table-responsive-md">
+        <table class="bg-dark" mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="Nombre">
+            <th class="text-white" mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td class="text-white" mat-cell *matCellDef="let row">{{ row.nombre }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Apellido">
+            <th class="text-white" mat-header-cell *matHeaderCellDef>Apellido</th>
+            <td class="text-white" mat-cell *matCellDef="let row">
+              {{ row.apellido }}
+            </td>
+          </ng-container>
+  
+  
+          <ng-container matColumnDef="Dni">
+            <th class="text-white" mat-header-cell *matHeaderCellDef>DNI</th>
+            <td class="text-white" mat-cell *matCellDef="let row">{{ row.dni }}</td>
+          </ng-container>
+  
+
+     
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+  
+        <mat-paginator class="bg-dark text-white" [pageSize]="8"></mat-paginator>
+      </div>
+    </div>
+  </div>
+  

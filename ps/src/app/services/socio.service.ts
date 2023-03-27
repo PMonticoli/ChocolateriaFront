@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { ResultadoGenerico } from '../models/resultado-generico';
 import { Socio } from '../models/socio';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SocioService {
   private API_URL : string = 'http://localhost:3000/socios/';
   constructor(private http : HttpClient) { }
