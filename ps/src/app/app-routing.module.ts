@@ -18,6 +18,7 @@ const routes: Routes = [
   {path: 'pedido/pendiente', component: ListadoPedidosPendientesComponent},
   {path: 'pedido/propios', component: ListadoPedidosPropiosComponent},
   {path: 'socio/nuevo', component: AltaSocioComponent},
+  { path:'socio/nuevo/:id', component : AltaSocioComponent},
   {path: 'socio/listado', component: ListadoSociosComponent},
 ];
 

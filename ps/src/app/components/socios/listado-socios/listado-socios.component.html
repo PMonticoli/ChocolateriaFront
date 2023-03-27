@@ -34,6 +34,7 @@
             <td class="text-white" mat-cell *matCellDef="let row">
               <app-detalles-socio [socio]="row"></app-detalles-socio>
               <app-baja-socio [socio]="row" (onEliminado)="cargarTabla()" [deshabilitado]="row.fechaBaja!==null"></app-baja-socio>
+              <button class="btn btn-success bi bi-pencil ms-3" [routerLink]="['/socio/nuevo',row.id]"></button>
             </td>
           </ng-container>
   

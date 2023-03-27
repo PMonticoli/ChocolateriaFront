@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                                 <input type="text" class="form-control" id="inputDomicilio" 
-                                placeholder="Ingrese el domicilio">
+                                placeholder="Ingrese el domicilio" formControlName="domicilio">
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                                     </div>
                                 </div>
                                 <input type="number" class="form-control" id="inputTelefono" 
-                                placeholder="Ingrese el telefono">
+                                placeholder="Ingrese el telefono" formControlName="telefono">
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                 <button type="submit" class="btn btn-success" *ngIf="!isEdit" (click)="registrar()">Registrar</button>
                 <button type="submit" class="btn btn-success" *ngIf="isEdit" (click)="editar()">Editar</button>
-                <button type="button" class="btn btn-danger ms-3">Cancelar</button>
+                <button type="button" class="btn btn-danger ms-3" routerLink="/home">Cancelar</button>
             </div>
     
         </form>

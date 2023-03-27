@@ -77,24 +77,25 @@ registrar(){
 }
 
 editar(){
+  console.log(this.formulario.value);
   let body = this.formulario.value as Socio;
-    body.id=this.socio.id;
-    body.dni=this.socio.dni;
-    this.subscription.add(
-      this.servicioSocio.modificar(body).subscribe({
-        next : (res : ResultadoGenerico) =>{
-          if(res.ok){
-            Swal.fire({title:'Listo', text:`Editó el socio correctamente`, icon: 'success'});
-            this.router.navigate(['/socios/listado']);
-          }else{
-            console.log(res.mensaje);
-          }
-        },
-        error: (e) => {
-          Swal.fire({title:'Error', text:`Error al editar socio: ${e}`, icon: 'error'});
+  body.id=this.socio.id;
+  body.dni=this.socio.dni;
+  this.subscription.add(
+    this.servicioSocio.modificar(body).subscribe({
+      next : (res : ResultadoGenerico) =>{
+        if(res.ok){
+          Swal.fire({title:'Listo!', text:`Editó el socio correctamente`, icon: 'success'});
+          this.router.navigate(['/socio/listado']);
+        }else{
+          console.log(res.mensaje);
         }
-      })
-    )
+      },
+      error: (e) => {
+        Swal.fire({title:'Error!', text:`Error al editar socio: ${e}`, icon: 'error'});
+      }
+    })
+  )
 }
 
 
