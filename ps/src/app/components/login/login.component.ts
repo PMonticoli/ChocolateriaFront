@@ -16,7 +16,7 @@ const Swal = require('sweetalert2');
 export class LoginComponent {
   private subscription = new Subscription();
   formulario: FormGroup;
-
+  fieldTextType: boolean;
   constructor(
     private servicioUsuario: UsuarioService,
     private formBuilder: FormBuilder,
@@ -67,4 +67,8 @@ export class LoginComponent {
       Swal.fire({title:'Atención', text: 'Complete los campos por favor', icon: 'warning'});
     }
   }
+
+toggleFieldTextType() {
+  this.fieldTextType = !this.fieldTextType;
+}
 }

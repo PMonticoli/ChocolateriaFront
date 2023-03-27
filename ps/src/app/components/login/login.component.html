@@ -12,15 +12,30 @@
             class="invalid-feedback">
               Nombre de usuario es requerido,complete el campo por favor.
             </span>
+
             <label for="inputContrasenia" class="form-label text-white" style="font-size: 1.2rem;">Contraseña</label>
-            <input type="password" name="p" placeholder="Ingrese su contraseña" required="required" 
-            formControlName="contrasenia"
-            class="form-control"
-            [class.is-invalid]="controlContrasenia.touched && controlContrasenia.hasError('required')"/>
-            <span *ngIf="controlContrasenia.touched && controlContrasenia.hasError('required')"
-            class="invalid-feedback">
-                Contraseña es requerida,complete el campo por favor.
-            </span>
+            <div class="input-group">
+
+                <input type="password" name="p" placeholder="Ingrese su contraseña" required="required" 
+                formControlName="contrasenia"
+                class="form-control"
+                [class.is-invalid]="controlContrasenia.touched && controlContrasenia.hasError('required')"
+                [type]="fieldTextType ? 'text' : 'password'"/>
+                <div class="input-group-append">
+                    <span  class="input-group-text">
+                        <i class="bi"
+                        [ngClass]="{
+                          'bi-eye-slash-fill': !fieldTextType,
+                          'bi-eye-fill': fieldTextType
+                        }"
+                        (click)="toggleFieldTextType()"></i>
+                    </span >
+                </div>
+                <span *ngIf="controlContrasenia.touched && controlContrasenia.hasError('required')"
+                class="invalid-feedback">
+                    Contraseña es requerida,complete el campo por favor.
+                </span>
+            </div>
             <button type="submit" class="btn btn-primary btn-block btn-large" [disabled]="!formulario.valid" (click)="iniciarSesion()">Iniciar Sesión</button>
         </form>
         <br>
