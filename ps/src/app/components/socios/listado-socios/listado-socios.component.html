@@ -29,14 +29,15 @@
             <td class="text-white" mat-cell *matCellDef="let row">{{ row.fechaBaja ? 'No' : 'Si' }}</td>
           </ng-container>
   
-          <ng-container matColumnDef="Detalles">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Detalles</th>
+          <ng-container matColumnDef="Acciones">
+            <th class="text-white" mat-header-cell *matHeaderCellDef>Acciones</th>
             <td class="text-white" mat-cell *matCellDef="let row">
               <app-detalles-socio [socio]="row"></app-detalles-socio>
+              <app-baja-socio [socio]="row" (onEliminado)="cargarTabla()" [deshabilitado]="row.fechaBaja!==null"></app-baja-socio>
             </td>
           </ng-container>
   
-     
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
