@@ -23,8 +23,19 @@
             <th class="text-white" mat-header-cell *matHeaderCellDef>DNI</th>
             <td class="text-white" mat-cell *matCellDef="let row">{{ row.dni }}</td>
           </ng-container>
-  
 
+          <ng-container matColumnDef="Activo">
+            <th class="text-white" mat-header-cell *matHeaderCellDef>Activo</th>
+            <td class="text-white" mat-cell *matCellDef="let row">{{ row.fechaBaja ? 'No' : 'Si' }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Detalles">
+            <th class="text-white" mat-header-cell *matHeaderCellDef>Detalles</th>
+            <td class="text-white" mat-cell *matCellDef="let row">
+              <app-detalles-socio [socio]="row"></app-detalles-socio>
+            </td>
+          </ng-container>
+  
      
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

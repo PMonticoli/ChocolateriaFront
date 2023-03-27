@@ -15,7 +15,7 @@ const Swal = require('sweetalert2');
 export class ListadoSociosComponent implements OnInit, OnDestroy{
   @Input() listado : Socio[]=[];
   displayedColumns: string[] = [
-    'Nombre', 'Apellido', 'Dni'
+    'Nombre', 'Apellido', 'Dni', 'Activo','Detalles'
   ];
   dataSource!: MatTableDataSource<Socio>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
