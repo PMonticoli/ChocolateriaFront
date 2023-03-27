@@ -46,7 +46,7 @@ html {
 .fondo {
   background-image: url(../../../../assets/img/fondoPedidos.jpg);
   background-size: cover;
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
   background-position: center;
   min-height: 100vh;
