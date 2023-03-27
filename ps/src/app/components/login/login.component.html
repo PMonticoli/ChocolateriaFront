@@ -1,53 +1,94 @@
-<div class="container-fluid fondo">
+<div class="fondo">
+  <div class="container-fluid">
     <div class="login">
-        <h1>Iniciar Sesión</h1>
-        <form [formGroup]="formulario" method="post">
-            <label for="inputUsuario" class="form-label text-white" style="font-size: 1.2rem;">Nombre de usuario</label>
-            <input type="text" placeholder="Ingrese su usuario" required="required"
-            formControlName="usuario"
-            class="form-control"
-            [class.is-invalid]="controlUsuario.touched && controlUsuario.hasError('required')"
-            />
-            <span *ngIf="controlUsuario.touched && controlUsuario.hasError('required')"
-            class="invalid-feedback">
-              Nombre de usuario es requerido,complete el campo por favor.
-            </span>
+      <h1>Iniciar Sesión</h1>
+      <form [formGroup]="formulario">
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label
+                  for="inputUsuario"
+                  class="form-label text-white"
+                  style="font-size: 1.2rem"
+                  >Nombre de usuario</label
+                >
+                <input
+                  type="text"
+                  placeholder="Ingrese su usuario"
+                  required="required"
+                  formControlName="usuario"
+                  class="form-control"
+                  [class.is-invalid]="
+                    controlUsuario.touched &&
+                    controlUsuario.hasError('required')
+                  "
+                />
+                <span
+                  *ngIf="
+                    controlUsuario.touched &&
+                    controlUsuario.hasError('required')
+                  "
+                  class="invalid-feedback"
+                >
+                  Usuario es requerido,complete el campo
+                </span>
 
-            <label for="inputContrasenia" class="form-label text-white" style="font-size: 1.2rem;">Contraseña</label>
-            <div class="input-group">
-
-                <input type="password" name="p" placeholder="Ingrese su contraseña" required="required" 
-                formControlName="contrasenia"
-                class="form-control"
-                [class.is-invalid]="controlContrasenia.touched && controlContrasenia.hasError('required')"
-                [type]="fieldTextType ? 'text' : 'password'"/>
-                <div class="input-group-append">
-                    <span  class="input-group-text">
-                        <i class="bi"
+                <label
+                  for="inputContrasenia"
+                  class="form-label text-white"
+                  style="font-size: 1.2rem"
+                  >Contraseña</label
+                >
+                <div class="input-group">
+                  <input
+                    type="password"
+                    name="p"
+                    placeholder="Ingrese su contraseña"
+                    required="required"
+                    formControlName="contrasenia"
+                    class="form-control"
+                    [class.is-invalid]="
+                      controlContrasenia.touched &&
+                      controlContrasenia.hasError('required')
+                    "
+                    [type]="fieldTextType ? 'text' : 'password'"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i
+                        class="bi"
                         [ngClass]="{
                           'bi-eye-slash-fill': !fieldTextType,
                           'bi-eye-fill': fieldTextType
                         }"
-                        (click)="toggleFieldTextType()"></i>
-                    </span >
+                        (click)="toggleFieldTextType()"
+                      ></i>
+                    </span>
+                  </div>
+                  <span
+                    *ngIf="
+                      controlContrasenia.touched &&
+                      controlContrasenia.hasError('required')
+                    "
+                    class="invalid-feedback"
+                  >
+                    Contraseña es requerida,complete el campo
+                  </span>
                 </div>
-                <span *ngIf="controlContrasenia.touched && controlContrasenia.hasError('required')"
-                class="invalid-feedback">
-                    Contraseña es requerida,complete el campo por favor.
-                </span>
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-block btn-large"
+                  [disabled]="!formulario.valid"
+                  (click)="iniciarSesion()"
+                >
+                  Iniciar Sesión
+                </button>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block btn-large" [disabled]="!formulario.valid" (click)="iniciarSesion()">Iniciar Sesión</button>
-        </form>
-        <br>
-       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9155049400353686"
-         data-ad-slot="2205382250"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
