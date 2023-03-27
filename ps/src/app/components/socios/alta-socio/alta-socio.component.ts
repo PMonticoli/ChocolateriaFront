@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./alta-socio.component.css']
 })
 export class AltaSocioComponent {
-
+isEdit : boolean =false;
 }

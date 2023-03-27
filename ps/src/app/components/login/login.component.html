@@ -13,7 +13,13 @@
                   style="font-size: 1.2rem"
                   >Nombre de usuario</label
                 >
-                <input
+                <div class="input-group">	
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="bi bi-person-fill"></i>
+                    </div>
+                </div>
+                  <input
                   type="text"
                   placeholder="Ingrese su usuario"
                   required="required"
@@ -24,6 +30,7 @@
                     controlUsuario.hasError('required')
                   "
                 />
+                </div>
                 <span
                   *ngIf="
                     controlUsuario.touched &&
@@ -41,6 +48,11 @@
                   >Contraseña</label
                 >
                 <div class="input-group">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="bi bi-key-fill"></i>
+                    </div>
+                  </div>
                   <input
                     type="password"
                     name="p"
@@ -76,6 +88,7 @@
                     Contraseña es requerida,complete el campo
                   </span>
                 </div>
+                <br>
                 <button
                   type="submit"
                   class="btn btn-primary btn-block btn-large"

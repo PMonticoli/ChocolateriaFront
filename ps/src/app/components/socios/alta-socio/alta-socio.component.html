@@ -1,1 +1,106 @@
-<p>alta-socio works!</p>
+<div class="fondo">
+    <div class="container">
+        <h1 class="text-center py-3">{{!isEdit ? 'Registrar Socio' : 'Editar Socio'}}</h1>
+        <form>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="inputNombre" class="form-label">Nombre</label>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="bi bi-person"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" id="inputNombre" 
+                                placeholder="Ingrese el nombre">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="inputApellido" class="form-label">Apellido</label>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="bi bi-person"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" id="inputApellido" 
+                                placeholder="Ingrese el apellido">
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">Email</label>
+                            <div class="input-group">
+                                <div class="input-group-text">@</div>
+                                <input type="text" class="form-control" id="inputEmail" 
+                                placeholder="Ingrese el email">
+                              </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="inputDni" class="form-label">DNI</label>
+                            <input type="number" class="form-control" id="inputDni" 
+                            placeholder="Ingrese el DNI">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+    
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="inputDomicilio" class="form-label">Domicilio</label>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="bi bi-house-add"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" id="inputDomicilio" 
+                                placeholder="Ingrese el domicilio">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="inputTelefono" class="form-label">Telefono</label>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="bi bi-telephone"></i>
+                                    </div>
+                                </div>
+                                <input type="number" class="form-control" id="inputTelefono" 
+                                placeholder="Ingrese el telefono">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button type="submit" class="btn btn-success">Registrar</button>
+                <button type="button" class="btn btn-danger ms-3">Cancelar</button>
+            </div>
+    
+        </form>
+    </div>
+</div>
