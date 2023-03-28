@@ -31,9 +31,9 @@ export class BajaSocioComponent implements OnInit,OnDestroy {
       text: "No vas a poder revertir la acción!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#39AF09',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, dar de baja!'
+      confirmButtonText: 'Si, dar de baja'
     }).then((result : any) => {
       if (result.isConfirmed) {
         this.subscription.add(
