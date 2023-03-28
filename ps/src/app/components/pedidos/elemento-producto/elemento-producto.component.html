@@ -9,7 +9,7 @@
         <p *ngIf="!producto.disponible" class=" m-0 text-danger"><strong>NO DISPONIBLE</strong></p>
     </div>
     <div class="col-4 d-flex align-items-center">
-      <img [src]="producto.urlImagen? producto.urlImagen : rutaImgDefault" class="img-fluid rounded ms-2" style="max-height: 80px;" [alt]="producto.nombre">
+      <img [src]="producto.urlImagen? producto.urlImagen : rutaImgDefault" class="img-fluid rounded ms-2" style="height: 100px;" [alt]="producto.nombre">
     </div>
     </div>
   </div>
