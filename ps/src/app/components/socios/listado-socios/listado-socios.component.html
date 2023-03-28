@@ -29,12 +29,18 @@
             <td class="text-white" mat-cell *matCellDef="let row">{{ row.fechaBaja ? 'No' : 'Si' }}</td>
           </ng-container>
   
+          <ng-container matColumnDef="Detalles">
+            <th class="text-white" mat-header-cell *matHeaderCellDef>Detalles</th>
+            <td class="text-white" mat-cell *matCellDef="let row">
+              <app-detalles-socio [socio]="row"></app-detalles-socio>
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="Acciones">
             <th class="text-white" mat-header-cell *matHeaderCellDef>Acciones</th>
             <td class="text-white" mat-cell *matCellDef="let row">
-              <app-detalles-socio [socio]="row"></app-detalles-socio>
               <app-baja-socio [socio]="row" (onEliminado)="cargarTabla()" [deshabilitado]="row.fechaBaja!==null"></app-baja-socio>
-              <button class="btn btn-success bi bi-pencil ms-3" [routerLink]="['/socio/nuevo',row.id]"></button>
+              <button class="btn btn-success bi bi-pencil ms-3" [routerLink]="['/socio/nuevo',row.id]"> Editar</button>
             </td>
           </ng-container>
   
