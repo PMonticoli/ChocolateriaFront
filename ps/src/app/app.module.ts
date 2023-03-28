@@ -34,6 +34,8 @@ import { ListadoSociosComponent } from './components/socios/listado-socios/lista
 import { SocioService } from './services/socio.service';
 import { DetallesSocioComponent } from './components/socios/detalles-socio/detalles-socio.component';
 import { BajaSocioComponent } from './components/socios/baja-socio/baja-socio.component';
+import { AltaProductoComponent } from './components/productos/alta-producto/alta-producto.component';
+import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,9 @@ import { BajaSocioComponent } from './components/socios/baja-socio/baja-socio.co
     AltaSocioComponent,
     ListadoSociosComponent,
     DetallesSocioComponent,
-    BajaSocioComponent
+    BajaSocioComponent,
+    AltaProductoComponent,
+    ListadoProductosComponent
   ],
   imports: [
     BrowserModule,
