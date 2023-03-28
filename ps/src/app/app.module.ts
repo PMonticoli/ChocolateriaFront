@@ -36,6 +36,7 @@ import { DetallesSocioComponent } from './components/socios/detalles-socio/detal
 import { BajaSocioComponent } from './components/socios/baja-socio/baja-socio.component';
 import { AltaProductoComponent } from './components/productos/alta-producto/alta-producto.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
+import { BajaProductoComponent } from './components/productos/baja-producto/baja-producto.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +56,8 @@ import { ListadoProductosComponent } from './components/productos/listado-produc
     DetallesSocioComponent,
     BajaSocioComponent,
     AltaProductoComponent,
-    ListadoProductosComponent
+    ListadoProductosComponent,
+    BajaProductoComponent
   ],
   imports: [
     BrowserModule,
