@@ -69,7 +69,7 @@ export class ProductoService {
     return this.http.put<ResultadoGenerico>(this.API_URL,body,requestOptions);
    }
 
-   getProducto(id : number) : Observable<ResultadoGenerico> {
+   getProductoById(id : number) : Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
 
