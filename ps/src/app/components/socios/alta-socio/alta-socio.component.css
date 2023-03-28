@@ -4,3 +4,9 @@
     background-position: center;
     min-height: 105vh;
   }
+
+  .titulo {
+    color: #000000;
+    font-family: "Lora", serif;
+    font-weight: 700;
+  }
