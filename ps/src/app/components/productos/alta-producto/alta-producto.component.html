@@ -1,0 +1,88 @@
+<div class="fondo">
+    <div class="container p-5">
+        <h1 class="mb-5 text-center text-uppercase titulo">{{!isEdit ? 'Registrar Producto' : 'Editar Producto'}}</h1>
+          <form [formGroup]="formulario">
+      
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label fs-6 text fw-semibold fw-semibold">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                    [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
+                    <span *ngIf="controlNombre.touched && controlNombre.hasError('required')"
+                    class="invalid-feedback">
+                      Nombre es requerido
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="col-sm-2">
+                  <div class="mb-3">
+                    <label for="precio" class="form-label fs-6 text fw-semibold fw-semibold">Precio</label>
+                    <input type="text" class="form-control" id="precio" formControlName="precio"
+                    [class.is-invalid]="controlPrecio.touched&&controlPrecio.hasError('required')">
+                    <span *ngIf="controlPrecio.touched && controlPrecio.hasError('required')"
+                    class="invalid-feedback">
+                      Precio es requerido
+                    </span>
+                  </div>
+                </div>
+      
+      
+                <div class="col-sm-2">
+                  <div class="mb-3">
+                    <label for="puntosGanados" class="form-label fs-6 text fw-semibold fw-semibold">Puntos ganados</label>
+                    <input type="text" class="form-control" id="puntosGanados" formControlName="puntosGanados"
+                    [class.is-invalid]="controlPuntos.touched&&controlPuntos.hasError('required')"
+                    >
+                    <span *ngIf="controlPuntos.touched && controlPuntos.hasError('required')"
+                    class="invalid-feedback">
+                      Puntos es requerido
+                    </span>
+                  </div>
+                </div>
+      
+              </div>
+            </div>
+      
+            
+                <div class="mb-3">
+                  <label for="descripcion" class="form-label fs-6 text fw-semibold fw-semibold">Descripcion</label>
+                  <textarea class="form-control" id="descripcion" rows="2" formControlName="descripcion"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="observaciones" class="form-label fs-6 text fw-semibold fw-semibold">Observaciones</label>
+                  <textarea class="form-control" id="observaciones" rows="2" formControlName="observaciones"></textarea>
+                </div>
+      
+                <div class="col-lg-12">
+                  <div class="mb-3">
+                    <label for="urlImagen" class="form-label fs-6 text fw-semibold fw-semibold">Url imagen</label>
+                    <input type="text" class="form-control" id="urlImagen" formControlName="urlImagen">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="mb-3 form-check">
+                        <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" formControlName="activo"
+                        (change)="cambioActivoCheck(activo.checked)"/>
+                        <label class="form-check-label fs-6 text fw-semibold fw-semibold" for="inputActivo">Activo</label>
+                      </div>
+                      <div class="mb-3 form-check">
+                        <input #disponible type="checkbox" name="inputDisponible" class="form-check-input" id="inputDisponible" formControlName="disponible" 
+                        (change)="cambioDisponibleCheck(disponible.checked)"/>
+                        <label class="form-check-label fs-6 text fw-semibold fw-semibold" for="inputDisponible">Disponible</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" *ngIf="!isEdit" (click)="registrar()">Registrar</button>
+                <button type="submit" class="btn btn-success" *ngIf="isEdit" (click)="editar()">Editar</button>
+              <button type="button" class="btn btn-danger ms-3" routerLink="/home">Cancelar</button>
+            </form>
+      </div>
+</div>
