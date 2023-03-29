@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { SesionIniciadaService } from 'src/app/services/sesion-iniciada.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2'
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2'
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   sesionIniciada: boolean;
+  rol : string;
   private subscription = new Subscription();
   constructor(private servicioUsuario : UsuarioService,
              private servicioSesion : SesionIniciadaService,
@@ -20,8 +22,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getRol();
     this.servicioSesion.sesionCambio().subscribe({
       next : (x : boolean) =>{
+        this.getRol();
         this.sesionIniciada=x;
       }
     })
@@ -55,4 +59,30 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   });
   }
+
+  getRol(){
+    this.subscription.add(
+      this.servicioUsuario.obtenerRol().subscribe({
+        next : (res : ResultadoGenerico)=>{
+          if(res.ok && res.resultado && res.resultado.length>0){
+            this.rol= res.resultado[0];
+          }else{
+            this.rol = 'sinIniciarSesion';
+            console.log(res);
+          }
+        },
+        error :(err)=>{
+          console.log(err);
+          this.rol = 'sinIniciarSesion';
+        }
+      })
+    )
+  }
+
+
+
+
+
+
+
 }

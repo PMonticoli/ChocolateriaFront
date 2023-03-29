@@ -5,9 +5,13 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+        <!-- NAVBAR VISIBLE PARA EMPLEADO - ADMIN -->
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="rol=== 'Admin' || rol==='Empleado'">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="home">Inicio</a>
+            <a class="nav-link" aria-current="page" routerLink="home">Inicio</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -17,7 +21,6 @@
               <li><a class="dropdown-item" routerLink="pedido/nuevo">Registrar pedido</a></li>
               <li><a class="dropdown-item" routerLink="pedido/listado">Listado pedidos</a></li>
               <li><a class="dropdown-item" routerLink="pedido/pendiente">Listado pedidos pendientes</a></li>
-              <li><a class="dropdown-item" routerLink="pedido/propios">Listado pedidos propios</a></li>
             </ul>
           </li>
 
@@ -39,6 +42,40 @@
               <li><a class="dropdown-item" routerLink="socio/nuevo">Registrar socio</a></li>
               <li><a class="dropdown-item" routerLink="socio/listado">Listado socios</a></li>
             </ul>
+          </li>
+        </ul>
+
+
+        <!-- NAVBAR VISIBLE PARA SOCIO -->
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="rol === 'Socio'">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="home">Inicio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Pedidos
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="pedido/nuevo">Registrar pedido</a></li>
+              <li><a class="dropdown-item" routerLink="pedido/propios">Mis pedidos</a></li>
+            </ul>
+          </li>
+        </ul>
+
+
+        <!-- NAVBAR VISIBLE PARA USUARIOS SIN INICIAR SESION -->
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="rol === 'sinIniciarSesion'">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="home">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="pedido/nuevo">Realizar un pedido</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="socio/nuevo">Quiero hacerme socio</a>
           </li>
         </ul>
 
