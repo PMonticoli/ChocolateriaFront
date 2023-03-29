@@ -76,7 +76,7 @@
           </li>
         </ul>
 
-        <button type="button" class="bi bi-person-fill-add btn btn-outline-success"> Registrarme</button>
+        <button type="button" class="bi bi-person-fill-add btn btn-outline-success" routerLink="registro"> Registrarme</button>
         <button *ngIf="!sesionIniciada" type="button" class="bi bi-box-arrow-in-right btn btn-outline-primary ms-3" routerLink="login"> Iniciar Sesión</button>
         <button *ngIf="sesionIniciada" (click)="cerrarSesion()" type="button" class="bi bi-box-arrow-left btn btn-outline-danger ms-3"> Cerrar Sesión</button>
       </div>
