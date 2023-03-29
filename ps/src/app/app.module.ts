@@ -37,6 +37,7 @@ import { BajaSocioComponent } from './components/socios/baja-socio/baja-socio.co
 import { AltaProductoComponent } from './components/productos/alta-producto/alta-producto.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
 import { BajaProductoComponent } from './components/productos/baja-producto/baja-producto.component';
+import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-usuario-externo/registro-usuario-externo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { BajaProductoComponent } from './components/productos/baja-producto/baja
     BajaSocioComponent,
     AltaProductoComponent,
     ListadoProductosComponent,
-    BajaProductoComponent
+    BajaProductoComponent,
+    RegistroUsuarioExternoComponent
   ],
   imports: [
     BrowserModule,

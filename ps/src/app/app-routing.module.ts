@@ -10,6 +10,7 @@ import { AltaProductoComponent } from './components/productos/alta-producto/alta
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
 import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
+import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-usuario-externo/registro-usuario-externo.component';
 
 const routes: Routes = [
   {path : 'home', component : HomeComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'socio/listado', component: ListadoSociosComponent},
   {path: 'producto/nuevo', component : AltaProductoComponent},
   {path: 'producto/nuevo/:id', component : AltaProductoComponent},
-  {path: 'producto/listado', component : ListadoProductosComponent}
+  {path: 'producto/listado', component : ListadoProductosComponent},
+  {path: 'registro', component : RegistroUsuarioExternoComponent}
 ];
 
 @NgModule({
