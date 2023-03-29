@@ -22,4 +22,8 @@ export class UsuarioService {
     const requestOptions = { headers: headers };
     return this.http.get<ResultadoGenerico>(this.API_URL +'/rol',requestOptions);
   }
+
+  existeSocioConDNI(dni : number): Observable<boolean> {
+    return this.http.get<boolean>(this.API_URL+'exists?dni='+dni);
+   }
 }
