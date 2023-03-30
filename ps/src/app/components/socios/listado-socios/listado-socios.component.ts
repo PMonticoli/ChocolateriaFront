@@ -47,7 +47,7 @@ export class ListadoSociosComponent implements OnInit, OnDestroy{
 
   onSearchProduct(buscar : string){
     this.page=0;
-    this.search=buscar;
+    this.search=buscar.toLowerCase();
   }
 
   prevPage(){
