@@ -41,7 +41,7 @@
             <tr *ngFor="let p of listado |filtro:page :search">
               <td>{{p.nombre}}</td>
               <td>{{p.descripcion}}</td>
-              <td>{{p.observaciones}}</td>
+              <td>{{p.observaciones ? p.observaciones : "-"}}</td>
               <td>{{p.precio}}</td>
               <td>{{p.puntosGanados}}</td>
               <td>{{p.activo ? 'SI' : 'NO'}}</td>
