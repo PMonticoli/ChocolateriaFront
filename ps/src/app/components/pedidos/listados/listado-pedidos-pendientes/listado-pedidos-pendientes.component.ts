@@ -15,6 +15,8 @@ const Swal = require('sweetalert2');
 export class ListadoPedidosPendientesComponent implements OnInit {
   private subscription : Subscription;
   listado : any;
+  page: number=0;
+  search : string='';
   displayedColumns: string[] = [
     'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Detalles' ,'Accion', 'Cobro'
   ];
@@ -29,21 +31,35 @@ export class ListadoPedidosPendientesComponent implements OnInit {
   cargarTabla() : void{
     this.subscription.add(
       this.servicioPedido.obtenerPendientes().subscribe({
-        next : (res : ResultadoGenerico)=>{
-          if(res.ok){
-            this.listado=res.resultado;
-            this.dataSource = new MatTableDataSource(this.listado);
-            this.dataSource.paginator = this.paginator;
-          }else{
-            console.error(res.mensaje);
+        next: (r: ResultadoGenerico) => {
+          if(r.ok) {
+            this.listado = r.resultado;
+          }
+          else {
+            console.error(r.mensaje);
           }
         },
-        error :(e)=>{
-          Swal.fire({title:'Error!', text: `Error al intentar cargar listado pedidos pendientes`, icon: 'error'});
+        error: (e) => {
+          Swal.fire({title:'Error!', text: `Error al listar pedidos pendientes`, icon: 'error'});
           console.error(e);
         }
       })
     )
+  }
+
+  onSearchProduct(buscar : string){
+    this.page=0;
+    this.search=buscar.toLowerCase();
+  }
+
+  prevPage(){
+    if(this.page>0){
+      this.page-=6;
+    }
+  }
+
+  nextPage(){
+    this.page+=6;
   }
 
 }
