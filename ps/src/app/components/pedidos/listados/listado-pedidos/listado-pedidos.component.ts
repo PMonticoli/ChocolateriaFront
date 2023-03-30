@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Pedido } from 'src/app/models/pedido';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PedidoService } from 'src/app/services/pedido.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+
 const Swal = require('sweetalert2');
 @Component({
   selector: 'app-listado-pedidos',
@@ -12,14 +10,10 @@ const Swal = require('sweetalert2');
   styleUrls: ['./listado-pedidos.component.css'],
 })
 export class ListadoPedidosComponent implements OnInit {
-  displayedColumns: string[] = [
-    'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Detalles' ,'Accion'
-  ];
-  dataSource!: MatTableDataSource<Pedido>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
   private subscription = new Subscription();
   listado: any;
-
+  page : number = 0;
+  search : string ='';
   constructor(private servicioPedido: PedidoService) {}
 
   ngOnInit(): void {
@@ -27,25 +21,39 @@ export class ListadoPedidosComponent implements OnInit {
     this.cargarTabla();
   }
 
-  cargarTabla(): void{
+  cargarTabla() : void{
     this.subscription.add(
       this.servicioPedido.obtenerTodos().subscribe({
         next: (r: ResultadoGenerico) => {
           if(r.ok) {
             this.listado = r.resultado;
-            this.dataSource = new MatTableDataSource(this.listado);
-            this.dataSource.paginator = this.paginator;
           }
           else {
             console.error(r.mensaje);
           }
         },
         error: (e) => {
-          Swal.fire({title:'Error!', text: `Error al intentar cargar listado pedidos`, icon: 'error'});
+          Swal.fire({title:'Error!', text: `Error al listar pedidos`, icon: 'error'});
           console.error(e);
         }
       })
     )
+  }
+
+
+  onSearchProduct(buscar : string){
+    this.page=0;
+    this.search=buscar.toLowerCase();
+  }
+
+  prevPage(){
+    if(this.page>0){
+      this.page-=6;
+    }
+  }
+
+  nextPage(){
+    this.page+=6;
   }
 }
 

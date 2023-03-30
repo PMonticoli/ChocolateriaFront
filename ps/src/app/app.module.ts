@@ -40,6 +40,7 @@ import { BajaProductoComponent } from './components/productos/baja-producto/baja
 import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-usuario-externo/registro-usuario-externo.component';
 import { FiltroPipe } from './pipes/filtro.pipe';
 import { FiltroSocioPipe } from './pipes/filtro-socio.pipe';
+import { FiltroPedidoPipe } from './pipes/filtro-pedido.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { FiltroSocioPipe } from './pipes/filtro-socio.pipe';
     BajaProductoComponent,
     RegistroUsuarioExternoComponent,
     FiltroPipe,
-    FiltroSocioPipe
+    FiltroSocioPipe,
+    FiltroPedidoPipe
   ],
   imports: [
     BrowserModule,

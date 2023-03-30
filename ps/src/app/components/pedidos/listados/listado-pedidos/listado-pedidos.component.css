@@ -12,21 +12,11 @@
     font-weight: 700;
   }
 
-  /* table {
-    width: 100%;
-  } 
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 50%;
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary.active,
+  .btn-primary.disabled,
+  .btn-primary[disabled] {
+    filter: none;
+    background-color: #4ea15c;
   }
-  
-  .th-center{
-    text-align: center;
-  }
-  .th-left{
-    text-align: left;
-  }
-  .th-right{
-    text-align: right;
-  } */
