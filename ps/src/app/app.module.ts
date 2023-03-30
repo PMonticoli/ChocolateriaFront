@@ -39,6 +39,7 @@ import { ListadoProductosComponent } from './components/productos/listado-produc
 import { BajaProductoComponent } from './components/productos/baja-producto/baja-producto.component';
 import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-usuario-externo/registro-usuario-externo.component';
 import { FiltroPipe } from './pipes/filtro.pipe';
+import { FiltroSocioPipe } from './pipes/filtro-socio.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,8 @@ import { FiltroPipe } from './pipes/filtro.pipe';
     ListadoProductosComponent,
     BajaProductoComponent,
     RegistroUsuarioExternoComponent,
-    FiltroPipe
+    FiltroPipe,
+    FiltroSocioPipe
   ],
   imports: [
     BrowserModule,

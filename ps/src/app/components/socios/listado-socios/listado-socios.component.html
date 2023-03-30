@@ -1,4 +1,4 @@
-<div class="fondo">
+<!-- <div class="fondo">
     <div class="container-fluid">
       <h1 class="text-center text-uppercase titulo text-white py-3 titulo">
         Listado de Socios
@@ -53,4 +53,61 @@
       </div>
     </div>
   </div>
-  
+   -->
+
+   <div class="fondo">
+    <div class="container-fluid">
+
+      <h1 class="text-center text-uppercase titulo text-white py-3">
+        Listado de Socios
+      </h1>
+      
+      <div class="row">
+        <div class="col-sm-3">
+          <input type="text" 
+          class="form-control mb-2" 
+          placeholder="Buscar socio por dni o apellido" 
+          #txtSearch
+          (keyup)="onSearchProduct(txtSearch.value)">
+        </div>
+      </div>    
+
+      <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
+        &nbsp;
+      <button class="btn btn-primary" (click)="nextPage()"
+        [disabled]="(listado |filtroSocio: page :search).length===0"
+        >Siguientes</button>
+
+
+      <div class="table-responsive-sm">
+        <table class="table bg-dark text-white mt-2">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">DNI</th>
+              <th scope="col">Activo</th>
+              <th scope="col">Detalles</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of listado | filtroSocio: page : search">
+              <td>{{s.nombre}}</td>
+              <td>{{s.apellido}}</td>
+              <td>{{s.dni}}</td>
+              <td>{{s.fechaBaja ? 'Si' : 'No'}}</td>
+              <td>
+                <app-detalles-socio [socio]="s"></app-detalles-socio>
+              </td>
+              <td>
+              <app-baja-socio [socio]="s" (onEliminado)="cargarTabla()" [deshabilitado]="s.fechaBaja!==null"></app-baja-socio>
+              <button class="btn btn-success bi bi-pencil ms-3" [routerLink]="['/socio/nuevo',s.id]"> Editar</button>
+              </td>
+            </tr>
+          </tbody>  
+        </table>
+      </div>
+
+    </div>
+  </div>

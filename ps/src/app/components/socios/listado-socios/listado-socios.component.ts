@@ -14,13 +14,9 @@ const Swal = require('sweetalert2');
 })
 export class ListadoSociosComponent implements OnInit, OnDestroy{
   @Input() listado : Socio[]=[];
-  displayedColumns: string[] = [
-    'Nombre', 'Apellido', 'Dni', 'Activo','Detalles','Acciones'
-  ];
-  dataSource!: MatTableDataSource<Socio>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
   private subscription = new Subscription();
-
+  page : number= 0;
+  search : string='';
   constructor(private servicioSocio : SocioService){}
 
   ngOnInit(): void {
@@ -30,14 +26,13 @@ export class ListadoSociosComponent implements OnInit, OnDestroy{
     this.subscription.unsubscribe();
   }
 
-  cargarTabla(): void{
+
+  cargarTabla() : void{
     this.subscription.add(
       this.servicioSocio.obtenerTodos().subscribe({
         next: (r: ResultadoGenerico) => {
           if(r.ok) {
             this.listado = r.resultado as Socio[];
-            this.dataSource = new MatTableDataSource(this.listado);
-            this.dataSource.paginator = this.paginator;
           }
           else {
             console.error(r.mensaje);
@@ -49,5 +44,21 @@ export class ListadoSociosComponent implements OnInit, OnDestroy{
         }
       })
     )
+  }
+
+
+  onSearchProduct(buscar : string){
+    this.page=0;
+    this.search=buscar;
+  }
+
+  prevPage(){
+    if(this.page>0){
+      this.page-=6;
+    }
+  }
+
+  nextPage(){
+    this.page+=6;
   }
 }
