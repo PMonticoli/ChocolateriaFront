@@ -1,26 +1,20 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Producto } from 'src/app/models/producto';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { ProductoService } from 'src/app/services/producto.service';
 const Swal = require('sweetalert2');
+
 @Component({
   selector: 'app-listado-productos',
   templateUrl: './listado-productos.component.html',
   styleUrls: ['./listado-productos.component.css']
 })
 export class ListadoProductosComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = [
-    'Nombre', 'Descripcion', 'Observaciones','Precio', 'Puntos Ganados', 
-    'Activo', 'Disponible' ,'Eliminar','Editar'    
-  ];
-  dataSource!: MatTableDataSource<Producto>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
   private subscription = new Subscription();
-  listado: any;
-
+  @Input() listado : Producto[]=[];
+  search : string= '';
+  page : number = 0;
   constructor(private servicioProducto : ProductoService){}
 
   ngOnInit(): void {
@@ -31,14 +25,12 @@ export class ListadoProductosComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  cargarTabla(): void{
+  cargarTabla(){
     this.subscription.add(
       this.servicioProducto.obtenerTodos().subscribe({
-        next: (res: ResultadoGenerico) => {
-          if(res.ok) {
-            this.listado = res.resultado;
-            this.dataSource = new MatTableDataSource(this.listado);
-            this.dataSource.paginator = this.paginator;
+        next : (res: ResultadoGenerico) =>{    
+          if(res.resultado && res.resultado.length>=0){ 
+            this.listado=res.resultado;
           }
           else {
             console.error(res.mensaje);
@@ -50,5 +42,21 @@ export class ListadoProductosComponent implements OnInit, OnDestroy {
         }
       })
     )
+  }
+
+
+  nextPage(){
+    this.page+=6;
+  }
+
+  prevPage(){
+    if(this.page>0){
+      this.page-=6;
+    }
+  }
+
+  onSearchProduct(buscar : string){
+      this.page=0;
+      this.search=buscar;
   }
 }

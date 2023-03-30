@@ -38,6 +38,7 @@ import { AltaProductoComponent } from './components/productos/alta-producto/alta
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
 import { BajaProductoComponent } from './components/productos/baja-producto/baja-producto.component';
 import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-usuario-externo/registro-usuario-externo.component';
+import { FiltroPipe } from './pipes/filtro.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-
     AltaProductoComponent,
     ListadoProductosComponent,
     BajaProductoComponent,
-    RegistroUsuarioExternoComponent
+    RegistroUsuarioExternoComponent,
+    FiltroPipe
   ],
   imports: [
     BrowserModule,

@@ -1,78 +1,61 @@
-<div class="fondo">
+  <div class="fondo">
     <div class="container-fluid">
+
       <h1 class="text-center text-uppercase titulo text-white py-3">
         Listado de Productos
       </h1>
-  
-      <div class="table-responsive-md">
-        <table class="bg-dark" mat-table [dataSource]="dataSource">
-          <ng-container matColumnDef="Nombre">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Nombre</th>
-            <td class="text-white" mat-cell *matCellDef="let row">{{ row.nombre }}</td>
-          </ng-container>
+      
+      <div class="row">
+        <div class="col-sm-3">
+          <input type="text" 
+          class="form-control mb-2" 
+          placeholder="Buscar producto" 
+          #txtSearch
+          (keyup)="onSearchProduct(txtSearch.value)">
+        </div>
+      </div>    
 
-  
-          <ng-container matColumnDef="Descripcion">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Descripción</th>
-            <td class="text-white" mat-cell *matCellDef="let row">
-              {{ row.descripcion ? row.descripcion : "-" }}
-            </td>
-          </ng-container>
-   
-          <ng-container matColumnDef="Observaciones">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Observaciones</th>
-            <td class="text-white" mat-cell *matCellDef="let row">
-              {{ row.observaciones ? row.observaciones : "-" }}
-            </td>
-          </ng-container>
+      <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
+        &nbsp;
+      <button class="btn btn-primary" (click)="nextPage()"
+        [disabled]="(listado |filtro:page :search).length===0"
+        >Siguientes</button>
 
-            
-          <ng-container matColumnDef="Precio">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Precio</th>
-            <td class="text-white" mat-cell *matCellDef="let row">
-              {{ row.precio }}
-            </td>
-          </ng-container>
 
-          <ng-container matColumnDef="Puntos Ganados">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Puntos Ganados</th>
-            <td class="text-white" mat-cell *matCellDef="let row">
-              {{ row.puntosGanados ? row.puntosGanados : '-' }}
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Activo">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Activo</th>
-            <td class="text-white" mat-cell *matCellDef="let row">{{ row.activo ? 'SI' : 'NO' }}</td>
-          </ng-container>
-
-          
-          <ng-container matColumnDef="Disponible">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Disponible</th>
-            <td class="text-white" mat-cell *matCellDef="let row">{{ row.disponible ? 'SI' : 'NO' }}</td>
-          </ng-container>
-   
-  
-          <ng-container matColumnDef="Eliminar">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Eliminar</th>
-            <td mat-cell *matCellDef="let row">
-              <app-baja-producto [producto]="row" (onEliminado)="cargarTabla()"></app-baja-producto>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Editar">
-            <th class="text-white" mat-header-cell *matHeaderCellDef>Editar</th>
-            <td mat-cell *matCellDef="let row">
-              <button class="btn btn-success bi bi-pencil" [routerLink]="['/producto/nuevo',row.id]"> Editar</button>
-            </td>
-          </ng-container>
-  
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <div class="table-responsive">
+        <table class="table bg-dark text-white mt-2">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Observaciones</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Puntos Ganados</th>
+              <th scope="col">Activo</th>
+              <th scope="col">Disponible</th>
+              <th scope="col">Eliminar</th>
+              <th scope="col">Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of listado |filtro:page :search">
+              <td>{{p.nombre}}</td>
+              <td>{{p.descripcion}}</td>
+              <td>{{p.observaciones}}</td>
+              <td>{{p.precio}}</td>
+              <td>{{p.puntosGanados}}</td>
+              <td>{{p.activo ? 'SI' : 'NO'}}</td>
+              <td>{{p.disponible ? 'SI' : 'NO'}}</td>
+              <td>
+                <app-baja-producto [producto]="p" (onEliminado)="cargarTabla()"></app-baja-producto>
+              </td>
+              <td>
+                <button class="btn btn-success bi bi-pencil" [routerLink]="['/producto/nuevo',p.id]"> Editar</button>
+              </td>
+            </tr>
+          </tbody>  
         </table>
-  
-        <mat-paginator class="bg-dark text-white fw-semibold text-uppercase" [pageSize]="7"></mat-paginator>
       </div>
+
     </div>
   </div>
-  
