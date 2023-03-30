@@ -1,110 +1,102 @@
-<div class="fondo">
-    <!-- <div class="container-fluid">
-      <div class="login">
-        <h1>Registro de Usuario</h1>
-        <form [formGroup]="formulario">
-          <div class="form-group">
-            <div class="row">
-              <div class="col">
-                <div class="mb-3">
-                  <label for="inputUsuario" class="form-label text-white" style="font-size: 1.2rem">Nombre de usuario</label>
-                  <div class="input-group">	
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <i class="bi bi-person-fill"></i>
-                      </div>
+<!-- <div class="fondo">
+  <div class="container-fluid">
+    <div class="login">
+      <h1>Registro de usuario</h1>
+      <form [formGroup]="formulario">
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+
+                <label
+                  for="inputUsuario"
+                  class="form-label text-white"
+                  style="font-size: 1.2rem"
+                  >Nombre de usuario</label>
+
+
+                <div class="input-group">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="bi bi-person-fill"></i>
+                    </div>
                   </div>
-                    <input
-                    type="text"
-                    placeholder="Ingrese su usuario"
-                    required="required"
+                  <input type="text" placeholder="Ingrese su usuario" required="required"
                     formControlName="usuario"
                     class="form-control"
-                    [class.is-invalid]="
-                      controlUsuario.touched &&
-                      controlUsuario.hasError('required')
-                    "
-                  />
-                  </div>
+                    [class.is-invalid]=" controlUsuario.touched && controlUsuario.hasError('required')"/>
                   <span
-                    *ngIf="
-                      controlUsuario.touched &&
-                      controlUsuario.hasError('required')
-                    "
-                    class="invalid-feedback"
+                    *ngIf="controlUsuario.touched && controlUsuario.hasError('required')" class="invalid-feedback"
                   >
                     Usuario es requerido,complete el campo
                   </span>
-  
-                  <label
-                    for="inputContrasenia"
-                    class="form-label text-white"
-                    style="font-size: 1.2rem"
-                    >Contraseña</label
-                  >
-                  <div class="input-group">
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <i class="bi bi-key-fill"></i>
-                      </div>
+                </div>
+
+
+
+
+                <label
+                for="inputContrasenia"
+                class="form-label text-white"
+                style="font-size: 1.2rem"
+                >Contraseña</label
+              >
+
+                <div class="input-group">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="bi bi-key-fill"></i>
                     </div>
-                    <input
-                      type="password"
-                      name="p"
-                      placeholder="Ingrese su contraseña"
-                      required="required"
-                      formControlName="contrasenia"
-                      class="form-control"
-                      [class.is-invalid]="
-                        controlContrasenia.touched &&
-                        controlContrasenia.hasError('required')
-                      "
-                      [type]="fieldTextType ? 'text' : 'password'"
-                    />
-                    <div class="input-group-append">
-                      <span class="input-group-text">
-                        <i
-                          class="bi"
-                          [ngClass]="{
-                            'bi-eye-slash-fill': !fieldTextType,
-                            'bi-eye-fill': fieldTextType
-                          }"
-                          (click)="toggleFieldTextType()"
-                        ></i>
-                      </span>
-                    </div>
-                    <span
-                      *ngIf="
-                        controlContrasenia.touched &&
-                        controlContrasenia.hasError('required')
-                      "
-                      class="invalid-feedback"
-                    >
-                      Contraseña es requerida,complete el campo
+                  </div>
+                  <input
+                    type="password"
+                    name="p"
+                    placeholder="Ingrese su contraseña"
+                    required="required"
+                    formControlName="contrasenia"
+                    class="form-control"
+                    [class.is-invalid]="
+                      controlContrasenia.touched &&
+                      controlContrasenia.hasError('required')
+                    "
+                    [type]="fieldTextType ? 'text' : 'password'"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i
+                        class="bi"
+                        [ngClass]="{
+                          'bi-eye-slash-fill': !fieldTextType,
+                          'bi-eye-fill': fieldTextType
+                        }"
+                        (click)="toggleFieldTextType()"
+                      ></i>
                     </span>
                   </div>
-                  <br>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-block btn-large"
-                    [disabled]="!formulario.valid"
-                    (click)="registrar()"
+                  <span
+                    *ngIf="
+                      controlContrasenia.touched &&
+                      controlContrasenia.hasError('required')
+                    "
+                    class="invalid-feedback"
                   >
-                    Registrar Usuario
-                  </button>
-
-                  <button
-                  type="button"
-                  class="btn btn-danger btn-block btn-large mt-2"
-                >
-                  Cancelar
-                </button>
+                    Contraseña es requerida,complete el campo
+                  </span>
                 </div>
+                <br>
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-block btn-large"
+                  [disabled]="!formulario.valid"
+                  (click)="registrar()"
+                >
+                  Registrar Usuario
+                </button>
               </div>
             </div>
           </div>
-        </form>
-      </div>
-    </div> -->
+        </div>
+      </form>
+    </div>
   </div>
-  
+</div> -->
