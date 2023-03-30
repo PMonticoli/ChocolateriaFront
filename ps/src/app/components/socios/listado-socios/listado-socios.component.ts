@@ -1,7 +1,5 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { Socio } from 'src/app/models/socio';
 import { SocioService } from 'src/app/services/socio.service';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
