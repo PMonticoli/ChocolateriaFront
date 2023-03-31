@@ -2,9 +2,6 @@ import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PedidoService } from 'src/app/services/pedido.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { Pedido } from 'src/app/models/pedido';
 const Swal = require('sweetalert2');
 @Component({
   selector: 'app-listado-pedidos-propios',
@@ -14,11 +11,8 @@ const Swal = require('sweetalert2');
 export class ListadoPedidosPropiosComponent implements OnInit, OnDestroy {
   private subscription : Subscription;
   listado : any;
-  displayedColumns: string[] = [
-    'Estado', 'FechaPedido' ,'Detalles', 'Acciones'
-  ];
-  dataSource!: MatTableDataSource<Pedido>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  page: number=0;
+  search : string='';
   constructor(private servicioPedido : PedidoService){}
   ngOnDestroy(): void {
   this.subscription.unsubscribe();
@@ -31,21 +25,35 @@ export class ListadoPedidosPropiosComponent implements OnInit, OnDestroy {
   cargarTabla() : void{
     this.subscription.add(
       this.servicioPedido.obtenerPropios().subscribe({
-        next : (res : ResultadoGenerico)=>{
-          if(res.ok){
-            this.listado = res.resultado;
-            this.dataSource = new MatTableDataSource(this.listado);
-            this.dataSource.paginator = this.paginator;
-          }else{
-            console.error(res.mensaje);
+        next: (r: ResultadoGenerico) => {
+          if(r.ok) {
+            this.listado = r.resultado;
+          }
+          else {
+            console.error(r.mensaje);
           }
         },
-        error : (err)=>{
-          Swal.fire({title:'Error!', text: `Error al intentar actualizar tu listado de pedidos`, icon: 'error'});
-          console.error(err);
+        error: (e) => {
+          Swal.fire({title:'Error!', text: `Error al listar mis pedidos`, icon: 'error'});
+          console.error(e);
         }
       })
     )
+  }
+
+  onSearchProduct(buscar : string){
+    this.page=0;
+    this.search=buscar.toLowerCase();
+  }
+
+  prevPage(){
+    if(this.page>0){
+      this.page-=6;
+    }
+  }
+
+  nextPage(){
+    this.page+=6;
   }
 
 

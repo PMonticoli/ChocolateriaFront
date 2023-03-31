@@ -25,7 +25,7 @@
       <div class="table-responsive">
         <table class="table bg-dark text-white mt-2">
           <thead>
-            <tr>
+            <tr class="text-center">
               <th scope="col">Nombre</th>
               <th scope="col">Descripcion</th>
               <th scope="col">Observaciones</th>
@@ -33,11 +33,10 @@
               <th scope="col">Puntos Ganados</th>
               <th scope="col">Activo</th>
               <th scope="col">Disponible</th>
-              <th scope="col">Eliminar</th>
-              <th scope="col">Editar</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="text-center">
             <tr *ngFor="let p of listado |filtro:page :search">
               <td>{{p.nombre}}</td>
               <td>{{p.descripcion}}</td>
@@ -47,10 +46,8 @@
               <td>{{p.activo ? 'SI' : 'NO'}}</td>
               <td>{{p.disponible ? 'SI' : 'NO'}}</td>
               <td>
-                <app-baja-producto [producto]="p" (onEliminado)="cargarTabla()"></app-baja-producto>
-              </td>
-              <td>
                 <button class="btn btn-success bi bi-pencil" [routerLink]="['/producto/nuevo',p.id]"> Editar</button>
+                <app-baja-producto ngClass="ms-2" [producto]="p" (onEliminado)="cargarTabla()"></app-baja-producto>
               </td>
             </tr>
           </tbody>  
