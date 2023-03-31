@@ -47,7 +47,8 @@ export class ListadoSociosComponent implements OnInit, OnDestroy{
 
   onSearchProduct(buscar : string){
     this.page=0;
-    this.search=buscar.toLowerCase();
+    this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1");
   }
 
   prevPage(){

@@ -12,7 +12,7 @@ export class FiltroSocioPipe implements PipeTransform {
     }
     const sociosFiltrados = socios.filter(soc=> soc.dni.toString().includes(search) || 
     soc.apellido.normalize('NFD').toLowerCase()
-    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1").normalize().includes(search)
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1").includes(search)
     || soc.nombre.normalize('NFD').toLowerCase()
     .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1").includes(search));
     return sociosFiltrados.slice(page, page+6);
