@@ -26,4 +26,8 @@ export class UsuarioService {
   existeSocioConDNI(dni : number): Observable<boolean> {
     return this.http.get<boolean>(this.API_URL+'exists?dni='+dni);
    }
+
+   registrarUsuExterno(usuario : UsuarioLogin) : Observable<ResultadoGenerico>{
+    return this.http.post<ResultadoGenerico>(this.API_URL+ 'nuevoUsuarioSocio', usuario);
+   }
 }

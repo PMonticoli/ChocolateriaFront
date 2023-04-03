@@ -1,8 +1,8 @@
 .fondo {
-  background-image: url("../../../../assets/img/login.jpg");
+  background-image: url("../../../../assets/img/listadoPedidos.jpg");
   background-size: cover;
   background-position: center;
-  min-height: 105vh;
+  min-height: 100vh;
 }
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);

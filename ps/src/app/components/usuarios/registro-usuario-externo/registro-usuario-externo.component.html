@@ -1,4 +1,4 @@
-<!-- <div class="fondo">
+<div class="fondo">
   <div class="container-fluid">
     <div class="login">
       <h1>Registro de usuario</h1>
@@ -7,13 +7,12 @@
           <div class="row">
             <div class="col">
               <div class="mb-3">
-
                 <label
                   for="inputUsuario"
                   class="form-label text-white"
                   style="font-size: 1.2rem"
-                  >Nombre de usuario</label>
-
+                  >Nombre de usuario</label
+                >
 
                 <div class="input-group">
                   <div class="input-group-append">
@@ -21,26 +20,62 @@
                       <i class="bi bi-person-fill"></i>
                     </div>
                   </div>
-                  <input type="text" placeholder="Ingrese su usuario" required="required"
+                  <input
+                    type="text"
+                    placeholder="Ingrese su usuario"
+                    required="required"
                     formControlName="usuario"
                     class="form-control"
-                    [class.is-invalid]=" controlUsuario.touched && controlUsuario.hasError('required')"/>
+                    [class.is-invalid]="
+                      controlUsuario.touched &&
+                      controlUsuario.hasError('required')
+                    "
+                  />
                   <span
-                    *ngIf="controlUsuario.touched && controlUsuario.hasError('required')" class="invalid-feedback"
+                    *ngIf="
+                      controlUsuario.touched &&
+                      controlUsuario.hasError('required')
+                    "
+                    class="invalid-feedback"
                   >
                     Usuario es requerido,complete el campo
                   </span>
                 </div>
 
+                <label
+                  for="inputUsuario"
+                  class="form-label text-white"
+                  style="font-size: 1.2rem"
+                  >DNI</label
+                >
 
-
+                <div class="input-group">
+                  <input
+                    type="text"
+                    placeholder="Ingrese su DNI"
+                    required="required"
+                    formControlName="dni"
+                    class="form-control"
+                    [class.is-invalid]="
+                      controlDNI.touched && controlDNI.hasError('required')
+                    "
+                  />
+                  <span
+                    *ngIf="
+                      controlDNI.touched && controlDNI.hasError('required')
+                    "
+                    class="invalid-feedback"
+                  >
+                    DNI es requerido,complete el campo
+                  </span>
+                </div>
 
                 <label
-                for="inputContrasenia"
-                class="form-label text-white"
-                style="font-size: 1.2rem"
-                >Contraseña</label
-              >
+                  for="inputContrasenia"
+                  class="form-label text-white"
+                  style="font-size: 1.2rem"
+                  >Contraseña</label
+                >
 
                 <div class="input-group">
                   <div class="input-group-append">
@@ -83,7 +118,7 @@
                     Contraseña es requerida,complete el campo
                   </span>
                 </div>
-                <br>
+                <br />
                 <button
                   type="submit"
                   class="btn btn-primary btn-block btn-large"
@@ -99,4 +134,4 @@
       </form>
     </div>
   </div>
-</div> -->
+</div>
