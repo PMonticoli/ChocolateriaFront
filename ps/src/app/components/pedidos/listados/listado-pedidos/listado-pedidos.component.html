@@ -13,6 +13,30 @@
         #txtSearch
         (keyup)="onSearchProduct(txtSearch.value)">
       </div>
+      <form [formGroup]="formulario">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-4">
+              <input type="date" class="form-control" formControlName="fechaDesde"
+              [class.is-invalid]="controlFechaDesde.touched && controlFechaDesde.hasError('required')">
+              <span *ngIf="controlFechaDesde.touched && controlFechaDesde.hasError('required')" class="invalid-feedback">
+                Fecha desde es requerida
+              </span>
+            </div>
+            <div class="col-sm-4">
+              <input type="date" class="form-control" formControlName="fechaHasta"
+              [class.is-invalid]="controlFechaHasta.touched && controlFechaHasta.hasError('required')">
+              <span *ngIf="controlFechaHasta.touched && controlFechaHasta.hasError('required')" class="invalid-feedback">
+                Fecha hasta es requerida
+              </span>
+            </div>
+
+            <div class="col-sm-4">
+              <button class="btn btn-secondary" (click)="obtenerPorFecha()">Filtrar por fecha</button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>    
 
     <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
