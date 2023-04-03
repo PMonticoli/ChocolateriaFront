@@ -1,49 +1,49 @@
 <div class="fondo">
-    <div class="container-fluid">
-        <h1 class="text-center text-uppercase titulo text-white py-3">
-            Listado de Pedidos
-        </h1>
+  <div class="container">
 
+    <h1 class="text-center text-uppercase titulo text-white py-3">
+      Listado de mis Pedidos 
+    </h1>
+    
+    <div class="row">
+      <div class="col-sm-4">
+        <input type="text" 
+        class="form-control mb-2" 
+        placeholder="Buscar por fecha y/o estado" 
+        #txtSearch
+        (keyup)="onSearchProduct(txtSearch.value)">
+      </div>
+    </div>    
 
-        <div class="table-responsive-md">
-            <table class="bg-dark" mat-table [dataSource]="dataSource">
-              <ng-container matColumnDef="Estado">
-                <th class="text-white" mat-header-cell *matHeaderCellDef>
-                  Estado
-                </th>
-                <td class="text-white" mat-cell *matCellDef="let row">{{ row.estado }}</td>
-              </ng-container>
-                  
-      
-      
-              <ng-container matColumnDef="FechaPedido">
-                <th class="text-white" mat-header-cell *matHeaderCellDef>Fecha</th>
-                <td class="text-white" mat-cell *matCellDef="let row">
-                  {{ row.fechaPedido | date : "mediumDate" : "UTC" }}
-                </td>
-              </ng-container>
-      
-              <ng-container matColumnDef="Detalles">
-                <th class="text-white" mat-header-cell *matHeaderCellDef>Detalles</th>
-                <td mat-cell *matCellDef="let row">
-                  <app-detalles-pedido [pedido]="row"></app-detalles-pedido>
-                </td>
-              </ng-container>
+    <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
+      &nbsp;
+    <button class="btn btn-primary" (click)="nextPage()"
+      [disabled]="(listado |filtro:page :search).length===0"
+      >Siguientes</button>
 
-              <ng-container matColumnDef="Acciones">
-                <th class="text-white" mat-header-cell *matHeaderCellDef>Pagar</th>
-                <td mat-cell *matCellDef="let row">
-                <app-cobro (onCobrado)="cargarTabla()" [pedido]="row.estado=='Creado'?row:{}" [abonaCliente]="true"></app-cobro>
-                </td>
-              </ng-container>
-      
-      
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-            </table>
-      
-            <mat-paginator class="bg-dark text-white fw-semibold text-uppercase" [pageSize]="8"></mat-paginator>
-            </div>
+    <div class="table-responsive-sm">
+      <table class="table bg-dark text-white mt-2">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">Estado</th>
+            <th scope="col">FechaPedido</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let p of listado | filtroPedido: page : search">
+            <td>{{p.estado}}</td>
+            <td>{{p.fechaPedido | date:'mediumDate':'UTC'}}</td>
+            <td>
+                <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
+                <app-estado-pedido (onActualizado)="cargarTabla()" [pedido]="p" ngClass="ms-2"></app-estado-pedido>
+                <app-cobro ngClass="ms-2" (onCobrado)="cargarTabla()" [pedido]="p.estado=='Creado'?p:{}" [abonaCliente]="true"></app-cobro>
+            </td>
 
+          </tr>
+        </tbody>  
+      </table>
     </div>
+
+  </div>
 </div>

@@ -11,7 +11,8 @@ export class FiltroPipe implements PipeTransform {
       return producto.slice(page, page+6);
     } 
 
-    const productosFiltrados = producto.filter(prod => prod.nombre.toLowerCase().includes(search));
+    const productosFiltrados = producto.filter(prod => prod.nombre.normalize('NFD').toLowerCase()
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1").includes(search));
     return productosFiltrados.slice(page, page+6);
   }
 

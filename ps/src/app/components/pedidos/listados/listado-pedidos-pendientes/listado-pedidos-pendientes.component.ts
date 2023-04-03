@@ -1,10 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PedidoService } from 'src/app/services/pedido.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { Pedido } from 'src/app/models/pedido';
 const Swal = require('sweetalert2');
 
 @Component({
@@ -17,11 +14,6 @@ export class ListadoPedidosPendientesComponent implements OnInit {
   listado : any;
   page: number=0;
   search : string='';
-  displayedColumns: string[] = [
-    'Punto de Venta', 'Socio', 'Empleado', 'Estado', 'Observaciones', 'Fecha', 'Detalles' ,'Accion', 'Cobro'
-  ];
-  dataSource!: MatTableDataSource<Pedido>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private servicioPedido : PedidoService){}
   ngOnInit(): void {
     this.subscription = new Subscription();
@@ -49,7 +41,8 @@ export class ListadoPedidosPendientesComponent implements OnInit {
 
   onSearchProduct(buscar : string){
     this.page=0;
-    this.search=buscar.toLowerCase();
+    this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1");
   }
 
   prevPage(){
