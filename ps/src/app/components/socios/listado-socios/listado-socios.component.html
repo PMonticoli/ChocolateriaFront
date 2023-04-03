@@ -38,7 +38,7 @@
               <td>{{s.nombre}}</td>
               <td>{{s.apellido}}</td>
               <td>{{s.dni}}</td>
-              <td>{{s.fechaBaja ? 'Si' : 'No'}}</td>
+              <td>{{s.fechaBaja ? 'No' : 'Si'}}</td>
               <td>
                 <app-detalles-socio [socio]="s"></app-detalles-socio>
                 <app-baja-socio ngClass="ms-2" [socio]="s" (onEliminado)="cargarTabla()" [deshabilitado]="s.fechaBaja!==null"></app-baja-socio>
