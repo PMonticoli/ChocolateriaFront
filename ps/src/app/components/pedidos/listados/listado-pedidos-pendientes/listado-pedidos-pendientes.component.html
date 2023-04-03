@@ -18,7 +18,7 @@
     <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
       &nbsp;
     <button class="btn btn-primary" (click)="nextPage()"
-      [disabled]="(listado |filtro:page :search).length===0"
+      [disabled]="(listado |filtroPedido:page :search).length===0"
       >Siguientes</button>
 
     <div class="table-responsive">

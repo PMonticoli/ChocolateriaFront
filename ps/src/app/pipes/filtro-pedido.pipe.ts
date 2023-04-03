@@ -9,9 +9,9 @@ export class FiltroPedidoPipe implements PipeTransform {
     if(search.length=== 0){
       return pedido.slice(page, page+6);
     }
-    const pedidosFiltrados = pedido.filter(ped =>ped.estado.toLowerCase().includes(search) || 
-    ped.puntoVenta.toLowerCase().includes(search) ||
-    ped.socio.normalize('NFD').toLowerCase()
+    const pedidosFiltrados = pedido.filter(ped =>ped.fechaPedido?.toString().includes(search) ||
+    ped.estado?.toLowerCase().includes(search) || ped.puntoVenta?.toLowerCase().includes(search) ||
+    ped.socio?.normalize('NFD').toLowerCase()
     .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1").includes(search)
     );
     return pedidosFiltrados.slice(page, page+6);
