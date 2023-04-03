@@ -11,7 +11,7 @@ const Swal = require('sweetalert2');
 })
 export class ListadoPedidosPendientesComponent implements OnInit {
   private subscription : Subscription;
-  listado : any;
+  listado : any[]=[];
   page: number=0;
   search : string='';
   constructor(private servicioPedido : PedidoService){}
@@ -23,12 +23,12 @@ export class ListadoPedidosPendientesComponent implements OnInit {
   cargarTabla() : void{
     this.subscription.add(
       this.servicioPedido.obtenerPendientes().subscribe({
-        next: (r: ResultadoGenerico) => {
-          if(r.ok) {
-            this.listado = r.resultado;
+        next: (res: ResultadoGenerico) => {
+          if(res.resultado && res.resultado.length>=0){ 
+            this.listado=res.resultado;
           }
           else {
-            console.error(r.mensaje);
+            console.error(res.mensaje);
           }
         },
         error: (e) => {

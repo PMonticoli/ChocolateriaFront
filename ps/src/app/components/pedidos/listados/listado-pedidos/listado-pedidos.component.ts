@@ -12,7 +12,7 @@ const Swal = require('sweetalert2');
 })
 export class ListadoPedidosComponent implements OnInit {
   private subscription = new Subscription();
-  listado: any;
+  listado: any[]=[];
   page : number = 0;
   search : string ='';
   reqbody : any;
@@ -26,12 +26,12 @@ export class ListadoPedidosComponent implements OnInit {
   cargarTabla() : void{
     this.subscription.add(
       this.servicioPedido.obtenerTodos().subscribe({
-        next: (r: ResultadoGenerico) => {
-          if(r.ok) {
-            this.listado = r.resultado;
+        next: (res: ResultadoGenerico) => {
+          if(res.resultado && res.resultado.length>=0){ 
+            this.listado=res.resultado;
           }
           else {
-            console.error(r.mensaje);
+            console.error(res.mensaje);
           }
         },
         error: (e) => {
@@ -58,6 +58,7 @@ export class ListadoPedidosComponent implements OnInit {
   nextPage(){
     this.page+=6;
   }
+
 
   
 }
