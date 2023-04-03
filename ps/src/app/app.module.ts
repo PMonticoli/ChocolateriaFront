@@ -41,6 +41,7 @@ import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-
 import { FiltroPipe } from './pipes/filtro.pipe';
 import { FiltroSocioPipe } from './pipes/filtro-socio.pipe';
 import { FiltroPedidoPipe } from './pipes/filtro-pedido.pipe';
+import { CancelarPedidoComponent } from './components/pedidos/cancelar-pedido/cancelar-pedido.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,8 @@ import { FiltroPedidoPipe } from './pipes/filtro-pedido.pipe';
     RegistroUsuarioExternoComponent,
     FiltroPipe,
     FiltroSocioPipe,
-    FiltroPedidoPipe
+    FiltroPedidoPipe,
+    CancelarPedidoComponent
   ],
   imports: [
     BrowserModule,
