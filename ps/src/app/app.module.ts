@@ -42,6 +42,8 @@ import { FiltroPipe } from './pipes/filtro.pipe';
 import { FiltroSocioPipe } from './pipes/filtro-socio.pipe';
 import { FiltroPedidoPipe } from './pipes/filtro-pedido.pipe';
 import { CancelarPedidoComponent } from './components/pedidos/cancelar-pedido/cancelar-pedido.component';
+import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
+import { PromocionService } from './services/promocion.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +69,8 @@ import { CancelarPedidoComponent } from './components/pedidos/cancelar-pedido/ca
     FiltroPipe,
     FiltroSocioPipe,
     FiltroPedidoPipe,
-    CancelarPedidoComponent
+    CancelarPedidoComponent,
+    AltaPromocionComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +92,8 @@ import { CancelarPedidoComponent } from './components/pedidos/cancelar-pedido/ca
     EstadoPedidoService,
     CobroService,
     TipoPagoService,
-    SocioService
+    SocioService,
+    PromocionService
   ],
   bootstrap: [AppComponent]
 })
