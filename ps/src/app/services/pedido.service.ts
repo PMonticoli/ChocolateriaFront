@@ -97,14 +97,4 @@ export class PedidoService {
     return this.http.delete<ResultadoGenerico>(this.API_URL + id, requestOptions);
   }
 
-
-  obtenerPorFecha(body : any) : Observable<ResultadoGenerico>{
-    let auth_token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    });
-    const requestOptions = { headers: headers };
-    return this.http.post<ResultadoGenerico>(this.API_URL + 'fecha',body,requestOptions);
-  }
 }
