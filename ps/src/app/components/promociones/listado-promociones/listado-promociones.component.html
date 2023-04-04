@@ -1,0 +1,50 @@
+   <div class="fondo">
+        <div class="container">
+    
+          <h1 class="text-center text-uppercase titulo text-white py-3">
+            Listado de Socios
+          </h1>
+          
+           <div class="row">
+            <div class="col-sm-4">
+              <input type="text" 
+              class="form-control mb-2" 
+              placeholder="Buscar promoción por nombre" 
+              #txtSearch
+              (keyup)="onSearchProduct(txtSearch.value)">
+            </div>
+          </div>    
+    
+          <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
+            &nbsp;
+          <button class="btn btn-primary" (click)="nextPage()"
+            [disabled]="(listado |filtroSocio: page :search).length===0"
+            >Siguientes</button> 
+    
+    
+          <div class="table-responsive-sm">
+            <table class="table bg-dark text-white mt-2">
+              <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio puntos</th>
+                    <th scope="col">Fecha desde</th>
+                    <th scope="col">Fecha hasta</th>
+                    <th scope="col">Terminar</th>
+                  </tr>
+              </thead>
+              <tbody class="text-center">
+                <tr *ngFor="let p of listado | filtroPromocion : page : search">
+                    <td>{{p.nombre}}</td>
+                    <td>{{p.descripcion}}</td>
+                    <td>{{p.precioPuntos}}</td>
+                    <td>{{p.fechaDesde | date:'mediumDate':'UTC'}}</td>
+                    <td>{{p.fechaHasta | date:'mediumDate':'UTC'}}</td>
+                </tr>
+              </tbody>  
+            </table>
+          </div>
+    
+        </div>
+      </div>

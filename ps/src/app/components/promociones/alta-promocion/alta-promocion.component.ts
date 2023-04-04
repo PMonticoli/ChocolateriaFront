@@ -97,6 +97,7 @@ constructor(private servicioPromocion : PromocionService,
         this.servicioPromocion.agregar(this.promocion).subscribe({
           next: () => {
             Swal.fire({title:'Listo!', text:`Registro la promoción con éxito`, icon: 'success'});
+            this.router.navigate(['/promocion/listado']);
           },
           error: () => {
             Swal.fire({title:'Error!', text:`Error al registrar promoción`, icon: 'error'});

@@ -1,0 +1,8 @@
+.fondo {
+    background-image: url("../../../../../../ps/src/assets/img/listadoPromociones.jpg");
+    background-size: cover;
+    /* height: 100%; */
+    width: 100%;
+    background-position: center;
+    min-height: 100vh;
+  }
