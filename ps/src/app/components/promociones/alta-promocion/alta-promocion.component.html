@@ -1,1 +1,68 @@
-<p>alta-promocion works!</p>
+<div class="fondo">
+    <div class="container p-5">
+        <h2 class="titulo text-uppercase text-center py-2">Registrar Promoción</h2>
+        <form [formGroup]="formulario">
+            <div class="row">
+                <div class="col-md-6 col-sm-8">
+                    <div class="mb-3">
+                        <label for="inputNombre" class="form-label text-white fs-6 text fw-semibold fw-semibold">Nombre</label>
+                        <input type="text" class="form-control" id="inputNombre" formControlName="nombre"
+                        [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
+                        <span *ngIf="controlNombre.touched && controlNombre.hasError('required')" class="invalid-feedback">
+                          Nombre es requerido,complete el campo
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-4">
+                    <div class="mb-3">
+                        <label for="inputPrecioPuntos" class="form-label text-white fs-6 text fw-semibold fw-semibold">Precio puntos</label>
+                        <input type="text" class="form-control" id="inputNombre" formControlName="precioPuntos"
+                        [class.is-invalid]="controlPrecioPuntos.touched && controlPrecioPuntos.hasError('required')">
+                        <span *ngIf="controlPrecioPuntos.touched && controlPrecioPuntos.hasError('required')" class="invalid-feedback">
+                          Precio puntos es requerido,complete el campo
+                        </span>
+                      </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg">
+                    <div class="mb-3">
+                        <label class="form-label fs-6 text fw-semibold fw-semibold text-white" for='descripcion'>Descripción</label>
+                        <textarea class="form-control" id="descripcion" rows="2" formControlName="descripcion"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="inputFechaDesde" class="form-label text-white fs-6 text fw-semibold fw-semibold">Fecha desde</label>
+                        <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaDesde"
+                        [class.is-invalid]="controlFechaDesde.touched && controlFechaDesde.hasError('required')">
+                        <span *ngIf="controlFechaDesde.touched && controlFechaDesde.hasError('required')" class="invalid-feedback">
+                          Fecha es requerida,complete el campo
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="inputFechaHasta" class="form-label text-white fs-6 text fw-semibold fw-semibold">Fecha desde</label>
+                        <input type="date" class="form-control" id="inputFechaHasta" formControlName="fechaHasta"
+                        [class.is-invalid]="controlFechaHasta.touched && controlFechaHasta.hasError('required')">
+                        <span *ngIf="controlFechaHasta.touched && controlFechaHasta.hasError('required')" class="invalid-feedback">
+                          Fecha es requerida,complete el campo
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Registrar promoción</button>
+            <button type="button" class="btn btn-danger ms-2">Cancelar</button>
+          </form>
+    </div>
+</div>

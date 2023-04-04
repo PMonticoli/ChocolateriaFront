@@ -8,6 +8,7 @@ import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/li
 import { ListadoPedidosComponent } from './components/pedidos/listados/listado-pedidos/listado-pedidos.component';
 import { AltaProductoComponent } from './components/productos/alta-producto/alta-producto.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
+import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
 import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
 import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-usuario-externo/registro-usuario-externo.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'producto/nuevo', component : AltaProductoComponent},
   {path: 'producto/nuevo/:id', component : AltaProductoComponent},
   {path: 'producto/listado', component : ListadoProductosComponent},
-  {path: 'registro', component : RegistroUsuarioExternoComponent}
+  {path: 'registro', component : RegistroUsuarioExternoComponent},
+  {path: 'promocion/nuevo', component: AltaPromocionComponent}
 ];
 
 @NgModule({
