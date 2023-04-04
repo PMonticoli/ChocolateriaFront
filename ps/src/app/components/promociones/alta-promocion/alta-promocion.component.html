@@ -61,8 +61,52 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-primary">Registrar promoción</button>
-            <button type="button" class="btn btn-danger ms-2">Cancelar</button>
+
+
+                <div class="row">
+                    <div class="col md-6">
+                        <div class="mb-3">
+                            <label for="productos" class="form-label text-uppercase fs-6 text fw-semibold">Seleccionar productos</label>
+                            <select class="form-control form-select" name="productos" id="productos" 
+                            [formControl]="controlProductos">
+                                <option *ngFor="let p of productos" [ngValue]="p">
+                                    {{p.nombre}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <div class="col-2">
+                        <div class="mb-3">
+                            <label for="txtCantidad" class="form-label text-white fs-6 text fw-semibold fw-semibold">Cantidad</label>
+                            <input type='number' name='txtCantidad' id='txtCantidad' 
+                            class='form-control' [formControl]="cantidadProductos">
+                            <button class="btn btn-warning mt-4" (click)="agregarProducto()">Agregar producto</button>
+                        </div>                    
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="my-3">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-brown">Productos Seleccionados</li>
+                            <li *ngFor="let detalle of detalles" class="list-group-item d-flex justify-content-between align-items-start">
+                                <span class="badge align-self-center bg-brown rounded-pill">{{detalle.cantidad}}x</span>
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">{{detalle.producto.nombre}}</div>
+                                </div>
+                                <button class="btn btn-close align-self-center ms-2" (click)="quitarProducto(detalle)"></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            
           </form>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+              <button type="submit" class="btn btn-success mt-2" (click)="registrar()">Registrar promoción</button>
+              <button type="button" class="btn btn-danger ms-2 mt-2" routerLink="/home">Cancelar</button>
+          </div>
     </div>
 </div>
