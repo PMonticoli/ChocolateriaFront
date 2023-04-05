@@ -46,6 +46,7 @@ import { AltaPromocionComponent } from './components/promociones/alta-promocion/
 import { PromocionService } from './services/promocion.service';
 import { ListadoPromocionesComponent } from './components/promociones/listado-promociones/listado-promociones.component';
 import { FiltroPromocionPipe } from './pipes/filtro-promocion.pipe';
+import { BajaPromocionComponent } from './components/promociones/baja-promocion/baja-promocion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { FiltroPromocionPipe } from './pipes/filtro-promocion.pipe';
     CancelarPedidoComponent,
     AltaPromocionComponent,
     ListadoPromocionesComponent,
-    FiltroPromocionPipe
+    FiltroPromocionPipe,
+    BajaPromocionComponent
   ],
   imports: [
     BrowserModule,
