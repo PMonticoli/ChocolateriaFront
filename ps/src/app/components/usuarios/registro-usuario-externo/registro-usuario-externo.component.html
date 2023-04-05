@@ -1,18 +1,13 @@
 <div class="fondo">
-  <div class="container-fluid">
+  <div class="container">
     <div class="login">
-      <h1>Registro de usuario</h1>
+      <h1 class="text-center text-uppercase titulo py-3">Registro de usuario</h1>
       <form [formGroup]="formulario">
         <div class="form-group">
           <div class="row">
             <div class="col-md-8">
               <div class="mb-3">
-                <label
-                  for="inputUsuario"
-                  class="form-label text-white"
-                  style="font-size: 1.2rem"
-                  >Nombre de usuario</label
-                >
+                <label for="inputUsuario" class="form-label text-white" style="font-size: 1.2rem">Nombre de usuario</label>
 
                 <div class="input-group">
                   <div class="input-group-append">
@@ -20,62 +15,32 @@
                       <i class="bi bi-person-fill"></i>
                     </div>
                   </div>
-                  <input
-                    type="text"
-                    placeholder="Ingrese su usuario"
-                    required="required"
-                    formControlName="usuario"
-                    class="form-control"
-                    [class.is-invalid]="
-                      controlUsuario.touched &&
-                      controlUsuario.hasError('required')
-                    "
+                  <input type="text" placeholder="Ingrese su usuario" required="required" formControlName="usuario"
+                    class="form-control" [class.is-invalid]="controlUsuario.touched && controlUsuario.hasError('required')"
                   />
-                  <span
-                    *ngIf="
-                      controlUsuario.touched &&
-                      controlUsuario.hasError('required')
-                    "
-                    class="invalid-feedback"
-                  >
+                  <span *ngIf="controlUsuario.touched && controlUsuario.hasError('required')" class="invalid-feedback">
                     Usuario es requerido,complete el campo
                   </span>
                 </div>
+              </div>
 
-                <label
-                  for="inputUsuario"
-                  class="form-label text-white"
-                  style="font-size: 1.2rem"
-                  >DNI</label
-                >
+
+              <div class="mb-3">
+                <label for="inputUsuario"class="form-label text-white" style="font-size: 1.2rem">DNI</label>
 
                 <div class="input-group">
-                  <input
-                    type="text"
-                    placeholder="Ingrese su DNI"
-                    required="required"
-                    formControlName="dni"
-                    class="form-control"
-                    [class.is-invalid]="
-                      controlDNI.touched && controlDNI.hasError('required')
-                    "
-                  />
+                  <input type="text"placeholder="Ingrese su DNI" required="required" formControlName="dni" class="form-control"
+                    [class.is-invalid]="controlDNI.touched && controlDNI.hasError('required')"/>
                   <span
-                    *ngIf="
-                      controlDNI.touched && controlDNI.hasError('required')
-                    "
-                    class="invalid-feedback"
-                  >
+                    *ngIf="controlDNI.touched && controlDNI.hasError('required')"class="invalid-feedback">
                     DNI es requerido,complete el campo
                   </span>
                 </div>
+              </div>
 
-                <label
-                  for="inputContrasenia"
-                  class="form-label text-white"
-                  style="font-size: 1.2rem"
-                  >Contraseña</label
-                >
+
+              <div class="mb-3">
+                <label for="inputContrasenia"class="form-label text-white" style="font-size: 1.2rem">Contraseña</label>
 
                 <div class="input-group">
                   <div class="input-group-append">
@@ -83,17 +48,9 @@
                       <i class="bi bi-key-fill"></i>
                     </div>
                   </div>
-                  <input
-                    type="password"
-                    name="p"
-                    placeholder="Ingrese su contraseña"
-                    required="required"
-                    formControlName="contrasenia"
-                    class="form-control"
-                    [class.is-invalid]="
-                      controlContrasenia.touched &&
-                      controlContrasenia.hasError('required')
-                    "
+                  <input type="password" name="p" placeholder="Ingrese su contraseña" required="required"
+                    formControlName="contrasenia" class="form-control"
+                    [class.is-invalid]="controlContrasenia.touched && controlContrasenia.hasError('required')"
                     [type]="fieldTextType ? 'text' : 'password'"
                   />
                   <div class="input-group-append">
@@ -109,26 +66,18 @@
                     </span>
                   </div>
                   <span
-                    *ngIf="
-                      controlContrasenia.touched &&
-                      controlContrasenia.hasError('required')
-                    "
-                    class="invalid-feedback"
-                  >
+                    *ngIf=" controlContrasenia.touched &&controlContrasenia.hasError('required')" class="invalid-feedback">
                     Contraseña es requerida,complete el campo
                   </span>
                 </div>
+              </div>   
                 <br />
-                <button
-                  type="submit"
-                  class="btn btn-primary btn-block btn-large"
-                  [disabled]="!formulario.valid"
-                  (click)="registrar()"
-                >
-                  Registrar Usuario
-                </button>
+              
+
+                <button type="submit" class="btn btn-primary btn-block btn-large"
+                  [disabled]="!formulario.valid"(click)="registrar()"
+                >Registrar Usuario</button>
               </div>
-            </div>
 
             <div class="col-md-4 mt-3">
               <div class="card bg-dark text-white" style="width: 18rem;">
@@ -139,13 +88,11 @@
                   </p>
                   <a class="btn btn-primary fw-bold" routerLink="/socio/nuevo">Registrarme como socio</a>
                 </div>
-              </div>
             </div>
 
-
+            </div>
           </div>
         </div>
-
       </form>
     </div>
   </div>
