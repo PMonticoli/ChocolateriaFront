@@ -25,18 +25,18 @@ export class CancelarPedidoComponent implements OnInit, OnDestroy{
   }
   cancelarPedido(): void {
     if(!this.pedido.id){
-      console.error("pedido id is undefined");
+      console.error("pedido no definido");
       return;
     }
     this.subscription.add(
       this.pedidoService.cancelar(this.pedido.id).subscribe({
-        next: (r:ResultadoGenerico)  => {
-          if(r.ok){
+        next: (res:ResultadoGenerico)  => {
+          if(res.ok){
             Swal.fire({title:'Listo!', text:'Pedido cancelado con exito', icon: 'success'});
             this.onCancelar.emit();
           } else {
-            Swal.fire({title:'Error!', text:`Error al intentar cancelar el pedido: ${r.mensaje}`, icon: 'error'});
-            console.error(r.mensaje);
+            Swal.fire({title:'Error!', text:`Error al intentar cancelar el pedido: ${res.mensaje}`, icon: 'error'});
+            console.error(res.mensaje);
           }
         },
         error: (e) => {
