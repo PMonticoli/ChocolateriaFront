@@ -64,7 +64,7 @@ registrar(){
       this.servicioSocio.agregar(this.socio).subscribe({
         next: () =>{
           Swal.fire({title:'Listo', text:`Registro el socio correctamente`, icon: 'success'});
-          this.router.navigate(['/home'])
+          this.router.navigate(['/registro'])
         },
         error : (e) =>{
           Swal.fire({title:'Error', text:`Error al registrar socio: ${e}`, icon: 'error'});
