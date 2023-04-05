@@ -36,7 +36,7 @@
             <td>{{p.fechaPedido | date:'mediumDate':'UTC'}}</td>
             <td>
                 <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
-                <app-cancelar-pedido ngClass="ms-2" (onCancelado)="cargarTabla()"></app-cancelar-pedido>
+                <app-cancelar-pedido ngClass="ms-2" [pedido]="p" (onCancelar)="cargarTabla()"></app-cancelar-pedido>
                 <app-cobro ngClass="ms-2" (onCobrado)="cargarTabla()" [pedido]="p.estado=='Creado'?p:{}" [abonaCliente]="true"></app-cobro>
             </td>
 

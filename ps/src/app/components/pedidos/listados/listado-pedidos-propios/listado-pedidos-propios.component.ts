@@ -10,7 +10,7 @@ const Swal = require('sweetalert2');
 })
 export class ListadoPedidosPropiosComponent implements OnInit, OnDestroy {
   private subscription : Subscription;
-  listado : any;
+  listado : any[]=[];
   page: number=0;
   search : string='';
   constructor(private servicioPedido : PedidoService){}
@@ -25,16 +25,16 @@ export class ListadoPedidosPropiosComponent implements OnInit, OnDestroy {
   cargarTabla() : void{
     this.subscription.add(
       this.servicioPedido.obtenerPropios().subscribe({
-        next: (r: ResultadoGenerico) => {
-          if(r.ok) {
-            this.listado = r.resultado;
+        next: (res: ResultadoGenerico) => {
+          if(res.resultado && res.resultado.length>=0){ 
+            this.listado=res.resultado;
           }
           else {
-            console.error(r.mensaje);
+            console.error(res.mensaje);
           }
         },
         error: (e) => {
-          Swal.fire({title:'Error!', text: `Error al listar mis pedidos`, icon: 'error'});
+          Swal.fire({title:'Error!', text: `Error al listar pedidos`, icon: 'error'});
           console.error(e);
         }
       })

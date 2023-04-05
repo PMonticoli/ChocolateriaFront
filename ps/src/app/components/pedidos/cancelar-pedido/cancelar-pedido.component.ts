@@ -10,39 +10,41 @@ const Swal = require('sweetalert2');
   styleUrls: ['./cancelar-pedido.component.css']
 })
 export class CancelarPedidoComponent implements OnInit, OnDestroy{
-private subscription : Subscription;
-@Input() pedido : any;
-@Output() onCancelado = new EventEmitter();
-constructor(private servicioPedido : PedidoService){}
+  private subscription: Subscription;
+  @Input() pedido: any;
+  @Output() onCancelar= new EventEmitter();
+  constructor(
+    private pedidoService: PedidoService
+  ) { }
 
   ngOnInit(): void {
-    this.subscription= new Subscription();
+    this.subscription = new Subscription();
   }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-  cancelarPedido() : void{
+  cancelarPedido(): void {
     if(!this.pedido.id){
-      console.error("pedido id no definido");
+      console.error("pedido id is undefined");
       return;
     }
     this.subscription.add(
-      this.servicioPedido.cancelar(this.pedido.id).subscribe({
-        next : (res : ResultadoGenerico)=>{
-          if(res.ok){
+      this.pedidoService.cancelar(this.pedido.id).subscribe({
+        next: (r:ResultadoGenerico)  => {
+          if(r.ok){
             Swal.fire({title:'Listo!', text:'Pedido cancelado con exito', icon: 'success'});
-            this.onCancelado.emit();
+            this.onCancelar.emit();
           } else {
-            Swal.fire({title:'Error!', text:`Ocurrió un error al cancelar el pedido: ${res.mensaje}`, icon: 'error'});
+            Swal.fire({title:'Error!', text:`Error al intentar cancelar el pedido: ${r.mensaje}`, icon: 'error'});
+            console.error(r.mensaje);
           }
         },
-        error : (err)=>{
-          console.error(err);
+        error: (e) => {
+          console.error(e);
         }
       })
     )
   }
-
 }
+
+
