@@ -40,8 +40,8 @@ export class PromocionService {
     return this.http.delete<ResultadoGenerico>(this.API_URL +promocion.id ,requestOptions);
   }
 
-  obtenerVigentes() : Observable<ResultadoGenerico>{
-    return this.http.get<ResultadoGenerico>(this.API_URL+ 'vigentes');
+  obtenerDisponibles() : Observable<ResultadoGenerico>{
+    return this.http.get<ResultadoGenerico>(this.API_URL+ 'disponibles');
   }
 
   canjear(promocion : Promocion) : Observable<ResultadoGenerico>{

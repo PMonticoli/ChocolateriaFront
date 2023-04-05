@@ -64,7 +64,7 @@ export class SocioService {
    }
 
    
-   obtenerPuntosDeSocio() : Observable<ResultadoGenerico> {
+   obtenerPuntosDelSocio() : Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
