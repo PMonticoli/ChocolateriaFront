@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Promocion } from 'src/app/models/promocion';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PromocionService } from 'src/app/services/promocion.service';
 const Swal = require('sweetalert2');
