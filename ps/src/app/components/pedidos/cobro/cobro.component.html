@@ -6,7 +6,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{labelBoton}}</h5>
+                <h5 class="modal-title fs-4 text text" id="exampleModalLabel" style="color: black;">Abonar el pedido</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -14,7 +14,7 @@
                 <form [formGroup]="formulario">
                     <div class="form-group">
                         <div class="mb-3">
-                            <label for="selectTipoPago" class="form-label">Tipo de Pago</label>
+                            <label for="selectTipoPago" class="form-label fs-4 text" style="color:black">Tipo de Pago</label>
                             <select id="selectTipoPago" class="form-select" formControlName="tipoPago"
                                 [class.is-invalid]="controlTipoPago.touched && controlTipoPago.hasError('required')">
                                 <option *ngFor="let tipopago of tiposPago" [ngValue]="tipopago">{{ tipopago.nombre }}</option>
