@@ -1,7 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PromocionService } from 'src/app/services/promocion.service';
-
+import { SocioService } from 'src/app/services/socio.service';
+const Swal = require('sweetalert2');
 @Component({
   selector: 'app-listado-promociones-disponibles',
   templateUrl: './listado-promociones-disponibles.component.html',
@@ -12,17 +15,59 @@ export class ListadoPromocionesDisponiblesComponent implements OnInit,OnDestroy{
   private subscription = new Subscription();
   page : number = 0;
   search : string ='';
-  constructor(private servicioPromocion : PromocionService) { }
+  puntos : number;
+  constructor(private servicioPromocion : PromocionService,
+             private servicioSocio : SocioService,
+             private router : Router) { }
 
   ngOnInit(): void {
-    this.cargarTabla();
+    this.cargarDatos();
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  cargarTabla(){
+  cargarDatos(){
+    this.cargarPuntos();
+    this.cargarTabla();
+  }
 
+  cargarPuntos(): void {
+    this.subscription.add(
+      this.servicioSocio.obtenerPuntosDelSocio().subscribe({
+        next: (res: ResultadoGenerico) => {
+          if(res.ok && res.resultado){
+            this.puntos = res.resultado[0]? res.resultado[0].puntos : 0;
+          } else {
+            console.error(res.mensaje);
+          }
+        },
+        error: (e) => {
+          Swal.fire({title:'Error!', text:`Error al obtener puntos: ${e}`, icon: 'error'})
+          this.router.navigate(['home']);
+
+        }
+      })
+    )
+  }
+
+
+  cargarTabla(){
+    this.subscription.add(
+      this.servicioPromocion.obtenerDisponibles().subscribe({
+        next : (res : ResultadoGenerico)=>{
+          if(res.resultado && res.resultado.length>=0){ 
+            this.listado=res.resultado;
+          }else{
+            console.error(res.mensaje);
+          }
+        },
+        error :(err)=>{
+          console.error(err);
+          Swal.fire({title:'Error!', text: `Error al listar promociones disponibles`, icon: 'error'});
+        }
+      })
+    )
   }
 
   onSearchProduct(buscar : string){
