@@ -1,11 +1,11 @@
 <div class="fondo">
-  <div class="container">
-    <div class="login">
-      <h1 class="text-center text-uppercase titulo py-3">Registro de usuario</h1>
+  <div class="container p-5">
+      <h1 class="text-center text-uppercase titulo py-3 text-white">Registro de usuario</h1>
       <form [formGroup]="formulario">
         <div class="form-group">
           <div class="row">
             <div class="col-md-8">
+              
               <div class="mb-3">
                 <label for="inputUsuario" class="form-label text-white" style="font-size: 1.2rem">Nombre de usuario</label>
 
@@ -79,11 +79,13 @@
                 >Registrar Usuario</button>
               </div>
 
-            <div class="col-md-4 mt-3">
-              <div class="card bg-dark text-white" style="width: 18rem;">
+
+              
+            <div class="col-md-4 col-sm-12 mt-3">
+              <div class="card bg-dark text-white">
                 <div class="card-body">
                   <h5 class="card-title fw-bold">¿Ya te registraste como socio? </h5>
-                  <p class="card-text">Es necesario asociarse previamente y 
+                  <p class="card-text">Es necesario asociarse previamente y
                     luego utilizar las mismas credenciales para la creación de la cuenta.
                   </p>
                   <a class="btn btn-primary fw-bold" routerLink="/socio/nuevo">Registrarme como socio</a>
@@ -95,5 +97,4 @@
         </div>
       </form>
     </div>
-  </div>
 </div>
