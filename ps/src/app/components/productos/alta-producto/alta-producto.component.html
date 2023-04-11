@@ -7,7 +7,7 @@
               <div class="row">
                 <div class="col-md-8">
                   <div class="mb-3">
-                    <label for="nombre" class="form-label fs-6 text fw-semibold fw-semibold">Nombre</label>
+                    <label for="nombre" class="form-label fs-6 text fw-semibold text-white fw-semibold text-white ">Nombre</label>
                     <input type="text" class="form-control" id="nombre" formControlName="nombre"
                     placeholder="Nombre del producto"
                     [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
@@ -20,7 +20,7 @@
                 
                 <div class="col-sm-2">
                   <div class="mb-3">
-                    <label for="precio" class="form-label fs-6 text fw-semibold fw-semibold">Precio</label>
+                    <label for="precio" class="form-label fs-6 text fw-semibold text-white fw-semibold text-white">Precio</label>
                     <input type="text" class="form-control" id="precio" formControlName="precio"
                     placeholder="$0"
                     [class.is-invalid]="controlPrecio.touched&&controlPrecio.hasError('required')">
@@ -34,7 +34,7 @@
       
                 <div class="col-sm-2">
                   <div class="mb-3">
-                    <label for="puntosGanados" class="form-label fs-6 text fw-semibold fw-semibold">Puntos ganados</label>
+                    <label for="puntosGanados" class="form-label fs-6 text fw-semibold text-white fw-semibold text-white">Puntos</label>
                     <input type="text" class="form-control" id="puntosGanados"
                     placeholder="0" formControlName="puntosGanados"
                     [class.is-invalid]="controlPuntos.touched&&controlPuntos.hasError('required')"
@@ -51,17 +51,17 @@
       
             
                 <div class="mb-3">
-                  <label for="descripcion" class="form-label fs-6 text fw-semibold fw-semibold">Descripcion</label>
+                  <label for="descripcion" class="form-label fs-6 text fw-semibold text-white fw-semibold text-white">Descripcion</label>
                   <textarea class="form-control" id="descripcion" rows="2" formControlName="descripcion"></textarea>
                 </div>
                 <div class="mb-3">
-                  <label for="observaciones" class="form-label fs-6 text fw-semibold fw-semibold">Observaciones</label>
+                  <label for="observaciones" class="form-label fs-6 text fw-semibold text-white fw-semibold text-white">Observaciones</label>
                   <textarea class="form-control" id="observaciones" rows="2" formControlName="observaciones"></textarea>
                 </div>
       
                 <div class="col-lg-12">
                   <div class="mb-3">
-                    <label for="urlImagen" class="form-label fs-6 text fw-semibold fw-semibold">Url imagen</label>
+                    <label for="urlImagen" class="form-label fs-6 text fw-semibold text-white fw-semibold text-white">Url imagen</label>
                     <input type="text" class="form-control" id="urlImagen" formControlName="urlImagen">
                   </div>
                 </div>
@@ -72,12 +72,12 @@
                       <div class="mb-3 form-check">
                         <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" formControlName="activo"
                         (change)="cambioActivoCheck(activo.checked)"/>
-                        <label class="form-check-label fs-6 text fw-semibold fw-semibold" for="inputActivo">Activo</label>
+                        <label class="form-check-label fs-6 text fw-semibold text-white fw-semibold text-white" for="inputActivo">Activo</label>
                       </div>
                       <div class="mb-3 form-check">
                         <input #disponible type="checkbox" name="inputDisponible" class="form-check-input" id="inputDisponible" formControlName="disponible" 
                         (change)="cambioDisponibleCheck(disponible.checked)"/>
-                        <label class="form-check-label fs-6 text fw-semibold fw-semibold" for="inputDisponible">Disponible</label>
+                        <label class="form-check-label fs-6 text fw-semibold text-white fw-semibold text-white" for="inputDisponible">Disponible</label>
                       </div>
                     </div>
                   </div>
