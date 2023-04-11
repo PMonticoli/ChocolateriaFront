@@ -64,7 +64,7 @@
 
 
                 <div class="row">
-                    <div class="col md-6">
+                    <div class="col-md-8">
                         <div class="mb-3">
                             <label for="productos" class="form-label text-uppercase fs-6 text fw-semibold">Seleccionar productos</label>
                             <select class="form-control form-select" name="productos" id="productos" 
@@ -76,14 +76,14 @@
                         </div>
                     </div>
     
-                    <div class="col-2">
+                    <div class="col-md-4">
                         <div class="mb-3">
-                            <label for="txtCantidad" class="form-label text-white fs-6 text fw-semibold fw-semibold">Cantidad</label>
+                            <label for="txtCantidad" class="form-label text-white fs-6 text fw-semibold">Cantidad</label>
                             <input type='number' name='txtCantidad' id='txtCantidad' 
                             class='form-control' [formControl]="cantidadProductos">
-                            <button class="btn btn-warning mt-4" (click)="agregarProducto()">Agregar producto</button>
                         </div>                    
                     </div>
+                    <button class="btn btn-warning mt-4 text fw-semibold" (click)="agregarProducto()">Agregar producto</button>
                 </div>
 
                 <div class="row">
@@ -105,8 +105,8 @@
             
           </form>
           <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-              <button type="submit" class="btn btn-success mt-2" (click)="registrar()">Registrar promoción</button>
-              <button type="button" class="btn btn-danger ms-2 mt-2" routerLink="/home">Cancelar</button>
+              <button type="submit" class="btn btn-success mt-2 text fw-semibold" (click)="registrar()">Registrar promoción</button>
+              <button type="button" class="btn btn-danger ms-2 mt-2 text fw-semibold" routerLink="/home">Cancelar</button>
           </div>
     </div>
 </div>
