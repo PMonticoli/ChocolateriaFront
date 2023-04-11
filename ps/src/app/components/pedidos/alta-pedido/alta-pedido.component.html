@@ -1,11 +1,8 @@
 <div class="fondo">
-    <div class="container-fluid px-5">
+    <div class="container-fluid px-3">
         <div class="row">
-            <div class="col-lg-9 col-md-6 col-sm-12 py-5">
-                <div class="container-fluid">
-                    <h1 class="text-center text-uppercase titulo">Productos</h1> <br>
-                    <h4 class="fw-semibold text-center">Seleccione el producto que desee agregar al pedido</h4>
-                </div>
+            <div class="col-lg-8 col-md-6 col-sm-12 py-5">
+                    <h1 class="text-center text-uppercase titulo">Productos</h1> <br>               
                 <div class="container overflow-auto d-flex justify-content-around flex-wrap" style="max-height: 500px;">
                     <app-elemento-producto *ngFor="let p of productos" [modalId]="p.id" [producto]="p"
                         (onAgregar)="agregarDetalle($event)" [disabled]="estaAgregado(p)"></app-elemento-producto>
@@ -16,7 +13,7 @@
     
     
             <!-- Lado lateral derecho alta pedido -->
-            <div class="col-lg-3 col-md-6 col-sm-12 py-5">
+            <div class="col-lg-4 col-md-6 col-sm-12 py-5">
                 <div class="container-fluid">                
                     <div class="row">
                         <h1 class="text-center text-uppercase titulo">Pedido</h1>
@@ -49,9 +46,9 @@
                             <div class="container-fluid p-0">
                                 <div class="mb-3 mt-5">
                                     <label for="observaciones" class="form-label text-uppercase fw-semibold">Observaciones</label>
-                                    <textarea class="form-control" id="observaciones" rows="3"
+                                    <textarea class="form-control" id="observaciones" rows="2"
                                         [formControl]="controlObservaciones"></textarea>
-                                </div>
+                                </div> <br>
                                 <button class="btn btn-primary btn-block btn-large text-uppercase fw-semibold text-reset" [disabled]="cantidadTotal > 50"
                                     (click)="guardarPedido()">Enviar Pedido</button>
                             </div>
