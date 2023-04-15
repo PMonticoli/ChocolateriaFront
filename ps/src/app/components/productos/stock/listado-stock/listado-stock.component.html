@@ -36,7 +36,6 @@
               <td>{{p.nombre}}</td>
               <td>{{p.stock ? p.stock : "-"}}</td>
               <td>
-                <!-- <button class="btn btn-warning ms-2" [routerLink]="['/stock/nuevo',p.id]"> Actualizar Stock</button> -->
                 <app-alta-stock (onAgregarStock)="cargarTabla()" [producto]="p"></app-alta-stock>
               </td>
             </tr>
