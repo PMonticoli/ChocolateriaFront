@@ -81,4 +81,18 @@ export class ProductoService {
     const requestOptions = { headers: headers };
       return this.http.get<ResultadoGenerico>(this.API_URL +id,requestOptions);
    }
+
+
+   modificarStock(body : Producto) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+    return this.http.put<ResultadoGenerico>(this.API_URL + 'stock',body,requestOptions);
+   }
+
 }
