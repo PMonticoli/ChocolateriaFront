@@ -8,6 +8,8 @@ import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/li
 import { ListadoPedidosComponent } from './components/pedidos/listados/listado-pedidos/listado-pedidos.component';
 import { AltaProductoComponent } from './components/productos/alta-producto/alta-producto.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
+import { AltaStockComponent } from './components/productos/stock/alta-stock/alta-stock.component';
+import { ListadoStockComponent } from './components/productos/stock/listado-stock/listado-stock.component';
 import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
 import { ListadoPromocionesDisponiblesComponent } from './components/promociones/listados/listado-promociones-disponibles/listado-promociones-disponibles.component';
 import { ListadoPromocionesComponent } from './components/promociones/listados/listado-promociones/listado-promociones.component';
@@ -33,6 +35,7 @@ const routes: Routes = [
   {path: 'promocion/nuevo', component: AltaPromocionComponent},
   {path: 'promocion/listado', component: ListadoPromocionesComponent},
   {path: 'promocion/listado/disponibles', component: ListadoPromocionesDisponiblesComponent},
+  {path: 'stock/listado', component: ListadoStockComponent}
 ];
 
 @NgModule({
