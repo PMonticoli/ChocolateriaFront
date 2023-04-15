@@ -8,5 +8,6 @@ export class Producto {
     disponible : boolean;
     puntosGanados : number;
     urlImagen : string;
+    stock : number;
 }
 
