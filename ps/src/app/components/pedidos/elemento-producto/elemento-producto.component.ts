@@ -40,8 +40,8 @@ export class ElementoProductoComponent implements OnInit{
   }
   modificoCantidad(esSuma: boolean) {
     if(esSuma) {
-      if(this.cantidad >= 10){
-        return
+      if(this.cantidad >= this.producto.stock){
+        return 
       }
       this.cantidad=this.cantidad+1;
     }
