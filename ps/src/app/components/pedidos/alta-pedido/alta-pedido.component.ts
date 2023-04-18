@@ -89,13 +89,12 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     this.pedido.observaciones = this.controlObservaciones.value ? this.controlObservaciones.value : "";
     this.subscription.add(
       this.servicioPedido.agregar(this.pedido).subscribe({
-        next: (res : ResultadoGenerico) => {
-          if(res.resultado && res.resultado.length>0){
+        next: () => {
+          if(this.pedido.detalles.length>0){
             Swal.fire({ title: 'Éxito!', text: 'Registraste tu pedido con éxito.', icon: 'success' });
             this.router.navigate(['/home']);
           }else{
             Swal.fire({ title: 'Atención!', text: 'Selecciona al menos un producto antes de enviar el pedido.', icon: 'warning' });
-            return;
           }
         },
         error: (e) => {
