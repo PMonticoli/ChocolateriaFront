@@ -42,23 +42,27 @@ this.producto = new Producto();
 
 
   actualizarStock(){
-    let body = this.formulario.value as Producto;
-    body.id=this.producto.id;
-    this.servicioProducto.modificarStock(body).subscribe({
-      next : (res : ResultadoGenerico) =>{
-        if(res.ok){
-          Swal.fire({title:'Listo!', text:`Registro el stock producto correctamente`, icon: 'success'});
-          this.router.navigate(['/stock/listado']);
-          this.onAgregarStock.emit();
-        }else{
-          Swal.fire({title:'Error!', text:`${res.mensaje}`, icon: 'error'});
+    if(this.formulario.valid){
+      let body = this.formulario.value as Producto;
+      body.id=this.producto.id;
+      this.servicioProducto.modificarStock(body).subscribe({
+        next : (res : ResultadoGenerico) =>{
+          if(res.ok){
+            Swal.fire({title:'Listo!', text:`Registro el stock producto correctamente`, icon: 'success'});
+            this.router.navigate(['/stock/listado']);
+            this.onAgregarStock.emit();
+          }else{
+            Swal.fire({title:'Error!', text:`${res.mensaje}`, icon: 'error'});
+          }
+        },
+        error: (e) => { 
+          Swal.fire({title:'Error!', text:`Error al editar stock producto`, icon: 'error'});
+          console.error(e);
         }
-      },
-      error: (e) => { 
-        Swal.fire({title:'Error!', text:`Error al editar stock producto`, icon: 'error'});
-        console.error(e);
-      }
-    })
+      })
+    }else{
+      Swal.fire({title:'Atención!', text:`Complete todos los campos`, icon: 'warning'});
+    }
   }
 
   cargar(): void {
