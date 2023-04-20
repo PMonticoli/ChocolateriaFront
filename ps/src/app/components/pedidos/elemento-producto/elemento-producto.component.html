@@ -42,16 +42,19 @@
               
         </div>
         <div class="modal-footer">
+            <span class="text-muted fw-semibold">
+              Stock disponible {{producto.stock}}
+            </span>
             <span class="text-muted">
-                Cantidad: 
+              Cantidad: 
             </span>
             <div class="input-group border-secondary me-5" style="max-width: 150px;">
                 <button class="btn btn-danger" (click)="modificoCantidad(false)"><strong>-</strong></button>
                 <span class="input-group-text">{{cantidad}}</span>
-                <button class="btn btn-success" (click)="modificoCantidad(true)"><strong>+</strong></button> 
-              </div>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarModal()">Cancelar</button>
-          <button type="button" class="bi bi-basket btn btn-primary" (click)="agregar()" data-bs-dismiss="modal"> Agregar al Carrito</button>
+                <button class="btn btn-success" (click)="modificoCantidad(true)"><strong>+</strong></button>
+            </div>
+            <button type="button" class="bi bi-basket btn btn-primary" (click)="agregar()" data-bs-dismiss="modal"> Agregar al Carrito</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="limpiarModal()">Cancelar</button>
         </div>
       </div>
     </div>
