@@ -26,6 +26,7 @@
             <table class="table bg-dark text-white mt-2">
               <thead>
                 <tr class="text-center">
+                    <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Descripción</th>
                     <th scope="col">Precio puntos</th>
@@ -36,6 +37,7 @@
               </thead>
               <tbody class="text-center">
                 <tr *ngFor="let p of listado | filtroPromocion : page : search">
+                    <td>{{p.id}}</td>
                     <td>{{p.nombre}}</td>
                     <td>{{p.descripcion}}</td>
                     <td>{{p.precioPuntos}}</td>
