@@ -52,7 +52,6 @@ import { CanjearComponent } from './components/promociones/canjear/canjear.compo
 import { AltaStockComponent } from './components/productos/stock/alta-stock/alta-stock.component';
 import { ListadoStockComponent } from './components/productos/stock/listado-stock/listado-stock.component';
 import { ListadoPromocionesCanjeadasComponent } from './components/promociones/listados/listado-promociones-canjeadas/listado-promociones-canjeadas.component';
-import { FiltroCanjeadaPipe } from './pipes/filtro-canjeada.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,8 +86,7 @@ import { FiltroCanjeadaPipe } from './pipes/filtro-canjeada.pipe';
     CanjearComponent,
     AltaStockComponent,
     ListadoStockComponent,
-    ListadoPromocionesCanjeadasComponent,
-    FiltroCanjeadaPipe
+    ListadoPromocionesCanjeadasComponent
   ],
   imports: [
     BrowserModule,
