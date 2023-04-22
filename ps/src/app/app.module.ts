@@ -53,6 +53,7 @@ import { AltaStockComponent } from './components/productos/stock/alta-stock/alta
 import { ListadoStockComponent } from './components/productos/stock/listado-stock/listado-stock.component';
 import { ListadoPromocionesCanjeadasComponent } from './components/promociones/listados/listado-promociones-canjeadas/listado-promociones-canjeadas.component';
 import { DetallesPromocionCanjeadaComponent } from './components/promociones/detalles-promocion-canjeada/detalles-promocion-canjeada.component';
+import { FiltroCanjeadasPipe } from './pipes/filtro-canjeadas.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +89,8 @@ import { DetallesPromocionCanjeadaComponent } from './components/promociones/det
     AltaStockComponent,
     ListadoStockComponent,
     ListadoPromocionesCanjeadasComponent,
-    DetallesPromocionCanjeadaComponent
+    DetallesPromocionCanjeadaComponent,
+    FiltroCanjeadasPipe
   ],
   imports: [
     BrowserModule,

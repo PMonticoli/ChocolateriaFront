@@ -4,9 +4,15 @@
       <h1 class="text-center text-uppercase titulo text-white py-3">
         Promociones Canjeadas
       </h1>
-      
-       <div class="row">
 
+      <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
+      &nbsp;
+    <button class="btn btn-primary" (click)="nextPage()"
+    [disabled]="(listado | filtroCanjeadas: page).length < 5 || 
+                    (listado | filtroCanjeadas: page+5).length === 0"
+      >Siguientes</button>
+    
+      
       <div class="table-responsive-sm">
         <table class="table bg-dark text-white mt-2">
           <thead>
@@ -18,7 +24,7 @@
               </tr>
           </thead>
           <tbody class="text-center">
-            <tr *ngFor="let p of listado">
+            <tr *ngFor="let p of listado | filtroCanjeadas:page">
                 <td>{{p.id}}</td>
                 <td>{{p.socio}}</td>
                 <td>{{p.promocion}}</td>
