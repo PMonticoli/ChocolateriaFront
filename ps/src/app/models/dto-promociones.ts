@@ -5,8 +5,8 @@ import { Promocion } from "./promocion";
 import { Socio } from "./socio";
 
 export class DtoPromociones {
-    apellido : Socio;
-    nombre : Socio;
+    id : number;
+    socio : Socio;
     promocion : Promocion;
     producto : Producto;
     cantidad : DetallePromocion;
