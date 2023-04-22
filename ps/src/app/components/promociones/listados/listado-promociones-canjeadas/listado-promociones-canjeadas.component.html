@@ -1,0 +1,49 @@
+<div class="fondo">
+    <div class="container-fluid">
+
+      <h1 class="text-center text-uppercase titulo text-white py-3">
+        Promociones Canjeadas
+      </h1>
+      
+       <div class="row">
+        <div class="col-sm-4">
+          <input type="text" 
+          class="form-control mb-2" 
+          placeholder="Buscar promoción por nombre" 
+          #txtSearch
+          (keyup)="onSearchProduct(txtSearch.value)">
+        </div>
+      </div>    
+
+      <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
+      &nbsp;
+    <button class="btn btn-primary" (click)="nextPage()"
+      [disabled]="(listado | filtroCanjeada: page :search).length===0"
+      >Siguientes</button> 
+
+
+      <div class="table-responsive-sm">
+        <table class="table bg-dark text-white mt-2">
+          <thead>
+            <tr class="text-center">
+                <th scope="col">Socio</th>
+                <th scope="col">Promoción</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Puntos Canjeados</th>
+              </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let p of listado">
+                <td>{{p.apellido + ' ' + p.nombre}}</td>
+                <td>{{p.promocion}}</td>
+                <td>{{p.producto}}</td>
+                <td>{{p.cantidad}}</td>
+                <td>{{p.puntos}}</td>
+            </tr>
+          </tbody>  
+        </table>
+      </div>
+
+    </div>
+  </div>

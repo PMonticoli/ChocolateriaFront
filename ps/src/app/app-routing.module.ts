@@ -11,6 +11,7 @@ import { ListadoProductosComponent } from './components/productos/listado-produc
 import { AltaStockComponent } from './components/productos/stock/alta-stock/alta-stock.component';
 import { ListadoStockComponent } from './components/productos/stock/listado-stock/listado-stock.component';
 import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
+import { ListadoPromocionesCanjeadasComponent } from './components/promociones/listados/listado-promociones-canjeadas/listado-promociones-canjeadas.component';
 import { ListadoPromocionesDisponiblesComponent } from './components/promociones/listados/listado-promociones-disponibles/listado-promociones-disponibles.component';
 import { ListadoPromocionesComponent } from './components/promociones/listados/listado-promociones/listado-promociones.component';
 import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'promocion/nuevo', component: AltaPromocionComponent},
   {path: 'promocion/listado', component: ListadoPromocionesComponent},
   {path: 'promocion/listado/disponibles', component: ListadoPromocionesDisponiblesComponent},
+  {path: 'promocion/listado/canjeadas', component: ListadoPromocionesCanjeadasComponent},
   {path: 'stock/listado', component: ListadoStockComponent}
 ];
 
