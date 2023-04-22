@@ -12,8 +12,6 @@ const Swal = require('sweetalert2');
 export class ListadoPromocionesCanjeadasComponent implements OnInit,OnDestroy{
   constructor(private servicioPromocion : PromocionService){}
   private subscription : Subscription;
-  page : number = 0;
-  search : string ='';
   listado : DtoPromociones[]= [];
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -41,20 +39,11 @@ export class ListadoPromocionesCanjeadasComponent implements OnInit,OnDestroy{
   //   console.log(data);
   // });
 
-  onSearchProduct(buscar : string){
-    this.page=0;
-    this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()
-    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1");
-  }
+  // onSearchProduct(buscar : string){
+  //   this.page=0;
+  //   this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()
+  //   .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1");
+  // }
 
-  prevPage(){
-    if(this.page>0){
-      this.page-=6;
-    }
-  }
-
-  nextPage(){
-    this.page+=6;
-  }
 
 }
