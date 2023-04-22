@@ -10,9 +10,9 @@ export class FiltroPromocionPipe implements PipeTransform {
     if(search.length=== 0){
       return promocion.slice(page, page+6);
     }
-    const sociosFiltrados = promocion.filter(promo=>  promo.nombre.normalize('NFD').toLowerCase()
+    const promocionsFiltradas = promocion.filter(promo=>  promo.nombre.normalize('NFD').toLowerCase()
     .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1").includes(search));
-    return sociosFiltrados.slice(page, page+6);
+    return promocionsFiltradas.slice(page, page+6);
   }
 
 }
