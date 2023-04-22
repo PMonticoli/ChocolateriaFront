@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DtoPromociones } from '../models/dto-promociones';
 import { Promocion } from '../models/promocion';
 import { ResultadoGenerico } from '../models/resultado-generico';
 
@@ -52,5 +53,15 @@ export class PromocionService {
       });
     const requestOptions = { headers: headers };
     return this.http.post<ResultadoGenerico>(this.API_URL+'canjear',promocion,requestOptions);
+  }
+
+  obtenerCanjeadas() : Observable<DtoPromociones[]>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    const requestOptions = { headers : headers };
+    return this.http.get<DtoPromociones[]>(this.API_URL + 'canjeadas',requestOptions);
   }
 }
