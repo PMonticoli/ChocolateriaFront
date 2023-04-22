@@ -64,4 +64,17 @@ export class PromocionService {
     const requestOptions = { headers : headers };
     return this.http.get<DtoPromociones[]>(this.API_URL + 'canjeadas',requestOptions);
   }
+
+  obtenerDetalles(id: number): Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+      'Content-Type': 'application/json',
+
+      'Authorization': `Bearer ${auth_token}`
+
+    });
+    const requestOptions = { headers: headers };
+    return this.http.get<ResultadoGenerico>(this.API_URL + 'detalles/' + id, requestOptions);
+  }
 }
