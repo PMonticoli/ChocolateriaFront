@@ -34,12 +34,13 @@ export class CanjearComponent implements OnInit,OnDestroy{
           if(res.ok){
             Swal.fire({title:'Listo!', text:'Canjeo la promoción con éxito', icon: 'success'});
             this.onCanjear.emit();
-          } else {
+          } 
+          else {
             Swal.fire({title:'Error!', text:`Error al canjear promoción: ${res.mensaje}`, icon: 'error'});
           }
         },
-        error: (err) => {
-          Swal.fire({title:'Error!', text:`Error al canjear promoción: ${err}`, icon: 'error'});
+        error: () => {
+          Swal.fire({title:'Atención!', text:`Actualmente no hay suficiente stock para realizar el canje de promoción`, icon: 'warning'});
         }
       })
     )
