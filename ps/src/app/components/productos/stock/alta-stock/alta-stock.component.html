@@ -31,8 +31,12 @@ aria-hidden="true">
                                 <div class="mb-3">
                                     <label for="stock" class="form-label fw-semibold" style="color:black">Cantidad de stock</label>
                                     <input type='number' name='stock' id='stock' 
-                                    class='form-control' formControlName="stock">
-                                </div>   
+                                    class='form-control' formControlName="stock"
+                                    [class.is-invalid]="controlStock.touched && controlStock.hasError('required')">
+                                    <span *ngIf="controlStock.touched && controlStock.hasError('required')" class="invalid-feedback">
+                                    Stock es necesario, complete el campo
+                                    </span>  
+                                </div>
                             </div>
                             </div>
                         </div>              

@@ -29,7 +29,7 @@ this.producto = new Producto();
     this.subscription= new Subscription();
     this.formulario = this.formBuilder.group({
       nombre : [],
-      stock : [,Validators.required]
+      stock: ['', [Validators.required, this.validarStock]]
     })
     this.cargar();
     this.formulario.controls['nombre'].disable();
@@ -61,7 +61,7 @@ this.producto = new Producto();
         }
       })
     }else{
-      Swal.fire({title:'Atención!', text:`Complete todos los campos`, icon: 'warning'});
+      Swal.fire({title:'Atención!', text:`Complete los campos y/o verifique de ingresar un valor de stock positivo`, icon: 'warning'});
     }
   }
 
@@ -76,4 +76,10 @@ this.producto = new Producto();
     return this.formulario.controls['nombre'] as FormControl;
   }
 
+  validarStock(control : any) {
+    if (control.value <= 0) {
+      return { stockNegativo: true };
+    }
+    return null;
+  }
 }
