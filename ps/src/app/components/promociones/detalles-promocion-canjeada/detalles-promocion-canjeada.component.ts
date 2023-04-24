@@ -17,11 +17,12 @@ export class DetallesPromocionCanjeadaComponent implements OnInit,OnDestroy {
 
   constructor(private servicioPromocion: PromocionService) {}
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
   ngOnInit(): void {
     this.subscription = new Subscription();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   getDetalles(): void {
