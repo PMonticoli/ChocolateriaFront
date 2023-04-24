@@ -9,7 +9,7 @@
         <div class="col-sm-4">
           <input type="text" 
           class="form-control mb-2" 
-          placeholder="Buscar promoción por nombre" 
+          placeholder="Buscar por socio y/o nombre promocion" 
           #txtSearch
           (keyup)="onSearchProduct(txtSearch.value)">
         </div>
@@ -22,7 +22,7 @@
                     (listado | filtroCanjeadas: page+5 : search).length === 0"
       >Siguientes</button>
     
-      
+     
       <div class="table-responsive-sm">
         <table class="table bg-dark text-white mt-2">
           <thead>
