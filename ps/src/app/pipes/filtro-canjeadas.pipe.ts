@@ -6,8 +6,17 @@ import { DtoPromociones } from '../models/dto-promociones';
 })
 export class FiltroCanjeadasPipe implements PipeTransform {
 
-  transform(promocion: DtoPromociones[], page: number=0): DtoPromociones[] {
-    return promocion.slice(page, page+5);
+  // transform(promocion: DtoPromociones[], page: number=0): DtoPromociones[] {
+  //   return promocion.slice(page, page+5);
+  // }
+  transform(promocion: DtoPromociones[], page: number=0, search : string): DtoPromociones[] {
+    if(search.length === 0){
+      return promocion.slice(page, page+5);
+    }
+    const promocionsFiltradas = promocion.filter(promo=>  promo.socio.normalize('NFD').toLowerCase()
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1").includes(search) 
+    || promo.promocion.normalize('NFD').toLowerCase()
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1").includes(search));
+    return promocionsFiltradas.slice(page, page+5);
   }
-
 }

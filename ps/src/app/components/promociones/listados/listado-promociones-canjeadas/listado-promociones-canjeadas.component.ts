@@ -38,8 +38,15 @@ export class ListadoPromocionesCanjeadasComponent implements OnInit,OnDestroy{
   // .subscribe((data) => {
   //   console.log(data);
   // });
-  page = 0;
 
+  page = 0;
+  search : string ='';
+
+  onSearchProduct(buscar : string){
+    this.page=0;
+    this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1");
+  }
   prevPage() {
     if (this.page > 0) {
       this.page-=5;
