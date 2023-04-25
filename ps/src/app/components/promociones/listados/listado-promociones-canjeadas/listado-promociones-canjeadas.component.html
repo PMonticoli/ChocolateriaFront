@@ -4,12 +4,12 @@
       <h1 class="text-center text-uppercase titulo text-white py-3">
         Promociones Canjeadas
       </h1>
-
+  
       <div class="row">
         <div class="col-sm-4">
           <input type="text" 
           class="form-control mb-2" 
-          placeholder="Buscar por socio y/o nombre promocion" 
+          placeholder="Buscar promoción por nombre" 
           #txtSearch
           (keyup)="onSearchProduct(txtSearch.value)">
         </div>
@@ -18,7 +18,7 @@
       <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
       &nbsp;
     <button class="btn btn-primary" (click)="nextPage()"
-    [disabled]="(listado | filtroCanjeadas: page : search).length < 5 || 
+    [disabled]="(listado | filtroCanjeadas: page : search ).length < 5 || 
                     (listado | filtroCanjeadas: page+5 : search).length === 0"
       >Siguientes</button>
     
