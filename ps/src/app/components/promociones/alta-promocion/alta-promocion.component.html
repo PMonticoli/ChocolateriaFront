@@ -65,9 +65,10 @@
                     <div class="col-md-8">
                         <div class="mb-3">
                             <label for="productos" class="form-label text-uppercase fs-6 text fw-semibold">Seleccionar productos</label>
-                            <select class="form-control form-select" name="productos" id="productos" 
-                            [formControl]="controlProductos"
-                            (change)="controlCantidad.setValue(1)">
+                            <select class="form-control form-select" name="productos" id="productos"
+                            (change)="controlCantidad.setValue(1)"
+                            [formControl]="controlProductos">
+                                <option value="" disabled>--Seleccione un producto--</option>
                                 <option *ngFor="let p of productos" [ngValue]="p">
                                     {{p.nombre}}
                                 </option>
