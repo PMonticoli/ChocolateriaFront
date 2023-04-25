@@ -5,10 +5,10 @@ import { Promocion } from "./promocion";
 import { Socio } from "./socio";
 export class DtoPromociones {
     id : number;
-    // socio : Socio;
-    // promocion : Promocion;
-    socio : string;
-    promocion : string;
+    socio : Socio;
+    promocion : Promocion;
+    nombreSocio : string;
+    nombrePromocion : string;
     producto : Producto;
     cantidad : DetallePromocion;
     puntos : MovimientosPuntos;
