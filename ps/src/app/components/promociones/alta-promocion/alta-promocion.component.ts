@@ -23,7 +23,7 @@ detalles: DetallePromocion[] = [];
 
 private subscription = new Subscription();
 controlProductos = new FormControl('');
-cantidadProductos = new FormControl('');
+// cantidadProductos = new FormControl('');
 
 constructor(private servicioPromocion : PromocionService,
            private servicioProducto : ProductoService,
@@ -36,6 +36,7 @@ constructor(private servicioPromocion : PromocionService,
       precioPuntos : [,Validators.required],
       fechaDesde : [,Validators.required],
       fechaHasta: [,Validators.required],
+      cantidad : []
     });
     this.cargarCbo();
   }
@@ -65,7 +66,7 @@ constructor(private servicioPromocion : PromocionService,
   agregarProducto(): void {
     const prod: Producto = this.controlProductos.value as unknown as Producto;
     if (!prod) return;
-    const cant = this.cantidadProductos.value as unknown as number
+    const cant = this.controlCantidad.value as unknown as number
     if (!cant || cant < 1) return;
     let d: DetallePromocion = {
       producto: prod,
@@ -75,7 +76,7 @@ constructor(private servicioPromocion : PromocionService,
     this.detalles.push(d);
     this.productos.splice(indice, 1);
     this.controlProductos.reset();
-    this.cantidadProductos.reset();
+    this.controlCantidad.reset();
   }
 
   quitarProducto(detalle: DetallePromocion): void {
@@ -128,5 +129,9 @@ constructor(private servicioPromocion : PromocionService,
 
   get controlFechaHasta() : FormControl{
     return this.formulario.controls['fechaHasta'] as FormControl;
+  }
+
+  get controlCantidad() : FormControl{
+    return this.formulario.controls['cantidad'] as FormControl;
   }
 }

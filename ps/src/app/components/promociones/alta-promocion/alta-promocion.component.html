@@ -68,7 +68,8 @@
                         <div class="mb-3">
                             <label for="productos" class="form-label text-uppercase fs-6 text fw-semibold">Seleccionar productos</label>
                             <select class="form-control form-select" name="productos" id="productos" 
-                            [formControl]="controlProductos">
+                            [formControl]="controlProductos"
+                            (change)="controlCantidad.setValue(1)">
                                 <option *ngFor="let p of productos" [ngValue]="p">
                                     {{p.nombre}}
                                 </option>
@@ -80,7 +81,8 @@
                         <div class="mb-3">
                             <label for="txtCantidad" class="form-label text-white fs-6 text fw-semibold">Cantidad</label>
                             <input type='number' name='txtCantidad' id='txtCantidad' 
-                            class='form-control' [formControl]="cantidadProductos">
+                            class='form-control' formControlName="cantidad" value="1" [disabled]="true" 
+                            style="opacity: 0.8; pointer-events: none;">
                         </div>                    
                     </div>
                     <button class="btn btn-warning mt-4 text fw-semibold" (click)="agregarProducto()">Agregar producto</button>
