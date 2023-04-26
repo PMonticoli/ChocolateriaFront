@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,10 +17,14 @@ export class AltaProductoComponent implements OnInit, OnDestroy{
   formulario : FormGroup;
   isEdit : boolean = false;
   producto : Producto;
+  file ='';
+  urlImagen = '../../../../../assets/img/noImage.jpg';
+  imagenSubida : string;
   constructor(private servicioProducto : ProductoService,
              private formBuilder : FormBuilder,
              private router : Router,
-             private activatedRoute : ActivatedRoute){
+             private activatedRoute : ActivatedRoute,
+             private http : HttpClient){
 
 this.producto = new Producto();
 }
@@ -68,6 +73,8 @@ this.producto = new Producto();
   registrar(){
     if(this.formulario.valid){
       this.producto= this.formulario.value as Producto;
+      this.producto.urlImagen = this.imagenSubida.replace(/\\/g, '/');
+      console.log(this.producto);
       this.subscription.add(
         this.servicioProducto.agregar(this.producto).subscribe({
           next :(res : ResultadoGenerico)=>{
@@ -85,6 +92,8 @@ this.producto = new Producto();
           }
         })
       )
+    }else{
+      Swal.fire({title:'Atención', text:`Complete los campos por favor`, icon: 'warning'});
     }
   }
 
@@ -141,4 +150,44 @@ this.producto = new Producto();
       ) 
     )
   }
+
+  selectImage(event : any){
+    if(event.target.files.length > 0){     
+        const file =event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event : any) =>{
+          this.urlImagen = event.target.result;
+        }
+        this.file=file;
+
+    }
+  }
+
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.file);
+   
+    this.http.post<any>('http://localhost:3000/productos/uploadImage', formData).subscribe({
+        next :(r)=>{
+          this.imagenSubida = r.path;
+          Swal.fire({
+            icon: 'success',
+            title: 'Imagen cargada!!',
+            text: 'La imagen se subio correctamente!'
+            })
+        },
+        error :(err)=>{
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Parece que no subio nada!!' 
+        })
+        }
+      })
+    
+    this.urlImagen = '../../../../assets/img/noImage.jpg';
+    }
 }
