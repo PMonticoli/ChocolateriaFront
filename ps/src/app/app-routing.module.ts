@@ -8,7 +8,6 @@ import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/li
 import { ListadoPedidosComponent } from './components/pedidos/listados/listado-pedidos/listado-pedidos.component';
 import { AltaProductoComponent } from './components/productos/alta-producto/alta-producto.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
-import { AltaStockComponent } from './components/productos/stock/alta-stock/alta-stock.component';
 import { ListadoStockComponent } from './components/productos/stock/listado-stock/listado-stock.component';
 import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
 import { ListadoPromocionesCanjeadasComponent } from './components/promociones/listados/listado-promociones-canjeadas/listado-promociones-canjeadas.component';
