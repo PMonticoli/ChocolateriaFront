@@ -20,6 +20,7 @@ export class AltaProductoComponent implements OnInit, OnDestroy{
   file ='';
   urlImagen = '../../../../../assets/img/noImage.jpg';
   imagenSubida : string;
+  flag : boolean=false;
   constructor(private servicioProducto : ProductoService,
              private formBuilder : FormBuilder,
              private router : Router,
@@ -158,6 +159,7 @@ this.producto = new Producto();
         reader.readAsDataURL(file);
         reader.onload = (event : any) =>{
           this.urlImagen = event.target.result;
+          this.flag=true;
         }
         this.file=file;
 
@@ -189,5 +191,10 @@ this.producto = new Producto();
       })
     
     this.urlImagen = '../../../../assets/img/noImage.jpg';
+    }
+
+
+    deleteImg(){
+      this.urlImagen = '../../../../assets/img/noImage.jpg';
     }
 }

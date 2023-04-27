@@ -12,3 +12,10 @@
     font-family: "Lora", serif;
     font-weight: 700;
   }
+
+  .boton-ubicacion{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 15px;
+  }

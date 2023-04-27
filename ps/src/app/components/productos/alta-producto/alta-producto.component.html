@@ -94,8 +94,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="card">
-                        <div class="card-body">
-                          <img class="img-fluid" [src]="urlImagen" class="card-img-top" style="max-width: 300px; max-height: 300px;">
+                        <button *ngIf="flag==true" type="button" (click)="deleteImg()" class="btn btn-outline-danger bi bi-trash3 boton-ubicacion"></button>
+                        <div class="card-body">                
+                          <img class="img-fluid" [src]="urlImagen" class="" style="max-width: 270px; max-height: 280px;">
                         </div>
                       </div>
                     </div>
