@@ -18,3 +18,9 @@
     font-family: "Lora", serif;
     font-weight: 700;
   }
+
+  .puntos{
+    font-weight: 600;
+    text-align: right;
+    direction: rtl;
+  }
