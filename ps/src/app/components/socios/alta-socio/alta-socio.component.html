@@ -1,12 +1,12 @@
 <div class="fondo">
     <div class="container py-5">
-        <h1 class="mb-5 text-center text-uppercase titulo">{{!isEdit ? 'Registro de Socio' : 'Editar Socio'}}</h1>
+        <h1 class="mb-5 text-center text-uppercase titulo text-white">{{!isEdit ? 'Registro de Socio' : 'Editar Socio'}}</h1>
         <form [formGroup]="formulario">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="inputNombre" class="form-label fw-semibold">Nombre</label>
+                            <label for="inputNombre" class="form-label fw-semibold text-white">Nombre</label>
                             <div class="input-group">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
@@ -27,7 +27,7 @@
     
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="inputApellido" class="form-label fw-semibold">Apellido</label>
+                            <label for="inputApellido" class="form-label fw-semibold text-white">Apellido</label>
                             <div class="input-group">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="inputEmail" class="form-label fw-semibold">Email</label>
+                            <label for="inputEmail" class="form-label fw-semibold text-white">Email</label>
                             <div class="input-group">
                                 <div class="input-group-text">@</div>
                                 <input type="text" class="form-control" id="inputEmail" 
@@ -67,7 +67,7 @@
     
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="inputDni" class="form-label fw-semibold">DNI</label>
+                            <label for="inputDni" class="form-label fw-semibold text-white">DNI</label>
                             <input type="number" class="form-control" id="inputDni" 
                             placeholder="Ingrese el DNI" formControlName="dni"
                             [class.is-invalid]="controlDni.touched && controlDni.hasError('required')">
@@ -86,7 +86,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="inputDomicilio" class="form-label fw-semibold">Domicilio</label>
+                            <label for="inputDomicilio" class="form-label fw-semibold text-white">Domicilio</label>
                             <div class="input-group">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
@@ -101,7 +101,7 @@
     
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="inputTelefono" class="form-label fw-semibold">Telefono</label>
+                            <label for="inputTelefono" class="form-label fw-semibold text-white">Telefono</label>
                             <div class="input-group">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
