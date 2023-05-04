@@ -6,7 +6,7 @@ import { SocioService } from 'src/app/services/socio.service';
 const Swal = require('sweetalert2');
 import html2canvas from 'html2canvas';
 import { ChartData } from 'chart.js';
-import { jsPDF } from "jspdf";
+// import { jsPDF } from "jspdf";
 @Component({
   selector: 'app-reporte-socios',
   templateUrl: './reporte-socios.component.html',
@@ -156,18 +156,18 @@ solicitarReporte(){
   }
 }
 
-descargarPDF(): void {
-  let DATA: any = document.getElementById('htmlData');
-  html2canvas(DATA).then((canvas) => {
-    let ancho = 290;
-    let altura = (canvas.height * ancho) / canvas.width;
-    const urlArchivo = canvas.toDataURL('image/png');
-    let ArchivoPDF = new jsPDF('l', 'mm', 'a4');
-    let position = 0;
-    ArchivoPDF.addImage(urlArchivo, 'PNG', 0, position, ancho, altura);
-    console.log(new Date().toLocaleDateString("es-AR"));
-    ArchivoPDF.save(`Reporte Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
-  });
-}
+// descargarPDF(): void {
+//   let DATA: any = document.getElementById('htmlData');
+//   html2canvas(DATA).then((canvas) => {
+//     let ancho = 290;
+//     let altura = (canvas.height * ancho) / canvas.width;
+//     const urlArchivo = canvas.toDataURL('image/png');
+//     let ArchivoPDF = new jsPDF('l', 'mm', 'a4');
+//     let position = 0;
+//     ArchivoPDF.addImage(urlArchivo, 'PNG', 0, position, ancho, altura);
+//     console.log(new Date().toLocaleDateString("es-AR"));
+//     ArchivoPDF.save(`Reporte Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
+//   });
+// }
 
 }
