@@ -78,4 +78,34 @@ export class SocioService {
    existeSocioConDNI(dni:number): Observable<boolean> {
     return this.http.get<boolean>(this.API_URL+'existe?dni='+dni);
    }
+
+   sociosNuevos(body : any) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+      });
+    const requestOptions = { headers: headers };
+    return this.http.post<ResultadoGenerico>(this.API_URL + 'nuevos' ,body,requestOptions);
+   }
+
+   sociosBaja(body : any) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+      });
+    const requestOptions = { headers: headers };
+    return this.http.post<ResultadoGenerico>(this.API_URL + 'bajas' ,body,requestOptions);
+   }
+
+   sociosConMasPedidos(body : any) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+      });
+    const requestOptions = { headers: headers };
+    return this.http.post<ResultadoGenerico>(this.API_URL + 'pedidos',body, requestOptions);
+   }
 }
