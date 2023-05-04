@@ -10,7 +10,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h4 class="mb-3">Monto total a pagar: ${{montoTotal}}</h4>
+                <h6 class="fw-semibold" style="color: black;">Monto total a pagar: ${{montoTotal}}</h6>
                 <form [formGroup]="formulario">
                     <div class="form-group">
                         <div class="mb-3">
@@ -32,7 +32,7 @@
                             </span>
                         </div>
                         <div class="row mb-3 justify-content-center" *ngIf="mostrarCodQr" >
-                            <img class="img" style="max-width: 300px;"  src="../../../../assets/img/codigoQr.png" alt="Códico QR">
+                            <img class="img" style="max-width: 200px;"  src="../../../../assets/img/codigoQr.png" alt="Códico QR">
                         </div>
                     </div>  
                     </form>
