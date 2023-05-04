@@ -6,6 +6,7 @@ import { SocioService } from 'src/app/services/socio.service';
 const Swal = require('sweetalert2');
 import html2canvas from 'html2canvas';
 import { ChartData } from 'chart.js';
+import { jsPDF } from "jspdf";
 @Component({
   selector: 'app-reporte-socios',
   templateUrl: './reporte-socios.component.html',
@@ -132,25 +133,41 @@ cargar(): void {
         data: [
           this.cantSociosNuevos
         ],
+        backgroundColor: 'rgb(31 120 50)'
       },
       {
         label : 'Socios bajas',
         data: [
         this.cantidadSociosBaja 
-        ]
+        ],
+        backgroundColor: 'rgba(255, 0, 0, 0.8)'
       },
     ],
   };
 }
 
 
-generarReporte(){
+solicitarReporte(){
   if (this.formulario.valid) {
     this.visibilidadReporte = true;
     this.getCantSociosNuevos();
   } else { 
     Swal.fire({title:'Atención!', text:'¡Debes seleccionar previamente una fecha desde y hasta para generar el reporte!', icon: 'warning'});
   }
+}
+
+descargarPDF(): void {
+  let DATA: any = document.getElementById('htmlData');
+  html2canvas(DATA).then((canvas) => {
+    let ancho = 290;
+    let altura = (canvas.height * ancho) / canvas.width;
+    const urlArchivo = canvas.toDataURL('image/png');
+    let ArchivoPDF = new jsPDF('l', 'mm', 'a4');
+    let position = 0;
+    ArchivoPDF.addImage(urlArchivo, 'PNG', 0, position, ancho, altura);
+    console.log(new Date().toLocaleDateString("es-AR"));
+    ArchivoPDF.save(`Reporte Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
+  });
 }
 
 }

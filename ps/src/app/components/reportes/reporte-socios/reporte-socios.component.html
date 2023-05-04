@@ -39,9 +39,10 @@
               </div>
               <div class="col-md-2">
                 <br />
-                <button class="btn btn-primary my-2" (click)="generarReporte()">
-                  Generar reporte
+                <button class="btn btn-primary my-2" (click)="solicitarReporte()">
+                  Solicitar reporte
                 </button>
+                <button class="btn btn-danger ms-2" [disabled]="!visibilidadReporte" (click)="descargarPDF()"><i class="bi bi-file-earmark-pdf-fill"></i></button>
               </div>
             </div>
           </div>
@@ -52,39 +53,64 @@
             <div class="col-md-6 col-sm-12 p-5">
               <div class="row">
                 <h3>Ranking de pedidos por socio</h3>
-                <div class="table-responsive">
-                    <table class="table bg-dark text-white mt-2">
-                    <thead>
-                        <tr>
-                        <th scope="col">Nombre del socio</th>
-                        <th scope="col">DNI</th>
-                        <th scope="col">Cantidad de pedidos</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let p of pedidosSocios">
-                        <td>{{ p.socio }}</td>
-                        <td>{{ p.dni }}</td>
-                        <td>{{ p.cantPedidos }}</td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
+                  <div class="table-responsive">
+                      <table class="table bg-dark text-white mt-2">
+                        <thead>
+                            <tr>
+                            <th scope="col">Socio</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Cantidad de pedidos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of pedidosSocios">
+                            <td>{{ p.socio }}</td>
+                            <td>{{ p.dni }}</td>
+                            <td>{{ p.cantPedidos }}</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>              
               </div>
-              
-            </div>
+            
             <div class="col-md-6 col-sm-12 p-5">
-                <div class="row text-center">
-        
-                  <h3>Nuevos socios vs Bajas socios</h3>
-                </div>
-                <div class="row justify-content-center">
-        
-                  <div style="width: 700px; height: 700px;">
-                    <canvas baseChart type="bar" [data]="datos"></canvas>
+                <h3>Ranking de socios con más puntos</h3>
+                  <div class="table-responsive">
+                      <table class="table bg-dark text-white mt-2">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre del socio</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Puntos</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let s of sociosConMasPuntos">
+                            <td>{{ s.socio }}</td>
+                            <td>{{ s.dni }}</td>
+                            <td>{{ s.puntos }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                   </div>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 p-5">
+              <div class="row text-center">
+                <h3 class="fw-semibold">Gráfico de socios</h3>
+                <p class="fw-semibold">Cantidad de socios nuevos vs dados de baja en el periodo especificado
+                </p>
+              </div>
+              <div class="row justify-content-center">
+      
+                <div style="width: 700px; height: 700px;">
+                  <canvas baseChart type="bar" [data]="datos"></canvas>
                 </div>
               </div>
-        </div>
+            </div>
+          </div>
       </div>
 </div>

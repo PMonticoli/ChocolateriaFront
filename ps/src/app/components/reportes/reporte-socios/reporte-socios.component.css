@@ -1,12 +1,23 @@
 .fondo {
-    background-image: url("../../../../../src/assets/img/reportes.jpg");
-    background-size: cover;
-    width: 100%;
-    background-position: center;
-    min-height: 100vh;
-  }
+  background-image: url("../../../../../src/assets/img/reportes.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: auto; 
+  min-height: 100vh; 
+}
 
   .titulo {
     font-family: "Lora", serif;
     font-weight: 700;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary.active,
+  .btn-primary.disabled,
+  .btn-primary[disabled] {
+    filter: none;
+    background-color: #4ea15c;
   }
