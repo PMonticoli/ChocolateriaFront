@@ -1,0 +1,7 @@
+.fondo {
+    background-image: url("../../../../../src/assets/img/reportes.jpg");
+    background-size: cover;
+    width: 100%;
+    background-position: center;
+    min-height: 100vh;
+  }
