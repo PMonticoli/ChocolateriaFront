@@ -4,8 +4,8 @@ import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { SocioService } from 'src/app/services/socio.service';
 const Swal = require('sweetalert2');
+import html2canvas from 'html2canvas';
 import { ChartData } from 'chart.js';
-
 @Component({
   selector: 'app-reporte-socios',
   templateUrl: './reporte-socios.component.html',
@@ -16,10 +16,11 @@ private subscription : Subscription;
 formulario : FormGroup;
 visibilidadReporte : boolean= false;
 body : any;
-cantidadSociosNuevos : number = 0;
+cantSociosNuevos : number = 0;
 cantidadSociosBaja : number = 0;
 datos: ChartData<'bar'>;
 pedidosSocios : any[];
+sociosConMasPuntos: any[];
 private encabezado : string[] = ['Gráfico cantidad de socios'];
 constructor(private servicioSocio : SocioService,
             private formBuilder : FormBuilder){}
@@ -57,9 +58,9 @@ getCantSociosNuevos(){
     this.servicioSocio.sociosNuevos(this.body).subscribe({
       next : (res : ResultadoGenerico)=>{
         if(res.ok){
-          this.cantidadSociosNuevos=res.resultado ? res.resultado[0].cantidadSociosNuevos : 0;
+          this.cantSociosNuevos=res.resultado ? res.resultado[0].cantSociosNuevos : 0;
+          this.getCantSociosBaja();
         }
-        this.getCantSociosBaja();
       },
       error : (err)=>{
         Swal.fire({title : 'Error', text:`Error al generar reporte socios: ${err}`, icon: 'error'})
@@ -68,53 +69,59 @@ getCantSociosNuevos(){
   )
 }
 
-getSocioConMasPedidos(){
-const {fechaDesde,fechaHasta} = this.formulario.value;
-this.body ={
-  fechaDesde : new Date(fechaDesde),
-  fechaHasta : new Date(fechaHasta)
-}
-this.body.fechaHasta.setHours(this.body.fechaHasta.getHours() + 23);
-this.body.fechaHasta.setMinutes(this.body.fechaHasta.setMinutes() + 59);
-
-this.subscription.add(
-  this.servicioSocio.sociosConMasPedidos(this.body).subscribe({
-    next : (res : ResultadoGenerico)=>{
-      if(res.ok){
-        this.pedidosSocios=res.resultado ? res.resultado: [];
+getSociosConMasPedidos() {
+  this.subscription.add(
+    this.servicioSocio.sociosConMasPedidos(this.body).subscribe({
+      next : (res: ResultadoGenerico) =>{    
+        console.log('Socios con mas pedidos :'+ JSON.stringify(res));
+        if(res.ok){ 
+          this.pedidosSocios=res.resultado ? res.resultado: [];
+        }
+        this.obtenerSociosConMasPuntos();
+      },
+      error :(e) =>{
+        Swal.fire({title:'Error!', text:`Error al generar reporte socios: ${e}`, icon: 'error'});
       }
-      this.getCantSociosBaja();
-    },
-    error : (err)=>{
-      Swal.fire({title : 'Error', text:`Error al generar reporte socios: ${err}`, icon: 'error'})
-    }
-  })
-)
+    })
+  )
 }
 
-getCantSociosBaja(){
-const {fechaDesde, fechaHasta} =this.formulario.value;
-this.body={
-  fechaDesde : new Date(fechaDesde),
-  fechaHasta : new Date(fechaHasta)
-}
-this.body.fechaHasta.setHours(this.body.fechaHasta.getHours() + 23);
-this.body.fechaHasta.setMinutes(this.body.fechaHasta.getMinutes() + 59);
-
-this.subscription.add(
-  this.servicioSocio.sociosBaja(this.body).subscribe({
-    next : (res : ResultadoGenerico)=>{
-      if(res.ok){
-        this.cantidadSociosBaja= res.resultado? res.resultado[0].cantidadSociosBaja : 0;
+getCantSociosBaja() {
+  this.subscription.add(
+    this.servicioSocio.sociosBaja(this.body).subscribe({
+      next : (res: ResultadoGenerico) =>{    
+        console.log(res);
+        if(res.ok){ 
+          this.cantidadSociosBaja=res.resultado ? res.resultado[0].cantidadSociosBaja : 0;
+        }
+        this.getSociosConMasPedidos();
+      },
+      error :(e) =>{
+        Swal.fire({title:'Error!', text:`Error al generar reporte socios: ${e}`, icon: 'error'});
       }
-      this.getSocioConMasPedidos();
-    },
-    error : (err)=>{
-      Swal.fire({title : 'Error', text:`Error al generar reporte socios: ${err}`, icon: 'error'})
-    }
-  })
-)
+    })
+  )
 }
+
+obtenerSociosConMasPuntos(): void {
+  this.subscription.add(
+    this.servicioSocio.getSociosConMasPuntos(8).subscribe({
+      next: (r: ResultadoGenerico) => {
+        if(r.ok) {
+          this.sociosConMasPuntos = r.resultado? r.resultado : [];
+          this.cargar();
+        } else {
+          console.error(r.mensaje);
+        }
+      },
+      error: (err) => {
+        Swal.fire({title:'Error!', text:`Error al generar reporte socios: ${err}`, icon: 'error'});
+        console.error(err);
+      }
+    })
+  )
+}
+
 
 cargar(): void {
   this.datos = {
@@ -123,7 +130,7 @@ cargar(): void {
       {
         label : 'Socios nuevos',
         data: [
-          this.cantidadSociosNuevos
+          this.cantSociosNuevos
         ],
       },
       {
@@ -142,7 +149,7 @@ generarReporte(){
     this.visibilidadReporte = true;
     this.getCantSociosNuevos();
   } else { 
-    Swal.fire({title:'Atención!', text:'¡Debe seleccionar previamente una fecha desde y hasta para generar el reporte!', icon: 'warning'});
+    Swal.fire({title:'Atención!', text:'¡Debes seleccionar previamente una fecha desde y hasta para generar el reporte!', icon: 'warning'});
   }
 }
 

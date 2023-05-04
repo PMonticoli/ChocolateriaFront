@@ -1,3 +1,90 @@
 <div class="fondo">
-    
+    <div class="container-fluid p-3" id="htmlData">
+        <h1 class="titulo my-3 text-center text-uppercase">Reportes de Socios</h1>
+        <form [formGroup]="formulario">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="mb-3">
+                  <label for="inputFechaDesde" class="form-label fw-semibold">Fecha desde</label>
+                  <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaDesde"
+                    [class.is-invalid]="
+                      controlFechaDesde.touched &&
+                      controlFechaDesde.hasError('required')
+                    " />
+                  <p *ngIf="
+                      controlFechaDesde.touched &&
+                      controlFechaDesde.hasError('required')
+                    " class="invalid-feedback">
+                    Ingresar fecha desde
+                  </p>
+                </div>
+              </div>
+      
+              <div class="col-md-5">
+                <div class="mb-3">
+                  <label for="inputFechaDesde" class="form-label fw-semibold">Fecha hasta</label>
+                  <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
+                    [class.is-invalid]="
+                      controlFechaHasta.touched &&
+                      controlFechaHasta.hasError('required')
+                    " />
+                  <p *ngIf="
+                      controlFechaHasta.touched &&
+                      controlFechaHasta.hasError('required')
+                    " class="invalid-feedback">
+                    Ingresar fecha hasta
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <br />
+                <button class="btn btn-primary my-2" (click)="generarReporte()">
+                  Generar reporte
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      
+        <div class="container-fluid" *ngIf="visibilidadReporte">
+          <div class="row">
+            <div class="col-md-6 col-sm-12 p-5">
+              <div class="row">
+                <h3>Ranking de pedidos por socio</h3>
+                <div class="table-responsive">
+                    <table class="table bg-dark text-white mt-2">
+                    <thead>
+                        <tr>
+                        <th scope="col">Nombre del socio</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Cantidad de pedidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of pedidosSocios">
+                        <td>{{ p.socio }}</td>
+                        <td>{{ p.dni }}</td>
+                        <td>{{ p.cantPedidos }}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+              </div>
+              
+            </div>
+            <div class="col-md-6 col-sm-12 p-5">
+                <div class="row text-center">
+        
+                  <h3>Nuevos socios vs Bajas socios</h3>
+                </div>
+                <div class="row justify-content-center">
+        
+                  <div style="width: 700px; height: 700px;">
+                    <canvas baseChart type="bar" [data]="datos"></canvas>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
 </div>
