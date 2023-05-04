@@ -55,6 +55,7 @@ import { ListadoPromocionesCanjeadasComponent } from './components/promociones/l
 import { DetallesPromocionCanjeadaComponent } from './components/promociones/detalles-promocion-canjeada/detalles-promocion-canjeada.component';
 import { FiltroCanjeadasPipe } from './pipes/filtro-canjeadas.pipe';
 import { ReporteSociosComponent } from './components/reportes/reporte-socios/reporte-socios.component';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +105,8 @@ import { ReporteSociosComponent } from './components/reportes/reporte-socios/rep
     MatPaginatorModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    NgChartsModule
   ],
   providers: [
     UsuarioService,
