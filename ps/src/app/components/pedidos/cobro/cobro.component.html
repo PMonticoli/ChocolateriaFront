@@ -6,15 +6,15 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-4 text text" id="exampleModalLabel" style="color: black;">Abonar el pedido</h5>
+                <h5 class="modal-title fs-4 text text" id="exampleModalLabel" style="color: black;">Pedido</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h6 class="fw-semibold" style="color: black;">Monto total a pagar: ${{montoTotal}}</h6>
+                <h6 class="fw-semibold" style="color: black;">Monto total: ${{montoTotal}}</h6>
                 <form [formGroup]="formulario">
                     <div class="form-group">
                         <div class="mb-3">
-                            <label for="selectTipoPago" class="form-label fs-4 text" style="color:black">Tipo de Pago</label>
+                            <label for="selectTipoPago" class="form-label fs-6 text" style="color:black">Tipo de Pago</label>
                             <select id="selectTipoPago" class="form-select" formControlName="tipoPago"
                                 [class.is-invalid]="controlTipoPago.touched && controlTipoPago.hasError('required')">
                                 <option *ngFor="let tipopago of tiposPago" [ngValue]="tipopago">{{ tipopago.nombre }}</option>
@@ -24,7 +24,7 @@
                             </span>
                         </div>
                         <div class="mb-3" *ngIf="cobraConTarjeta">
-                            <label for="selectTipoPago" class="form-label">Codigo de Autorización</label>
+                            <label for="selectTipoPago" class="form-label fs-6 text" style="color: black;">Codigo de Autorización</label>
                             <input type="text" id="txtCodigoAutorizacion" class="form-control" formControlName="codigoAutorizacion"
                                 [class.is-invalid]="controlCodAutorizacion.touched && controlCodAutorizacion.hasError('required')">
                             <span class="invalid-feedback">
@@ -38,8 +38,8 @@
                     </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="guardarCobro()">{{labelBoton}}</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="guardarCobro()">{{labelBoton}}</button>
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
