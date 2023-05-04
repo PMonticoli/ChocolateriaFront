@@ -39,10 +39,10 @@
               </div>
               <div class="col-md-2">
                 <br />
-                <button class="btn btn-primary my-2" (click)="solicitarReporte()">
+                <button *ngIf="!visibilidadReporte" class="btn btn-primary my-2" (click)="solicitarReporte()">
                   Solicitar reporte
                 </button>
-                <!-- <button class="btn btn-danger ms-2" [disabled]="!visibilidadReporte" (click)="descargarPDF()"><i class="bi bi-file-earmark-pdf-fill"></i></button> -->
+                <button *ngIf="visibilidadReporte" class="btn btn-danger my-2" (click)="descargarPDF()"><i class="bi bi-file-earmark-pdf-fill"> Descargar PDF</i></button>
               </div>
             </div>
           </div>
