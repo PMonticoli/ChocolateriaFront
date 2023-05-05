@@ -1,11 +1,11 @@
 .fondo {
-    background-image: url("../../../../assets/img/altaProducto.jpg");
-    background-size: cover;
-    /* height: 100%; */
-    width: 100%;
-    background-position: center;
-    min-height: 100vh;
-  }
+  background-image: url("../../../../assets/img/altaProducto.jpg");
+  background-size: cover;
+  width: 100%;
+  background-position: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
   .titulo {
     color: white;
