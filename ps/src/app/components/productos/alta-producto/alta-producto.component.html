@@ -8,8 +8,7 @@
                 <div class="col-md-8">
                   <div class="mb-3">
                     <label for="nombre" class="form-label fs-6 text fw-semibold text-white fw-semibold text-white ">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" formControlName="nombre"
-                    placeholder="Nombre del producto"
+                    <input type="text" class="form-control" id="nombre" formControlName="nombre"                    
                     [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
                     <span *ngIf="controlNombre.touched && controlNombre.hasError('required')"
                     class="invalid-feedback">
@@ -22,7 +21,6 @@
                   <div class="mb-3">
                     <label for="precio" class="form-label fs-6 text fw-semibold text-white fw-semibold text-white">Precio</label>
                     <input type="text" class="form-control" id="precio" formControlName="precio"
-                    placeholder="$0"
                     [class.is-invalid]="controlPrecio.touched&&controlPrecio.hasError('required')">
                     <span *ngIf="controlPrecio.touched && controlPrecio.hasError('required')"
                     class="invalid-feedback">
@@ -35,8 +33,7 @@
                 <div class="col-sm-2">
                   <div class="mb-3">
                     <label for="puntosGanados" class="form-label fs-6 text fw-semibold text-white fw-semibold text-white">Puntos</label>
-                    <input type="text" class="form-control" id="puntosGanados"
-                    placeholder="0" formControlName="puntosGanados"
+                    <input type="text" class="form-control" id="puntosGanados" formControlName="puntosGanados"
                     [class.is-invalid]="controlPuntos.touched&&controlPuntos.hasError('required')"
                     >
                     <span *ngIf="controlPuntos.touched && controlPuntos.hasError('required')"
