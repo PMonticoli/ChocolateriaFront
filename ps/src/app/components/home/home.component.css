@@ -9,6 +9,7 @@ a {
   width: 100%;
   background-position: center;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 @keyframes cambiar-imagen {

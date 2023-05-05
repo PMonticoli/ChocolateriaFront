@@ -3,7 +3,8 @@
     background-size: cover;
     width: 100%;
     background-position: center;
-    min-height: 95vh;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
 
   .titulo {
