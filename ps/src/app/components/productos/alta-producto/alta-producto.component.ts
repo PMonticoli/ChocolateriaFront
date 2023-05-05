@@ -21,6 +21,7 @@ export class AltaProductoComponent implements OnInit, OnDestroy{
   urlImagen = '../../../../../assets/img/noImage.jpg';
   imagenSubida : string;
   flag : boolean=false;
+
   constructor(private servicioProducto : ProductoService,
              private formBuilder : FormBuilder,
              private router : Router,
@@ -174,6 +175,7 @@ this.producto = new Producto();
     this.http.post<any>('http://localhost:3000/productos/uploadImage', formData).subscribe({
         next :(r)=>{
           this.imagenSubida = r.path;
+          this.flag=false;
           Swal.fire({
             icon: 'success',
             title: 'Imagen cargada!!',
@@ -194,7 +196,11 @@ this.producto = new Producto();
     }
 
 
-    deleteImg(){
+    deleteImg(): void {
       this.urlImagen = '../../../../assets/img/noImage.jpg';
+      this.file = ''; // <-- setea una cadena vacía
+      this.flag = false;
+      const input = document.getElementById('urlImagen') as HTMLInputElement;
+      input.value = '';
     }
 }
