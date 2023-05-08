@@ -7,6 +7,7 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { DtoReportePromociones } from 'src/app/models/dto-reporte-promociones';
+import { ChartData } from 'chart.js';
 @Component({
   selector: 'app-reporte-promociones',
   templateUrl: './reporte-promociones.component.html',
@@ -20,6 +21,9 @@ body : any;
 search : string= '';
 page : number = 0;
 private subscription = new Subscription();
+private encabezado : string[] = ['Gráfico Promociones'];
+datos: ChartData<'bar'>;
+cantidadCanjeos : number = 0;
 constructor(private servicioPromocion : PromocionService,
             private formBuilder : FormBuilder){}
 ngOnInit(): void {
@@ -51,6 +55,7 @@ solicitarReporte(){
         next: (res: ResultadoGenerico) => {
           if (res.ok) {
             this.resultadoReporte = res.resultado ? res.resultado : [];
+            this.cargar();
           }
           else {
             console.error(res.mensaje);
@@ -63,6 +68,32 @@ solicitarReporte(){
   }else{
     alert ('¡Completar campos de fechas!')
   }
+}
+
+
+cargar(): void {
+  const colores: string[] = [];
+  for (let i = 0; i < this.resultadoReporte.length; i++) {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    colores.push(`rgb(${r}, ${g}, ${b})`);
+  }
+  this.datos = {
+    labels: ['Cantidad de veces que se canjeo cada promoción'],
+    datasets: [],
+  };
+  this.resultadoReporte.forEach((fila,index) => {
+    this.datos.datasets.push(
+      {
+        label : fila.nombrePromocion,
+        data: [
+          fila.cantidadCanjeos
+        ],
+        backgroundColor: colores[index]
+      }
+    );
+  });
 }
 
 descargarPDF(): void {
