@@ -24,13 +24,36 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
   resultadoReporte: DtoReporte[] = [];
   search : string= '';
   page : number = 0;
+  filtroTabla = new FormControl('nombre');
   constructor(private servicioProducto : ProductoService,
              private formBuilder : FormBuilder){}
+
+  ordenar(array: any[], columna: string, menorMayor: boolean): any[] {
+    if (menorMayor) {
+      return array.sort((a,b) => (a[columna] > b[columna]) ? 1 : ((b[columna] > a[columna]) ? -1 : 0));
+    } else 
+    {
+      return array.sort((a,b) => (a[columna] < b[columna]) ? 1 : ((b[columna] < a[columna]) ? -1 : 0));
+    }
+  }
+  onFiltroChange() {
+    this.filtroTabla.setValue(this.filtroTabla.value, { emitEvent: false });
+  }
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       fechaDesde : [,Validators.required],
       fechaHasta : [,Validators.required]
+    })
+    this.filtroTabla.valueChanges.subscribe( valor => {
+      if(valor){
+        if(valor == 'nombre') {
+
+          this.resultadoReporte = this.ordenar(this.resultadoReporte,valor,true);
+        } else {
+          this.resultadoReporte = this.ordenar(this.resultadoReporte,valor,false);
+        }
+      }
     })
   }
 

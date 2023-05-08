@@ -23,18 +23,18 @@
         
                     <div class="col-md-4">
                         <div class="mb-3">
-                        <label for="inputFechaDesde" class="form-label fw-semibold">Fecha hasta</label>
-                        <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
-                            [class.is-invalid]="
-                            controlFechaHasta.touched &&
-                            controlFechaHasta.hasError('required')
-                            " />
-                        <p *ngIf="
-                            controlFechaHasta.touched &&
-                            controlFechaHasta.hasError('required')
-                            " class="invalid-feedback">
-                            Ingresar fecha hasta
-                        </p>
+                          <label for="inputFechaDesde" class="form-label fw-semibold">Fecha hasta</label>
+                          <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
+                              [class.is-invalid]="
+                              controlFechaHasta.touched &&
+                              controlFechaHasta.hasError('required')
+                              " />
+                          <p *ngIf="
+                              controlFechaHasta.touched &&
+                              controlFechaHasta.hasError('required')
+                              " class="invalid-feedback">
+                              Ingresar fecha hasta
+                          </p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -51,7 +51,7 @@
             <div class="container-fluid" *ngIf="visibilidadReporte">
                 <div class="row">
                     <div class="col p-5">
-                        <h3 class="text-center text-uppercase">Cantidad vendida por producto y promedios</h3>
+                        <h3 class="text-center text-uppercase">Cantidades vendidas por producto y promedios</h3>
                         <div class="row">
                             <div class="col-sm-3">
                               <input type="text" 
@@ -60,6 +60,15 @@
                               #txtSearch
                               (keyup)="onSearchProduct(txtSearch.value)">
                             </div>
+                          </div>
+                          <div class="col-md-6 col-sm-12">
+                            <label for="selectTipoPago" class="form-label">Ordenar tabla por</label>
+                            <select id="selectTipoPago" class="form-select" [formControl]="filtroTabla" 
+                            (change)="onFiltroChange()">
+                              <option value="nombre">Producto</option>
+                              <option value="cantidad">Cantidades vendidas</option>
+                              <option value="promedio">Promedio por pedido</option>
+                            </select>
                           </div>   
                           <div class="table-responsive table-container">
                               <table class="table bg-dark text-white mt-2">
@@ -67,11 +76,11 @@
                                   <tr>
                                     <th scope="col">Productos</th>
                                     <th scope="col">Cantidad vendida</th>
-                                    <th scope="col">Promedio</th>
+                                    <th scope="col">Promedio por pedido</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr *ngFor="let res of resultadoReporte | filtroReporte : page : search">
+                                  <tr *ngFor="let res of resultadoReporte | filtroReporte : page : search : (filtroTabla.value || 'nombre')">
                                     <td>{{ res.nombre }}</td>
                                     <td>{{ res.cantidad }}</td>
                                     <td>{{ res.promedio }}</td>
@@ -82,7 +91,7 @@
                                 <button class="btn btn-primary bi bi-arrow-left" (click)="prevPage()"></button>
                                 &nbsp;
                                 <button class="btn btn-primary bi bi-arrow-right" (click)="nextPage()"
-                                [disabled]="(resultadoReporte | filtroReporte:page :search).length===0"
+                                [disabled]="(resultadoReporte | filtroReporte:page :search : (filtroTabla.value || 'nombre')).length===0"
                                 ></button>
                             </div>
                           </div>
@@ -93,7 +102,7 @@
                     <h3 class="text-center text-uppercase">Gráficos</h3>
                     <div class="col-md-6 col-sm-12">
                       <div class="row text-center">              
-                        <h4>Cantidades vendidas por producto</h4>
+                        <h5>Cantidades vendidas por producto</h5>
                       </div>
                       <div class="row text-center">              
                         <div>
@@ -103,7 +112,7 @@
                     </div>
                     <div class="col-md-6 col-sm-12">              
                       <div class="row text-center">              
-                        <h4>Promedio de unidades por pedido y producto</h4>
+                        <h5>Promedio de unidades vendidas por pedido y producto</h5>
                       </div>
                       <div class="row justify-content-center">              
                         <div>
