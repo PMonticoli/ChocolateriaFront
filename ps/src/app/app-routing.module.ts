@@ -14,6 +14,7 @@ import { ListadoPromocionesCanjeadasComponent } from './components/promociones/l
 import { ListadoPromocionesDisponiblesComponent } from './components/promociones/listados/listado-promociones-disponibles/listado-promociones-disponibles.component';
 import { ListadoPromocionesComponent } from './components/promociones/listados/listado-promociones/listado-promociones.component';
 import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
+import { ReportePromocionesComponent } from './components/reportes/reporte-promociones/reporte-promociones.component';
 import { ReporteSociosComponent } from './components/reportes/reporte-socios/reporte-socios.component';
 import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
@@ -40,7 +41,8 @@ const routes: Routes = [
   {path: 'promocion/listado/canjeadas', component: ListadoPromocionesCanjeadasComponent},
   {path: 'stock/listado', component: ListadoStockComponent},
   {path : 'reportes/socios', component: ReporteSociosComponent},
-  {path : 'reportes/productos', component: ReporteProductosComponent}
+  {path : 'reportes/productos', component: ReporteProductosComponent},
+  {path : 'reportes/promociones', component: ReportePromocionesComponent}
 ];
 
 @NgModule({
