@@ -1,10 +1,10 @@
 <div class="fondo">
-    <div class="container-fluid p-3" id="htmlData">
+    <div class="container p-3" id="htmlData">
         <h1 class="titulo my-3 text-center text-uppercase">Reportes de Socios</h1>
         <form [formGroup]="formulario">
           <div class="form-group">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <div class="mb-3">
                   <label for="inputFechaDesde" class="form-label fw-semibold">Fecha desde</label>
                   <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaDesde"
@@ -21,7 +21,7 @@
                 </div>
               </div>
       
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <div class="mb-3">
                   <label for="inputFechaDesde" class="form-label fw-semibold">Fecha hasta</label>
                   <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
@@ -37,12 +37,12 @@
                   </p>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-4">
                 <br />
-                <button *ngIf="!visibilidadReporte" class="btn btn-primary my-2" (click)="solicitarReporte()">
+                <button class="btn btn-primary my-2" (click)="solicitarReporte()">
                   Solicitar reporte
                 </button>
-                <button *ngIf="visibilidadReporte" class="btn btn-danger my-2" (click)="descargarPDF()"><i class="bi bi-file-earmark-pdf-fill"> Descargar PDF</i></button>
+                <button [disabled]="!visibilidadReporte" class="btn btn-danger ms-2 my-2" (click)="descargarPDF()"><i class="bi bi-file-earmark-pdf-fill"> Descargar PDF</i></button>
               </div>
             </div>
           </div>
