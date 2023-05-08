@@ -7,6 +7,7 @@ const Swal = require('sweetalert2');
 import html2canvas from 'html2canvas';
 import { ChartData } from 'chart.js';
 import { jsPDF } from "jspdf";
+import { DtoSocios } from 'src/app/models/dto-socios';
 @Component({
   selector: 'app-reporte-socios',
   templateUrl: './reporte-socios.component.html',
@@ -20,9 +21,11 @@ body : any;
 cantSociosNuevos : number = 0;
 cantidadSociosBaja : number = 0;
 datos: ChartData<'bar'>;
-pedidosSocios : any[];
-sociosConMasPuntos: any[];
+pedidosSocios : DtoSocios[];
+sociosConMasPuntos: DtoSocios[];
 private encabezado : string[] = ['Gráfico cantidad de socios'];
+search : string= '';
+page : number = 0;
 constructor(private servicioSocio : SocioService,
             private formBuilder : FormBuilder){}
 
@@ -164,10 +167,32 @@ descargarPDF(): void {
     const urlArchivo = canvas.toDataURL('image/png');
     let ArchivoPDF = new jsPDF('l', 'mm', 'a4');
     let position = 0;
-    ArchivoPDF.addImage(urlArchivo, 'PNG', 0, position, ancho, altura);
+    let pageHeight = ArchivoPDF.internal.pageSize.getHeight();
+
+    // Verifica si la altura de la imagen supera la altura de la página
+    if (altura > pageHeight - 20) {
+      altura = pageHeight - 20; // Resta el alto de los márgenes superior e inferior
+    }
+
+    ArchivoPDF.addImage(urlArchivo, 'PNG', 10, 10, ancho, altura);
+
     console.log(new Date().toLocaleDateString("es-AR"));
-    ArchivoPDF.save(`Reporte Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
+    ArchivoPDF.save(`Reporte Productos (${new Date().toLocaleDateString("es-AR")}).pdf`);
   });
 }
+nextPage(){
+  this.page+=4;
+}
 
+prevPage(){
+  if(this.page>0){
+    this.page-=4;
+  }
+}
+
+onSearchProduct(buscar : string){
+    this.page=0;
+    this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1");
+}
 }

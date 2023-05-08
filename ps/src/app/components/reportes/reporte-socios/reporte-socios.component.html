@@ -54,6 +54,15 @@
               <div class="row">
                 <h5 class="text-center text-uppercase fw-semibold">Listado de pedidos por socio</h5>
                   <div class="table-responsive">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" 
+                        class="form-control mb-2" 
+                        placeholder="Buscar socio" 
+                        #txtSearch
+                        (keyup)="onSearchProduct(txtSearch.value)">
+                      </div>
+                    </div> 
                       <table class="table bg-dark text-white mt-2">
                         <thead>
                             <tr>
@@ -63,24 +72,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let p of pedidosSocios">
+                            <tr *ngFor="let p of pedidosSocios | filtroReporteSocio :page :search">
                             <td>{{ p.socio }}</td>
                             <td>{{ p.dni }}</td>
                             <td>{{ p.cantPedidos }}</td>
                             </tr>
                         </tbody>
                       </table>
+                      <div class="botones">
+                        <button class="btn btn-primary bi bi-arrow-left" (click)="prevPage()"></button>
+                        &nbsp;
+                        <button class="btn btn-primary bi bi-arrow-right" (click)="nextPage()"
+                        [disabled]="(pedidosSocios | filtroReporteSocio :page :search).length===0"
+                        ></button>
+                    </div>
                     </div>
                 </div>              
               </div>
             
             <div class="col-md-6 col-sm-12 p-5">
-                <h5 class="text-center text-uppercase fw-semibold">Listado de socios con más puntos</h5>
+                <h5 class="text-center text-uppercase fw-semibold">Ranking de socios con más puntos</h5> <br> <br>
                   <div class="table-responsive">
                       <table class="table bg-dark text-white mt-2">
                         <thead>
                           <tr>
-                            <th scope="col">Nombre del socio</th>
+                            <th scope="col">Socio</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Puntos</th>
                           </tr>

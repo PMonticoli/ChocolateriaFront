@@ -21,3 +21,10 @@
     filter: none;
     background-color: #4ea15c;
   }
+
+  .botones{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 10px;
+  }
