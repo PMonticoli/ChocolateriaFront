@@ -27,7 +27,6 @@
         <table class="table bg-dark text-white mt-2">
           <thead>
             <tr class="text-center">
-                <th scope="col">ID</th>
                 <th scope="col">Socio</th>
                 <th scope="col">Promoción</th>
                 <th scope="col">Acción</th>
@@ -35,7 +34,6 @@
           </thead>
           <tbody class="text-center">
             <tr *ngFor="let p of listado | filtroCanjeadas:page : search">
-                <td>{{p.id}}</td>
                 <td>{{p.socio}}</td>
                 <td>{{p.promocion}}</td>
                 <td>
