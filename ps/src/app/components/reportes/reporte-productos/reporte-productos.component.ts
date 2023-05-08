@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { ProductoService } from 'src/app/services/producto.service';
 const Swal = require('sweetalert2');
 import html2canvas from 'html2canvas';
-import { ChartData } from 'chart.js';
+import { ChartData} from 'chart.js';
 import { jsPDF } from "jspdf";
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { DtoReporte } from 'src/app/models/dto-reporte';
@@ -74,18 +74,26 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
   }
 
   cargar(): void {
+    const colores: string[] = [];
+    for (let i = 0; i < this.resultadoReporte.length; i++) {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      colores.push(`rgb(${r}, ${g}, ${b})`);
+    }
     this.datosCantidad = {
       labels: ['Cantidad vendida por cada producto'],
       datasets: [
       ],
     };
-    this.resultadoReporte.forEach(fila => {
+    this.resultadoReporte.forEach((fila,index) => {
       this.datosCantidad.datasets.push(
         {
           label : fila.nombre,
           data: [
             fila.cantidad
           ],
+          backgroundColor: colores[index]
         }
       );
 
@@ -96,13 +104,14 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
         ],
       };
 
-    this.resultadoReporte.forEach(fila => {
+    this.resultadoReporte.forEach((fila,index) => {
       this.datosPromedio.datasets.push(
         {
           label : fila.nombre,
           data: [
             fila.promedio
           ],
+          backgroundColor: colores[index]
         }
       );
 
@@ -117,11 +126,20 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
       const urlArchivo = canvas.toDataURL('image/png');
       let ArchivoPDF = new jsPDF('l', 'mm', 'a4');
       let position = 0;
-      ArchivoPDF.addImage(urlArchivo, 'PNG', 0, position, ancho, altura);
+      let pageHeight = ArchivoPDF.internal.pageSize.getHeight();
+  
+      // Verifica si la altura de la imagen supera la altura de la página
+      if (altura > pageHeight - 20) {
+        altura = pageHeight - 20; // Resta el alto de los márgenes superior e inferior
+      }
+  
+      ArchivoPDF.addImage(urlArchivo, 'PNG', 10, 10, ancho, altura);
+  
       console.log(new Date().toLocaleDateString("es-AR"));
-      ArchivoPDF.save(`Reporte Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
+      ArchivoPDF.save(`Reporte Productos (${new Date().toLocaleDateString("es-AR")}).pdf`);
     });
   }
+  
 
   get controlFechaDesde () : FormControl{
     return this.formulario.controls['fechaDesde'] as FormControl;

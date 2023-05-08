@@ -52,7 +52,7 @@
           <div class="row">
             <div class="col-md-6 col-sm-12 p-5">
               <div class="row">
-                <h3>Listado de pedidos por socio</h3>
+                <h5 class="text-center text-uppercase fw-semibold">Listado de pedidos por socio</h5>
                   <div class="table-responsive">
                       <table class="table bg-dark text-white mt-2">
                         <thead>
@@ -75,7 +75,7 @@
               </div>
             
             <div class="col-md-6 col-sm-12 p-5">
-                <h3>Listado de socios con más puntos</h3>
+                <h5 class="text-center text-uppercase fw-semibold">Listado de socios con más puntos</h5>
                   <div class="table-responsive">
                       <table class="table bg-dark text-white mt-2">
                         <thead>
@@ -100,13 +100,13 @@
           <div class="row">
             <div class="col-lg-12 p-5">
               <div class="row text-center">
-                <h3 class="fw-semibold">Gráfico de socios</h3>
+                <h4 class="fw-semibold text-center text-uppercase">Gráfico de socios</h4>
                 <p class="fw-semibold">Cantidad de socios nuevos vs dados de baja en el periodo especificado
                 </p>
               </div>
               <div class="row justify-content-center">
       
-                <div style="width: 700px; height: 700px;">
+                <div style="width: 600px; height: 500px;">
                   <canvas baseChart type="bar" [data]="datos"></canvas>
                 </div>
               </div>
