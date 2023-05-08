@@ -57,6 +57,7 @@ import { FiltroCanjeadasPipe } from './pipes/filtro-canjeadas.pipe';
 import { ReporteSociosComponent } from './components/reportes/reporte-socios/reporte-socios.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
+import { FiltroReportePipe } from './pipes/filtro-reporte.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +96,8 @@ import { ReporteProductosComponent } from './components/reportes/reporte-product
     DetallesPromocionCanjeadaComponent,
     FiltroCanjeadasPipe,
     ReporteSociosComponent,
-    ReporteProductosComponent
+    ReporteProductosComponent,
+    FiltroReportePipe
   ],
   imports: [
     BrowserModule,
