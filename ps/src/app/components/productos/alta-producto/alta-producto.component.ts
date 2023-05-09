@@ -75,7 +75,7 @@ this.producto = new Producto();
   registrar(){
     if(this.formulario.valid){
       this.producto= this.formulario.value as Producto;
-      this.producto.urlImagen = this.imagenSubida.replace(/\\/g, '/');
+      this.producto.urlImagen = this.imagenSubida ? this.imagenSubida.replace(/\\/g, '/') : '';
       console.log(this.producto);
       this.subscription.add(
         this.servicioProducto.agregar(this.producto).subscribe({
@@ -100,28 +100,28 @@ this.producto = new Producto();
   }
 
 
-  editar(){
-    let body = this.formulario.value as Producto;
-    body.id=this.producto.id;
-    this.subscription.add(
-      this.servicioProducto.modificar(body).subscribe({
-        next : (res : ResultadoGenerico) =>{
-          if(res.ok){
-            Swal.fire({title:'Listo!', text:`Se editó el producto correctamente`, icon: 'success'});
-            this.router.navigate(['/producto/listado']);
-          }else{
-            Swal.fire({title:'Error!', text:`${res.mensaje}`, icon: 'error'});
-          }
-        },
-        error: (e) => { 
-          Swal.fire({title:'Error!', text:`Error al editar producto`, icon: 'error'});
-          console.error(e);
+editar(){
+  let body = this.formulario.value as Producto;
+  body.id=this.producto.id;
+  body.urlImagen = this.imagenSubida;
+  this.subscription.add(
+    this.servicioProducto.modificar(body).subscribe({
+      next : (res : ResultadoGenerico) =>{
+        if(res.ok){
+          Swal.fire({title:'Listo!', text:`Se editó el producto correctamente`, icon: 'success'});
+          this.router.navigate(['/producto/listado']);
+        }else{
+          Swal.fire({title:'Error!', text:`${res.mensaje}`, icon: 'error'});
         }
-      })
-    )
-  }
+      },
+      error: (e) => { 
+        Swal.fire({title:'Error!', text:`Error al editar producto`, icon: 'error'});
+        console.error(e);
+      }
+    })
+  )
+}
 
-  
   cargar () : void{
     this.subscription.add(
       this.activatedRoute.params.subscribe(
@@ -167,38 +167,36 @@ this.producto = new Producto();
     }
   }
 
-
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.file);
-   
+     
     this.http.post<any>('http://localhost:3000/productos/uploadImage', formData).subscribe({
-        next :(r)=>{
-          this.imagenSubida = r.path;
-          this.flag=false;
-          Swal.fire({
-            icon: 'success',
-            title: 'Imagen cargada!!',
-            text: 'La imagen se subio correctamente!'
-            })
-        },
-        error :(err)=>{
+      next :(r)=>{
+        this.imagenSubida = 'uploads/' + r.filename;
+        this.flag=false;
+        Swal.fire({
+          icon: 'success',
+          title: 'Imagen cargada!!',
+          text: 'La imagen se subió correctamente!'
+        })
+      },
+      error :(err)=>{
         console.error(err);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Parece que no subio nada!!' 
+          text: 'Parece que no se subió nada!!' 
         })
-        }
-      })
-    
+      }
+    })
+      
     this.urlImagen = '../../../../assets/img/noImage.jpg';
-    }
-
+  }
 
     deleteImg(): void {
       this.urlImagen = '../../../../assets/img/noImage.jpg';
-      this.file = ''; // <-- setea una cadena vacía
+      this.file = '';
       this.flag = false;
       const input = document.getElementById('urlImagen') as HTMLInputElement;
       input.value = '';
