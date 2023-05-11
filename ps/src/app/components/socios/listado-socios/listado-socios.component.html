@@ -7,11 +7,10 @@
       
       <div class="row">
         <div class="col-sm-4">
-          <input type="text" 
-          class="form-control mb-2" 
-          placeholder="Buscar socio por dni-nombre y/o apellido" 
-          #txtSearch
-          (keyup)="onSearchProduct(txtSearch.value)">
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="Buscar socio por dni-nombre y/o apellido" #txtSearch (keyup)="onSearchProduct(txtSearch.value)">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+          </div>
         </div>
       </div>    
 
