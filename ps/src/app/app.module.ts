@@ -61,6 +61,7 @@ import { FiltroReportePipe } from './pipes/filtro-reporte.pipe';
 import { FiltroReporteSocioPipe } from './pipes/filtro-reporte-socio.pipe';
 import { ReportePromocionesComponent } from './components/reportes/reporte-promociones/reporte-promociones.component';
 import { FiltroReportePromocionPipe } from './pipes/filtro-reporte-promocion.pipe';
+import { FiltroAltaPedidoPipe } from './pipes/filtro-alta-pedido.pipe';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { FiltroReportePromocionPipe } from './pipes/filtro-reporte-promocion.pip
     FiltroReportePipe,
     FiltroReporteSocioPipe,
     ReportePromocionesComponent,
-    FiltroReportePromocionPipe
+    FiltroReportePromocionPipe,
+    FiltroAltaPedidoPipe
   ],
   imports: [
     BrowserModule,

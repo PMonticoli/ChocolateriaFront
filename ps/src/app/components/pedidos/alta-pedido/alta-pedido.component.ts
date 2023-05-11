@@ -19,7 +19,8 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
   montoTotal: number = 0;
   controlObservaciones = new FormControl('');
   productos: Producto[];
-  pedido: Pedido
+  pedido: Pedido;
+  mostrarPedido : boolean = false;
   private subscription: Subscription
   constructor(
     private servicioProducto: ProductoService,
@@ -75,15 +76,16 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     this.pedido.detalles.push(detalle);
     this.calcularCantidadTotal();
     this.calcularTotal();
+    this.mostrarPedido = true;
   }
 
   quitarDetalle(detalle: DetallePedido): void {
-    let indice = this.pedido.detalles.indexOf(detalle);
-
-    this.pedido.detalles.splice(indice, 1);
+    this.pedido.detalles = this.pedido.detalles.filter(d => d !== detalle);
     this.calcularCantidadTotal();
     this.calcularTotal();
-  }
+    this.mostrarPedido = this.pedido.detalles.length > 0;
+}
+
 
   guardarPedido() {
     this.pedido.observaciones = this.controlObservaciones.value ? this.controlObservaciones.value : "";
@@ -112,4 +114,9 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     }
     return false;
   }
+  search : string ="";
+  onSearchProduct(buscar : string){
+    this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1");
+}
 }
