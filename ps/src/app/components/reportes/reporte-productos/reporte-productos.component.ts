@@ -92,7 +92,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
           }
         }))
     }else{
-      alert ('¡Completar campos de fechas!')
+      Swal.fire({title:'Atención!', text:'¡Completar campos de fechas!', icon: 'warning'});
     }
   }
 
