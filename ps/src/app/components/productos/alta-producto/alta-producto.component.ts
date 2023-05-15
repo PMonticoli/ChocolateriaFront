@@ -18,7 +18,7 @@ export class AltaProductoComponent implements OnInit, OnDestroy{
   isEdit : boolean = false;
   producto : Producto;
   file ='';
-  urlImagen = '../../../../../assets/img/noImage.jpg';
+  urlImagen = 'http://localhost:3000/uploads/noImage.jpg';
   imagenSubida : string;
   flag : boolean=false;
 

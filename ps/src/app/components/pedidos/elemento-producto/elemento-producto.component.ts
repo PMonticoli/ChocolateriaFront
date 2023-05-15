@@ -10,7 +10,7 @@ import { Producto } from 'src/app/models/producto';
 })
 export class ElementoProductoComponent implements OnInit{
   gestorComentarios = new FormControl('');
-  rutaImgDefault = "../../assets/img/imagenDefault.png";
+  rutaImgDefault = 'imagenDefault.png';
 
   @Input() modalId: number = 1;
   @Input() disabled: boolean;
