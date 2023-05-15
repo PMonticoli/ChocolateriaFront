@@ -24,18 +24,21 @@
                             </span>
                         </div>
                         <div class="mb-3" *ngIf="cobraConTarjeta">
-                            <label for="selectTipoPago" class="form-label fs-6 text" style="color: black;">Codigo de Autorización</label>
-                            <input type="text" id="txtCodigoAutorizacion" class="form-control" formControlName="codigoAutorizacion"
-                                [class.is-invalid]="controlCodAutorizacion.touched && controlCodAutorizacion.hasError('required')">
+                            <div class="row mb-3 justify-content-center" *ngIf="cobraConTarjeta" >
+                                <img class="img" style="max-height: 180px;"  src="http://localhost:3000/uploads/tarjetas.jpg" alt="tarjetas">
+                            </div>
+                            <label for="selectTipoPago" class="form-label fs-6 text" style="color: black;">Codigo de Seguridad</label>
+                            <input type="password" placeholder="cvv-cvc" id="txtCodigoAutorizacion" class="form-control" formControlName="codigoAutorizacion"
+                                [class.is-invalid]="controlCodAutorizacion.touched && controlCodAutorizacion.hasError('required')" minlength="3" maxlength="4">
                             <span class="invalid-feedback">
                                 Codigo de autorización es requerido
                             </span>
                         </div>
                         <div class="row mb-3 justify-content-center" *ngIf="mostrarCodQr" >
-                            <img class="img" style="max-width: 150px; max-height: 150px;"  src="../../../../assets/img/mercadopago.jpg" alt="mercadoPago">
+                            <img class="img" style="max-width: 150px; max-height: 150px;"  src="http://localhost:3000/uploads/mercadopago.jpg" alt="mercadoPago">
                         </div>
                         <div class="row mb-3 justify-content-center" *ngIf="mostrarCodQr" >
-                            <img class="img" style="max-width: 200px;"  src="../../../../assets/img/codigoQr.png" alt="Códico QR">
+                            <img class="img" style="max-width: 200px;"  src="http://localhost:3000/uploads/codigoQr.png" alt="Códico QR">
                         </div>
                     </div>  
                     </form>
