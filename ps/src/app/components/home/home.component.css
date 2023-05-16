@@ -43,8 +43,18 @@ a {
   animation-duration: 6.5s;
   animation-fill-mode: forwards;
   opacity: 0;
+  margin-bottom: 20px;
+  position: static;
+  transform: none;
 }
-
+@media (max-width: 576px) {
+  #titulo-homepage {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin-bottom: 20px; /* Agrega un margen inferior para separarlo del navbar toggle */
+  }
+}
 #titulo-homepage h1 {
   font-family: "Lora", serif;
   font-size: 4rem;
