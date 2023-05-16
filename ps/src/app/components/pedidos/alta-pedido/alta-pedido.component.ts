@@ -93,7 +93,7 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
       this.servicioPedido.agregar(this.pedido).subscribe({
         next: () => {
           if(this.pedido.detalles.length>0){
-            Swal.fire({ title: 'Éxito!', text: 'Registraste tu pedido con éxito.', icon: 'success' });
+            Swal.fire({ title: 'Listo!', text: 'Registraste tu pedido con éxito.', icon: 'success' });
             this.router.navigate(['/home']);
           }else{
             Swal.fire({ title: 'Atención!', text: 'Selecciona al menos un producto antes de enviar el pedido.', icon: 'warning' });
