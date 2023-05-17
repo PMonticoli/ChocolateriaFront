@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">OlbapChocolates</a>
+      <a class="navbar-brand bi bi-house" *ngIf="rol=== 'Admin' || rol==='Empleado'" href="#"> OlbapChocolates</a>
+      <a class="navbar-brand" href="#" *ngIf="rol === 'Socio' || rol=== 'sinIniciarSesion'">OlbapChocolates</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -11,7 +12,7 @@
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="rol=== 'Admin' || rol==='Empleado'">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-uppercase bi bi-cart4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Pedidos
             </a>
             <ul class="dropdown-menu">
@@ -23,7 +24,7 @@
 
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-uppercase bi bi-grid" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Productos
             </a>
             <ul class="dropdown-menu">
@@ -35,14 +36,14 @@
 
 
           <li class="nav-item">
-            <a class="nav-link text-uppercase" aria-current="page" routerLinkActive="active" routerLink="stock/listado">Stock</a>
+            <a class="nav-link text-uppercase bi bi-box" aria-current="page" routerLinkActive="active" routerLink="stock/listado"> Stock</a>
           </li>
 
 
 
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-uppercase bi-people-fill" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Socios
             </a>
             <ul class="dropdown-menu">
@@ -52,7 +53,7 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-uppercase bi bi-tag" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Promociones
             </a>
             <ul class="dropdown-menu">
@@ -63,7 +64,7 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-uppercase bi bi-clipboard-data" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Reportes
             </a>
             <ul class="dropdown-menu">
@@ -90,7 +91,7 @@
             <a class="nav-link text-uppercase bi bi-list-ul" aria-current="page" routerLinkActive="active" routerLink="pedido/propios"> Mis pedidos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-uppercase" aria-current="page" routerLinkActive="active" routerLink="promocion/listado/disponibles">Promociones</a>
+            <a class="nav-link text-uppercase bi bi-tag" aria-current="page" routerLinkActive="active" routerLink="promocion/listado/disponibles"> Promociones</a>
           </li>
         </ul>
 
