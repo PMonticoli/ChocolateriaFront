@@ -180,6 +180,7 @@ editar(){
           title: 'Imagen cargada!!',
           text: 'La imagen se subió correctamente!'
         })
+        this.urlImagen = 'http://localhost:3000/uploads/noImage.jpg';
       },
       error :(err)=>{
         console.error(err);
@@ -195,7 +196,7 @@ editar(){
   }
 
     deleteImg(): void {
-      this.urlImagen = '../../../../assets/img/noImage.jpg';
+      this.urlImagen = 'http://localhost:3000/uploads/noImage.jpg';
       this.file = '';
       this.flag = false;
       const input = document.getElementById('urlImagen') as HTMLInputElement;
