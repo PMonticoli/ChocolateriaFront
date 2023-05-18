@@ -21,39 +21,20 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
   datosCantidad: ChartData<'bar'>;
   datosPromedio: ChartData<'bar'>;
   body : any;
-  resultadoReporte: DtoReporte[] = [];
+  resultadoCantidad : DtoReporte[] = [];
+  resultadoPromedio: DtoReporte[] = [];
   search : string= '';
   page : number = 0;
   filtroTabla = new FormControl('nombre');
+  cantidadProd : number =0;
+  promedioProd : number =0;
   constructor(private servicioProducto : ProductoService,
              private formBuilder : FormBuilder){}
-
-  ordenar(array: any[], columna: string, menorMayor: boolean): any[] {
-    if (menorMayor) {
-      return array.sort((a,b) => (a[columna] > b[columna]) ? 1 : ((b[columna] > a[columna]) ? -1 : 0));
-    } else 
-    {
-      return array.sort((a,b) => (a[columna] < b[columna]) ? 1 : ((b[columna] < a[columna]) ? -1 : 0));
-    }
-  }
-  onFiltroChange() {
-    this.filtroTabla.setValue(this.filtroTabla.value, { emitEvent: false });
-  }
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       fechaDesde : [,Validators.required],
       fechaHasta : [,Validators.required]
-    })
-    this.filtroTabla.valueChanges.subscribe( valor => {
-      if(valor){
-        if(valor == 'nombre') {
-
-          this.resultadoReporte = this.ordenar(this.resultadoReporte,valor,true);
-        } else {
-          this.resultadoReporte = this.ordenar(this.resultadoReporte,valor,false);
-        }
-      }
     })
   }
 
@@ -61,85 +42,157 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
     this.subscription.unsubscribe();
   }
 
-  solicitarReporte(){
+  getCantidad() {
     if (!this.formulario.valid) {
       Swal.fire({title:'Atención!', text:'¡Debes seleccionar previamente una fecha desde y hasta para generar el reporte!', icon: 'warning'});
       return;
     }
     this.visibilidadReporte = true;
-    if(this.formulario.valid){
+    if (this.formulario.valid) {
       const {fechaDesde, fechaHasta} = this.formulario.value;
       this.body = {
         fechaDesde: new Date(fechaDesde),
         fechaHasta: new Date(fechaHasta)
-      }
+      };
       this.body.fechaHasta.setHours(this.body.fechaHasta.getHours() + 23);
       this.body.fechaHasta.setMinutes(this.body.fechaHasta.getMinutes() + 59);
   
       this.subscription.add(
-        this.servicioProducto.reporteCantPromedio(this.body).subscribe({
+        this.servicioProducto.reporteCantidad(this.body).subscribe({
           next: (res: ResultadoGenerico) => {
             if (res.ok) {
-              this.resultadoReporte = res.resultado ? res.resultado : [];
+              this.cantidadProd = res.resultado ? res.resultado[0].cantidadProd : 0;
+              this.resultadoCantidad = res.resultado ? res.resultado : [];
               this.cargar();
-            }
-            else {
+            } else {
               console.error(res.mensaje);
             }
           },
           error: (err) => {
             console.error(err);
           }
-        }))
-    }else{
+        })
+      );
+    } else {
+      Swal.fire({title:'Atención!', text:'¡Completar campos de fechas!', icon: 'warning'});
+    }
+  }
+  
+  getPromedio() {
+    if (!this.formulario.valid) {
+      Swal.fire({title:'Atención!', text:'¡Debes seleccionar previamente una fecha desde y hasta para generar el reporte!', icon: 'warning'});
+      return;
+    }
+    this.visibilidadReporte = true;
+    if (this.formulario.valid) {
+      const {fechaDesde, fechaHasta} = this.formulario.value;
+      this.body = {
+        fechaDesde: new Date(fechaDesde),
+        fechaHasta: new Date(fechaHasta)
+      };
+      this.body.fechaHasta.setHours(this.body.fechaHasta.getHours() + 23);
+      this.body.fechaHasta.setMinutes(this.body.fechaHasta.getMinutes() + 59);
+  
+      this.subscription.add(
+        this.servicioProducto.reportePromedio(this.body).subscribe({
+          next: (res: ResultadoGenerico) => {
+            if (res.ok) {
+              this.promedioProd = res.resultado ? res.resultado[0].promedioProd : 0;
+              this.resultadoPromedio = res.resultado ? res.resultado : [];
+              this.cargar();
+            } else {
+              console.error(res.mensaje);
+            }
+          },
+          error: (err) => {
+            console.error(err);
+          }
+        })
+      );
+    } else {
       Swal.fire({title:'Atención!', text:'¡Completar campos de fechas!', icon: 'warning'});
     }
   }
 
-  cargar(): void {
-    const colores: string[] = [];
-    for (let i = 0; i < this.resultadoReporte.length; i++) {
-      const r = Math.floor(Math.random() * 256);
-      const g = Math.floor(Math.random() * 256);
-      const b = Math.floor(Math.random() * 256);
-      colores.push(`rgb(${r}, ${g}, ${b})`);
+  solicitarReporte() {
+    if (this.formulario.valid) {
+      this.visibilidadReporte = true;
+      this.getCantidad();
+      this.getPromedio();
+    } else {
+      Swal.fire({title:'Atención!', text:'¡Debes seleccionar previamente una fecha desde y hasta para generar el reporte!', icon: 'warning'});
     }
+  }
+  
+  
+  cargar(): void {
+    const colores: { [producto: string]: string } = {};
+  
     this.datosCantidad = {
       labels: ['Cantidad vendida por cada producto'],
-      datasets: [
-      ],
+      datasets: [],
     };
-    this.resultadoReporte.forEach((fila,index) => {
-      this.datosCantidad.datasets.push(
-        {
-          label : fila.nombre,
-          data: [
-            fila.cantidad
-          ],
-          backgroundColor: colores[index]
-        }
-      );
-
-    });
+  
     this.datosPromedio = {
-        labels: ['productos'],
-        datasets: [
-        ],
-      };
-
-    this.resultadoReporte.forEach((fila,index) => {
-      this.datosPromedio.datasets.push(
-        {
-          label : fila.nombre,
-          data: [
-            fila.promedio
-          ],
-          backgroundColor: colores[index]
-        }
-      );
-
+      labels: ['Promedio de venta por cada producto'],
+      datasets: [],
+    };
+  
+    // Crear un mapa de cantidad por nombre de producto
+    const cantidadPorProducto: { [nombre: string]: number } = {};
+    for (const fila of this.resultadoCantidad) {
+      cantidadPorProducto[fila.nombre] = fila.cantidad;
+    }
+  
+    // Iterar sobre los resultados de promedio y construir los conjuntos de datos
+    for (const fila of this.resultadoPromedio) {
+      const nombreProducto = fila.nombre;
+  
+      // Generar un color aleatorio si el producto aún no tiene uno asignado
+      if (!colores[nombreProducto]) {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        const color = `rgb(${r}, ${g}, ${b})`;
+        colores[nombreProducto] = color;
+      }
+  
+      const colorProducto = colores[nombreProducto];
+      const cantidad = cantidadPorProducto[nombreProducto] || 0;
+  
+      this.datosCantidad.datasets.push({
+        label: nombreProducto,
+        data: [cantidad],
+        backgroundColor: colorProducto,
+      });
+  
+      this.datosPromedio.datasets.push({
+        label: nombreProducto,
+        data: [fila.promedio],
+        backgroundColor: colorProducto,
+      });
+    }
+  
+    // Ordenar los datos en ambos conjuntos de datos en el mismo orden
+    this.datosCantidad.datasets.sort((a, b) => {
+      if (a.data && b.data && typeof a.data[0] === 'number' && typeof b.data[0] === 'number') {
+        return b.data[0] - a.data[0];
+      }
+      return 0;
+    });
+  
+    this.datosPromedio.datasets.sort((a, b) => {
+      if (a.data && b.data && typeof a.data[0] === 'number' && typeof b.data[0] === 'number') {
+        return b.data[0] - a.data[0];
+      }
+      return 0;
     });
   }
+  
+  
+  
+  
+  
 
   descargarPDF(): void {
     let DATA: any = document.getElementById('htmlData');
@@ -173,12 +226,12 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
   }
 
   nextPage(){
-    this.page+=6;
+    this.page+=4;
   }
 
   prevPage(){
     if(this.page>0){
-      this.page-=6;
+      this.page-=4;
     }
   }
 
