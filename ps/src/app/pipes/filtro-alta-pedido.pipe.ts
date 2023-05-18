@@ -6,10 +6,20 @@ import { Producto } from '../models/producto';
 })
 export class FiltroAltaPedidoPipe implements PipeTransform {
 
-  transform(producto: Producto[], search : string): Producto[] {
-    const productosFiltrados = producto.filter(prod => prod.nombre.normalize('NFD').toLowerCase()
-    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1").includes(search));
-    return productosFiltrados;
+  transform(productos: Producto[], search: string, precioMin: number, precioMax: number): Producto[] {
+    if (!search && precioMin === undefined && precioMax === undefined) {
+      return productos;
+    }
+  
+    const searchRegex = new RegExp(search, 'i'); // Create a case-insensitive regular expression for the search term
+  
+    return productos.filter(prod => {
+      const cumpleFiltroNombre = search ? searchRegex.test(prod.nombre) : true;
+      const cumpleFiltroPrecio = (precioMin === undefined || prod.precio >= precioMin) &&
+        (precioMax === undefined || prod.precio <= precioMax);
+  
+      return cumpleFiltroNombre && cumpleFiltroPrecio;
+    });
   }
-
+  
 }
