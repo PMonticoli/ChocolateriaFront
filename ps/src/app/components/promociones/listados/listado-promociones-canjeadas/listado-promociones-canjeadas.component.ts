@@ -13,6 +13,8 @@ export class ListadoPromocionesCanjeadasComponent implements OnInit,OnDestroy{
   constructor(private servicioPromocion : PromocionService){}
   private subscription : Subscription;
   listado : DtoPromociones[]= [];
+  page = 0;
+  search : string ='';
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -34,15 +36,9 @@ export class ListadoPromocionesCanjeadasComponent implements OnInit,OnDestroy{
       })
     )
   }
-  // this.http.get('http://localhost:3000/promociones/canjeadas')
-  // .subscribe((data) => {
-  //   console.log(data);
-  // });
 
-  page = 0;
-  search : string ='';
 
-  onSearchProduct(buscar : string){
+  onSearch(buscar : string){
     this.page=0;
     this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()
     .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1");
