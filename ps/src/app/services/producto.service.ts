@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Producto } from '../models/producto';
@@ -52,8 +52,16 @@ export class ProductoService {
     return this.http.delete(this.API_URL+producto.id,requestOptions)
   }
 
-  obtenerActivos(): Observable<ResultadoGenerico>{
+  obtenerProductosActivos(): Observable<ResultadoGenerico>{
     return this.http.get<ResultadoGenerico>(this.API_URL + 'activos');
+  }
+
+  obtenerActivos(precioMin: number, precioMax: number): Observable<ResultadoGenerico> {
+    const params = new HttpParams()
+      .set('precioMin', precioMin.toString())
+      .set('precioMax', precioMax.toString());
+  
+    return this.http.get<ResultadoGenerico>(this.API_URL + 'activosFiltrados', { params });
   }
 
   modificar(body : Producto) : Observable<ResultadoGenerico>{
