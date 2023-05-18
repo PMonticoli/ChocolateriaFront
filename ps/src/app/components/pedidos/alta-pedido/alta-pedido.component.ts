@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DetallePedido } from 'src/app/models/detalle-pedido';
@@ -21,11 +21,17 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
   productos: Producto[];
   pedido: Pedido;
   mostrarPedido : boolean = false;
+  precioMax: number;
+  precioMin: number;
+  formulario : FormGroup;
+  search : string ='';
+  flagFiltro : boolean= false;
   private subscription: Subscription
   constructor(
     private servicioProducto: ProductoService,
     private servicioPedido: PedidoService,
-    private router: Router
+    private router: Router,
+    private formBuilder : FormBuilder
   ) {
     this.subscription = new Subscription();
   }
@@ -34,6 +40,10 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     this.getProductos();
     this.pedido = new Pedido();
     this.pedido.detalles = [];
+    this.formulario = this.formBuilder.group({
+      precioMin : [,Validators.required],
+      precioMax : [,Validators.required]
+    })
   }
 
   ngOnDestroy(): void {
@@ -42,7 +52,7 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
 
   getProductos(): void {
     this.subscription.add(
-      this.servicioProducto.obtenerActivos().subscribe({
+      this.servicioProducto.obtenerProductosActivos().subscribe({
         next: (resultado: ResultadoGenerico) => {
           if (resultado.ok) {
             this.productos = resultado.resultado as Producto[];
@@ -114,9 +124,54 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     }
     return false;
   }
-  search : string ="";
-  onSearchProduct(buscar : string){
-    this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()
-    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1");
+
+onSearchProduct(event: any) {
+  const buscar = event.target.value.toLowerCase().normalize('NFD')
+    .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi, "$1");
+  this.search = buscar;
+}
+
+
+
+filtrar() {
+  const precioMin = this.formulario.get('precioMin')?.value;
+  const precioMax = this.formulario.get('precioMax')?.value;
+
+  if(this.formulario.valid){
+    if (precioMin !== null && precioMax !== null) {
+      this.subscription.add(
+        this.servicioProducto.obtenerActivos(precioMin, precioMax).subscribe({
+          next: (resultado: ResultadoGenerico) => {
+            if (resultado.ok) {
+              this.productos = resultado.resultado as Producto[];
+              this.flagFiltro = true;
+            } else {
+              console.error(resultado.mensaje);
+            }
+          },
+          error: (e) => {
+            console.error(e);
+          }
+        })
+      );
+    }
+  }else{
+    Swal.fire({ title: 'Atención!', text: 'Completar los campos precio minimo y maximo', icon: 'warning' });
+  }
+}
+
+limpiarFiltro() {
+  this.formulario.get('precioMin')?.setValue(null);
+  this.formulario.get('precioMax')?.setValue(null);
+  this.getProductos();
+  this.flagFiltro = false;
+}
+
+get controlPrecioMin() : FormControl{
+  return this.formulario.controls['precioMin'] as FormControl;
+}
+
+get controlPrecioMax() : FormControl{
+  return this.formulario.controls['precioMax'] as FormControl;
 }
 }
