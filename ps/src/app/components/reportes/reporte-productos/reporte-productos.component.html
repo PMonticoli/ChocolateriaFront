@@ -40,29 +40,22 @@
   <div class="container" *ngIf="visibilidadReporte">
     <div class="row">
       <div class="col">
-        <h3 class="text-center text-uppercase">Promedio de unidades vendidas por pedido</h3>
+        <h3 class="text-center text-uppercase">Cantidad de unidades vendidas por producto</h3>
           <div class="table-responsive table-container">
              <table class="table table-dark table-hover">
                 <thead>
                   <tr>
                     <th scope="col">Productos</th>
-                    <th scope="col">Promedio por pedido</th>
+                    <th scope="col">Cantidad de unidades</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let res of resultadoPromedio | filtroReporte : page : search">
+                  <tr *ngFor="let res of resultadoCantidad | filtroReporte : page : search">
                     <td>{{ res.nombre }}</td>  
-                    <td>{{ res.promedio }}</td>
+                    <td>{{ res.cantidad }}</td>
                   </tr>
                 </tbody>
               </table>
-          <!-- <div class="botones">
-            <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
-            &nbsp;
-          <button class="btn btn-primary" (click)="nextPage()"
-            [disabled]="(resultadoPromedio | filtroReporte:page :search).length===0"
-            >Siguientes</button>
-        </div> -->
       </div>
       </div>
     </div>
