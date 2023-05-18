@@ -9,34 +9,40 @@
                             <div class="input-group mb-2 ms-3">
                                 <input type="text" class="form-control" placeholder="Buscar producto" (keyup)="onSearchProduct($event)">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
-                              </div>
-                              
-                          </div>
-                          <form [formGroup]="formulario">
-                            <div class="col-lg-2 col-md-4 col-sm-4">
-                                <div class="input-group mb-2 ms-3">
-                                  <input type="text" class="form-control" placeholder="precio minimo"
-                                  formControlName="precioMin"
-                                  [class.is-invalid]="controlPrecioMin.touched && controlPrecioMin.hasError('required')"
-                                  >
-
+                            </div>
+                        </div>
+                        <form [formGroup]="formulario" class="col-lg-8 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="input-group mb-2 ms-3">
+                                        <input type="text" class="form-control" placeholder="$ minimo"
+                                            formControlName="precioMin"
+                                            [class.is-invalid]="controlPrecioMin.touched && controlPrecioMin.hasError('required')"
+                                        >
+                                    </div>
                                 </div>
-                              </div>  
-                              <div class="col-lg-2 col-md-4 col-sm-4">
-                                <div class="input-group mb-2 ms-3">
-                                  <input type="text" class="form-control" placeholder="precio maximo"
-                                  formControlName="precioMax"
-                                  [class.is-invalid]="controlPrecioMax.touched && controlPrecioMax.hasError('required')"
-                                  >
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="input-group mb-2 ms-3">
+                                        <input type="text" class="form-control" placeholder="$ maximo"
+                                            formControlName="precioMax"
+                                            [class.is-invalid]="controlPrecioMax.touched && controlPrecioMax.hasError('required')"
+                                        >
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="col-lg-2 col-md-4 col-sm-4">
-                                <button class="btn btn-primary ms-2" (click)="filtrar()">Filtrar por precio</button>
-                                <button class="btn btn-danger ms-2" *ngIf="flagFiltro" (click)="limpiarFiltro()">Eliminar filtro</button>                                
-                              </div>   
-                          </form>
+                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                    <div class="input-group mb-2">
+                                        <button class="btn btn-primary ms-2 w-100" (click)="filtrar()">Filtrar por precio</button>
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <button class="btn btn-danger ms-2 w-100" *ngIf="flagFiltro" (click)="limpiarFiltro()">Eliminar filtro</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>                        
                     </div>
                 </div>
+                
+                
                      
             <div class="container overflow-auto d-flex justify-content-around flex-wrap" style="max-height: 500px;">  
                 <app-elemento-producto *ngFor="let p of productos | filtroAltaPedido: search : precioMin : precioMax" [modalId]="p.id" [producto]="p"
