@@ -41,7 +41,7 @@
               <td>{{p.stock ? p.stock : '0'}}</td>
               <td>{{p.activo ? 'SI' : 'NO'}}</td>
               <td>
-                <button class="btn btn-success bi bi-pencil" [routerLink]="['/producto/nuevo',p.id]"></button>
+                <button class="btn btn-success bi bi-pencil ms-2" [routerLink]="['/producto/nuevo',p.id]"></button>
                 <app-baja-producto ngClass="ms-2" [producto]="p" (onEliminado)="cargarTabla()"></app-baja-producto>
               </td>
             </tr>
