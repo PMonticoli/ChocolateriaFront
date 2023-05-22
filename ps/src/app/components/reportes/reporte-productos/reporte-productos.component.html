@@ -86,11 +86,11 @@
               </tbody>
             </table>
             <div class="botones">
-              <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
+              <button class="btn btn-primary bi bi-arrow-left" (click)="prevPage()"></button>
               &nbsp;
-            <button class="btn btn-primary" (click)="nextPage()"
+            <button class="btn btn-primary bi bi-arrow-right" (click)="nextPage()"
               [disabled]="(resultadoPromedio | filtroReporte:page :search).length===0"
-              >Siguientes</button>
+              ></button>
           </div>
         </div>
     </div>

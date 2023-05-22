@@ -48,16 +48,16 @@
                 </div>
             </form>
 
-            <div class="container-fluid" *ngIf="visibilidadReporte">
+            <div class="container" *ngIf="visibilidadReporte">
                 <div class="row">
                     <div class="col p-3">
                         <h3 class="fw-semibold text-center text-uppercase">Cantidad de veces que se canjeo cada promoción</h3>
-                          <div class="table-responsive table-container">
+                          <div class="table-container">
                                        
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Buscar promoción por nombre" #txtSearch (keyup)="onSearchProduct(txtSearch.value)">
+                                        <input type="text" class="form-control" placeholder="Buscar promoción" #txtSearch (keyup)="onSearchProduct(txtSearch.value)">
                                         <span class="input-group-text"><i class="bi bi-search"></i></span>
                                       </div>
                                 </div>
