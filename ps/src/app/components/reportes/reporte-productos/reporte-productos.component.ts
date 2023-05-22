@@ -235,6 +235,17 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
     }
   }
 
+  pageProm : number=0;
+  nextPageProm(){
+    this.pageProm+=4;
+  }
+
+  prevPageProm(){
+    if(this.pageProm>0){
+      this.pageProm-=4;
+    }
+  }
+
   onSearchProduct(buscar : string){
       this.page=0;
       this.search=buscar.toLowerCase().normalize('NFD').toLowerCase()

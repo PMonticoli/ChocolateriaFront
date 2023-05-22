@@ -58,12 +58,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let res of resultadoCantidad | filtroReporte : page : search">
+                  <tr *ngFor="let res of resultadoCantidad | filtroReporteCantidad : page : search">
                     <td>{{ res.nombre }}</td>  
                     <td>{{ res.cantidad }}</td>
                   </tr>
                 </tbody>
               </table>
+              <div class="botones">
+                <button class="btn btn-primary bi bi-arrow-left" (click)="prevPage()"></button>
+                &nbsp;
+              <button class="btn btn-primary bi bi-arrow-right" (click)="nextPage()"
+                [disabled]="(resultadoPromedio | filtroReporte:page :search).length===0"
+                ></button>
+            </div>
       </div>
       </div>
     </div>
@@ -79,17 +86,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let res of resultadoPromedio | filtroReporte : page : search">
+                <tr *ngFor="let res of resultadoPromedio | filtroReporte : pageProm : search">
                   <td>{{ res.nombre }}</td>  
                   <td>{{ res.promedio }}</td>
                 </tr>
               </tbody>
             </table>
             <div class="botones">
-              <button class="btn btn-primary bi bi-arrow-left" (click)="prevPage()"></button>
+              <button class="btn btn-primary bi bi-arrow-left" (click)="prevPageProm()"></button>
               &nbsp;
-            <button class="btn btn-primary bi bi-arrow-right" (click)="nextPage()"
-              [disabled]="(resultadoPromedio | filtroReporte:page :search).length===0"
+            <button class="btn btn-primary bi bi-arrow-right" (click)="nextPageProm()"
+              [disabled]="(resultadoPromedio | filtroReporte:pageProm :search).length===0"
               ></button>
           </div>
         </div>
