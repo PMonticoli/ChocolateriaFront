@@ -5,7 +5,7 @@
                 <h1 class="text-center text-uppercase titulo">Productos</h1> <br>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4 col-md-12 col-sm-9">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
                             <div class="input-group mb-2 ms-3">
                                 <input type="text" class="form-control" placeholder="Buscar producto" (keyup)="onSearchProduct($event)">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -13,7 +13,7 @@
                         </div>
                         <form [formGroup]="formulario" class="col-lg-8 col-md-12 col-sm-12">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="input-group mb-2 ms-3">
                                         <input type="text" class="form-control" placeholder="$ minimo"
                                             formControlName="precioMin"
@@ -21,7 +21,7 @@
                                         >
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="input-group mb-2 ms-3">
                                         <input type="text" class="form-control" placeholder="$ maximo"
                                             formControlName="precioMax"
