@@ -98,30 +98,33 @@ this.producto = new Producto();
       Swal.fire({title:'Atención', text:`Complete los campos por favor`, icon: 'warning'});
     }
   }
-
-
-editar(){
+editar() {
   let body = this.formulario.value as Producto;
-  body.id=this.producto.id;
-  body.urlImagen = this.imagenSubida;
+  body.id = this.producto.id;
+
+  if (this.file) {
+    body.urlImagen = this.imagenSubida;
+  } else {
+    body.urlImagen = this.producto.urlImagen;
+  }
+
   this.subscription.add(
     this.servicioProducto.modificar(body).subscribe({
-      next : (res : ResultadoGenerico) =>{
-        if(res.ok){
-          Swal.fire({title:'Listo!', text:`Se editó el producto correctamente`, icon: 'success'});
+      next: (res: ResultadoGenerico) => {
+        if (res.ok) {
+          Swal.fire({ title: 'Listo!', text: 'Se editó el producto correctamente', icon: 'success' });
           this.router.navigate(['/producto/listado']);
-        }else{
-          Swal.fire({title:'Error!', text:`${res.mensaje}`, icon: 'error'});
+        } else {
+          Swal.fire({ title: 'Error!', text: res.mensaje, icon: 'error' });
         }
       },
-      error: (e) => { 
-        Swal.fire({title:'Error!', text:`Error al editar producto`, icon: 'error'});
+      error: (e) => {
+        Swal.fire({ title: 'Error!', text: 'Error al editar producto', icon: 'error' });
         console.error(e);
       }
     })
-  )
+  );
 }
-
   cargar () : void{
     this.subscription.add(
       this.activatedRoute.params.subscribe(
