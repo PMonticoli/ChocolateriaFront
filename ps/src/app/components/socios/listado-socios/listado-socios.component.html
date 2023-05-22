@@ -24,21 +24,21 @@
       <div class="table-responsive-sm">
         <table class="table table-dark table-hover mt-2">
           <thead>
-            <tr class="text-center">
+            <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">DNI</th>
-              <th scope="col">Activo</th>
-              <th scope="col">Acciones</th>
+              <!-- <th scope="col">Activo</th> -->
+              <th scope="col" class="text-center">Acciones</th>
             </tr>
           </thead>
-          <tbody class="text-center">
+          <tbody>
             <tr *ngFor="let s of listado | filtroSocio: page : search">
               <td>{{s.nombre}}</td>
               <td>{{s.apellido}}</td>
               <td>{{s.dni}}</td>
-              <td>{{s.fechaBaja ? 'No' : 'Si'}}</td>
-              <td>
+              <!-- <td>{{s.fechaBaja ? 'No' : 'Si'}}</td> -->
+              <td class="text-center">
                 <app-detalles-socio [socio]="s"></app-detalles-socio>
                 <app-baja-socio ngClass="ms-2" [socio]="s" (onEliminado)="cargarTabla()" [deshabilitado]="s.fechaBaja!==null"></app-baja-socio>
                 <button class="btn btn-success bi bi-pencil ms-2" [routerLink]="['/socio/nuevo',s.id]"> Editar</button>
