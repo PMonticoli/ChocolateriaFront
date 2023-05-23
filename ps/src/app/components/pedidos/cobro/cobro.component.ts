@@ -76,10 +76,12 @@ export class CobroComponent implements OnInit, OnDestroy {
   obtenerTiposPago(): void {
     this.subscription.add(
       this.servicioTipoPago.obtenerTodos().subscribe({
-        next: (r: ResultadoGenerico)=> {
-          if(r.ok && r.resultado){
-            if (this.abonaCliente){
-              this.tiposPago = r.resultado.filter(x => {return x.nombre == 'Mercado Pago'});
+        next: (r: ResultadoGenerico) => {
+          if (r.ok && r.resultado) {
+            if (this.abonaCliente) {
+              this.tiposPago = r.resultado.filter(x => {
+                return x.nombre == 'Mercado Pago' || x.nombre == 'Tarjeta de Crédito' || x.nombre == 'Tarjeta de Débito';
+              });
             } else {
               this.tiposPago = r.resultado as TipoPago[];
             }
@@ -91,8 +93,9 @@ export class CobroComponent implements OnInit, OnDestroy {
           console.error(e);
         }
       })
-    )
+    );
   }
+  
   obtenerDetalles(): void {
     if(!this.pedido.id){
       console.error("Pedido id is undefined");
