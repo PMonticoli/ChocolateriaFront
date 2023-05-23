@@ -1,7 +1,7 @@
 <div class="fondo">
     <div class="container-fluid px-3">
         <div class="row">
-            <div [ngClass]="mostrarPedido ? 'col-lg-9 col-md-6 col-sm-12 py-5' : 'col-lg-12 col-md-6 col-sm-12 py-5'">
+            <div [ngClass]="mostrarPedido ? 'col-lg-9 col-md-6 col-sm-12 py-5' : 'col-lg-12 col-md-12 col-sm-12 py-5'">
                 <h1 class="text-center text-uppercase titulo">Productos</h1> <br>
                 <div class="container">
                     <div class="row">
@@ -33,10 +33,10 @@
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     <div class="input-group mb-2">
-                                        <button class="btn btn-primary ms-2 w-100" style="color: black;" (click)="filtrar()">Filtrar por precio</button>
+                                        <button class="btn btn-primary ms-3 w-100" style="color: black;" (click)="filtrar()">Filtrar por precio</button>
                                     </div>
                                     <div class="input-group mb-2">
-                                        <button class="btn btn-outline-danger ms-2 w-100" *ngIf="flagFiltro" (click)="limpiarFiltro()">Eliminar filtro</button>
+                                        <button class="btn btn-outline-danger ms-3 w-100" *ngIf="flagFiltro" (click)="limpiarFiltro()">Eliminar filtro</button>
                                     </div>
                                 </div>
                             </div>
