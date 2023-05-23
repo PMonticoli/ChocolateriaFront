@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,8 @@ const Swal = require('sweetalert2');
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
+  @ViewChild('inputUsuario') inputUsuario!: ElementRef;
   private subscription = new Subscription();
   formulario: FormGroup;
   fieldTextType: boolean;
@@ -34,6 +35,9 @@ export class LoginComponent {
   }
   ngOnInit(): void {}
 
+  ngAfterViewInit() {
+    this.inputUsuario.nativeElement.focus();
+  }
   get controlUsuario(): FormControl {
     return this.formulario.controls['usuario'] as FormControl;
   }

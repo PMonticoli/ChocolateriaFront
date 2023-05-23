@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {  ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,8 @@ const Swal = require('sweetalert2');
   templateUrl: './alta-socio.component.html',
   styleUrls: ['./alta-socio.component.css']
 })
-export class AltaSocioComponent implements OnInit, OnDestroy {
+export class AltaSocioComponent implements OnInit, OnDestroy,AfterViewInit {
+@ViewChild('inputNombre') inputNombre!: ElementRef;
 isEdit : boolean =false;
 socio : Socio;
 formulario : FormGroup;
@@ -41,6 +42,9 @@ ngOnInit(): void {
   }
 }
 
+ngAfterViewInit() {
+  this.inputNombre.nativeElement.focus();
+}
 get controlNombre(): FormControl {
   return this.formulario.controls['nombre'] as FormControl;
 }

@@ -16,7 +16,8 @@
                                 <input type="text" class="form-control" id="inputNombre" 
                                 placeholder="Ingrese el nombre"
                                 formControlName="nombre"
-                                [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
+                                [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')"
+                                #inputNombre>
                                 <span *ngIf="controlNombre.touched && controlNombre.hasError('required')"
                                 class="invalid-feedback">
                                   Nombre es requerido,complete el campo por favor.

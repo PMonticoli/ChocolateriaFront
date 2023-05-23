@@ -14,23 +14,23 @@
                   style="font-size: 1.2rem"
                   >Nombre de usuario</label>
 
-
-                <div class="input-group">
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <i class="bi bi-person-fill"></i>
+                  <div class="input-group">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <i class="bi bi-person-fill"></i>
+                      </div>
                     </div>
+                    <input type="text" placeholder="Ingrese su usuario" required="required"
+                      formControlName="usuario"
+                      class="form-control"
+                      [class.is-invalid]="controlUsuario.touched && controlUsuario.hasError('required')"
+                      #inputUsuario
+                    />
+                    <span *ngIf="controlUsuario.touched && controlUsuario.hasError('required')" class="invalid-feedback">
+                      Usuario es requerido, complete el campo
+                    </span>
                   </div>
-                  <input type="text" placeholder="Ingrese su usuario" required="required"
-                    formControlName="usuario"
-                    class="form-control"
-                    [class.is-invalid]=" controlUsuario.touched && controlUsuario.hasError('required')"/>
-                  <span
-                    *ngIf="controlUsuario.touched && controlUsuario.hasError('required')" class="invalid-feedback"
-                  >
-                    Usuario es requerido,complete el campo
-                  </span>
-                </div>
+                  
 
 
 

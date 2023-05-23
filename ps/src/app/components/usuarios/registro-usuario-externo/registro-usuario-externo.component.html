@@ -17,6 +17,7 @@
                   </div>
                   <input type="text" placeholder="Ingrese su usuario" required="required" formControlName="usuario"
                     class="form-control" [class.is-invalid]="controlUsuario.touched && controlUsuario.hasError('required')"
+                    #inputUsuario
                   />
                   <span *ngIf="controlUsuario.touched && controlUsuario.hasError('required')" class="invalid-feedback text fw-semibold">
                     Usuario es requerido,complete el campo

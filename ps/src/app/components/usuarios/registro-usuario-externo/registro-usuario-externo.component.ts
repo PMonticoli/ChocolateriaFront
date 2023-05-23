@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,8 @@ const Swal = require('sweetalert2');
   templateUrl: './registro-usuario-externo.component.html',
   styleUrls: ['./registro-usuario-externo.component.css']
 })
-export class RegistroUsuarioExternoComponent implements OnInit, OnDestroy {
+export class RegistroUsuarioExternoComponent implements OnInit, OnDestroy,AfterViewInit {
+  @ViewChild('inputUsuario') inputUsuario!: ElementRef;
   private subscription : Subscription;
   formulario: FormGroup;
   fieldTextType: boolean;
@@ -37,6 +38,9 @@ export class RegistroUsuarioExternoComponent implements OnInit, OnDestroy {
     this.subscription= new Subscription();
   }
 
+  ngAfterViewInit() {
+    this.inputUsuario.nativeElement.focus();
+  }
   get controlUsuario(): FormControl {
     return this.formulario.controls['usuario'] as FormControl;
   }
