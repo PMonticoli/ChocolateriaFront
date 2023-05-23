@@ -46,12 +46,12 @@ export class ListadoProductosComponent implements OnInit, OnDestroy {
 
 
   nextPage(){
-    this.page+=6;
+    this.page+=5;
   }
 
   prevPage(){
     if(this.page>0){
-      this.page-=6;
+      this.page-=5;
     }
   }
 
