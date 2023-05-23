@@ -11,6 +11,7 @@ const Swal = require('sweetalert2');
   styleUrls: ['./listado-productos.component.css']
 })
 export class ListadoProductosComponent implements OnInit, OnDestroy {
+  rutaImgDefault = 'imagenDefault.png';
   private subscription = new Subscription();
   @Input() listado : Producto[]=[];
   search : string= '';

@@ -40,7 +40,7 @@
               <td>{{p.puntosGanados}}</td>
               <td>{{p.stock ? p.stock : '0'}}</td>
               <td>
-                <img src="http://localhost:3000/{{ p.urlImagen}}" 
+                <img src="http://localhost:3000/{{ p.urlImagen ? p.urlImagen : 'uploads/'+rutaImgDefault}}" 
                 class="img-fluid rounded ms-2"
                 style="width: 75px;height: 75px;">
               </td>
