@@ -10,7 +10,7 @@
                             <div class="input-group">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <i class="bi bi-person"></i>
+                                        <i class="bi bi-person-fill"></i>
                                     </div>
                                 </div>
                                 <input type="text" class="form-control" id="inputNombre" 
@@ -32,7 +32,7 @@
                             <div class="input-group">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <i class="bi bi-person"></i>
+                                        <i class="bi bi-person-fill"></i>
                                     </div>
                                 </div>
                                 <input type="text" class="form-control" id="inputApellido" 
@@ -55,7 +55,7 @@
                         <div class="mb-3">
                             <label for="inputEmail" class="form-label fw-semibold text-white">Email</label>
                             <div class="input-group">
-                                <div class="input-group-text">@</div>
+                                <div class="input-group-text fw-semibold">@</div>
                                 <input type="text" class="form-control" id="inputEmail" 
                                 placeholder="Ingrese el email" formControlName="email"
                                 [class.is-invalid]="controlEmail.touched && controlEmail.hasError('required')">
@@ -69,13 +69,16 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="inputDni" class="form-label fw-semibold text-white">DNI</label>
-                            <input type="number" class="form-control" id="inputDni" 
-                            placeholder="Ingrese el DNI" formControlName="dni"
-                            [class.is-invalid]="controlDni.touched && controlDni.hasError('required')">
-                            <span *ngIf="controlDni.touched && controlDni.hasError('required')"
-                            class="invalid-feedback">
-                              Dni es requerido,complete el campo por favor.
-                            </span>
+                            <div class="input-group">
+                                <div class="input-group-text fw-semibold">DNI</div>
+                                <input type="number" class="form-control" id="inputDni" 
+                                placeholder="Ingrese el DNI" formControlName="dni"
+                                [class.is-invalid]="controlDni.touched && controlDni.hasError('required')">
+                                <span *ngIf="controlDni.touched && controlDni.hasError('required')"
+                                class="invalid-feedback">
+                                  Dni es requerido,complete el campo por favor.
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,7 +94,7 @@
                             <div class="input-group">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <i class="bi bi-house-add"></i>
+                                        <i class="bi bi-house-add-fill"></i>
                                     </div>
                                 </div>
                                 <input type="text" class="form-control" id="inputDomicilio" 
@@ -106,7 +109,7 @@
                             <div class="input-group">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <i class="bi bi-telephone"></i>
+                                        <i class="bi bi-telephone-fill"></i>
                                     </div>
                                 </div>
                                 <input type="number" class="form-control" id="inputTelefono" 
