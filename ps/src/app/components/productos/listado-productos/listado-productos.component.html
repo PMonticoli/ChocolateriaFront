@@ -29,7 +29,6 @@
               <th scope="col">Precio</th>
               <th scope="col">Puntos Ganados</th>
               <th scope="col">Stock</th>
-              <th scope="col">Activo</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
@@ -39,9 +38,8 @@
               <td>{{p.precio}}</td>
               <td>{{p.puntosGanados}}</td>
               <td>{{p.stock ? p.stock : '0'}}</td>
-              <td>{{p.activo ? 'SI' : 'NO'}}</td>
               <td>
-                <button class="btn btn-success bi bi-pencil ms-2" [routerLink]="['/producto/nuevo',p.id]"></button>
+                <button class="btn btn-success bi bi-pencil ms-2" [routerLink]="['/producto/nuevo',p.id]"> Editar</button>
                 <app-baja-producto ngClass="ms-2" [producto]="p" (onEliminado)="cargarTabla()"></app-baja-producto>
               </td>
             </tr>
