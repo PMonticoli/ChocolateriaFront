@@ -137,7 +137,7 @@ filtrar() {
   const precioMin = this.formulario.get('precioMin')?.value;
   const precioMax = this.formulario.get('precioMax')?.value;
 
-  if(this.formulario.valid){
+  if (this.formulario.valid) {
     if (precioMin !== null && precioMax !== null) {
       this.subscription.add(
         this.servicioProducto.obtenerActivos(precioMin, precioMax).subscribe({
@@ -145,6 +145,15 @@ filtrar() {
             if (resultado.ok) {
               this.productos = resultado.resultado as Producto[];
               this.flagFiltro = true;
+
+              if (this.productos.length === 0) {
+                Swal.fire({
+                  title: 'Atención!',
+                  text: 'No se encontraron productos con ese rango de precios',
+                  icon: 'warning'
+                });
+                this.limpiarFiltro();
+              }
             } else {
               console.error(resultado.mensaje);
             }
@@ -155,8 +164,12 @@ filtrar() {
         })
       );
     }
-  }else{
-    Swal.fire({ title: 'Atención!', text: 'Completar los campos precio minimo y maximo', icon: 'warning' });
+  } else {
+    Swal.fire({
+      title: 'Atención!',
+      text: 'Completar los campos precio mínimo y máximo',
+      icon: 'warning'
+    });
   }
 }
 
