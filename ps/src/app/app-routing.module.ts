@@ -21,7 +21,7 @@ import { ReporteSociosComponent } from './components/reportes/reporte-socios/rep
 import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
 import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-usuario-externo/registro-usuario-externo.component';
-
+import { AdminGuard } from './guards/admin.guard';
 const routes: Routes = [
   {path : 'home', component : HomeComponent},
   {path : '', component : HomeComponent},
@@ -42,10 +42,10 @@ const routes: Routes = [
   {path: 'promocion/listado/disponibles', component: ListadoPromocionesDisponiblesComponent},
   {path: 'promocion/listado/canjeadas', component: ListadoPromocionesCanjeadasComponent},
   {path: 'stock/listado', component: ListadoStockComponent},
-  {path : 'reportes/socios', component: ReporteSociosComponent},
-  {path : 'reportes/productos', component: ReporteProductosComponent},
-  {path : 'reportes/promociones', component: ReportePromocionesComponent},
-  {path : 'reportes/cobros', component: ReporteCobrosComponent},
+  {path : 'reportes/socios', component: ReporteSociosComponent, canActivate: [ AdminGuard ]},
+  {path : 'reportes/productos', component: ReporteProductosComponent, canActivate: [ AdminGuard ]},
+  {path : 'reportes/promociones', component: ReportePromocionesComponent, canActivate: [ AdminGuard ]},
+  {path : 'reportes/cobros', component: ReporteCobrosComponent, canActivate: [ AdminGuard  ]},
   {path: '**', component: NoEncontradoComponent}
 ];
 
