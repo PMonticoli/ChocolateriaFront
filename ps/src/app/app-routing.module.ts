@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { NoEncontradoComponent } from './components/no-encontrado/no-encontrado.component';
 import { AltaPedidoComponent } from './components/pedidos/alta-pedido/alta-pedido.component';
 import { ListadoPedidosPendientesComponent } from './components/pedidos/listados/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
 import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/listado-pedidos-propios/listado-pedidos-propios.component';
@@ -44,7 +45,8 @@ const routes: Routes = [
   {path : 'reportes/socios', component: ReporteSociosComponent},
   {path : 'reportes/productos', component: ReporteProductosComponent},
   {path : 'reportes/promociones', component: ReportePromocionesComponent},
-  {path : 'reportes/cobros', component: ReporteCobrosComponent}
+  {path : 'reportes/cobros', component: ReporteCobrosComponent},
+  {path: '**', component: NoEncontradoComponent}
 ];
 
 @NgModule({
