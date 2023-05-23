@@ -125,36 +125,36 @@ editar() {
     })
   );
 }
-  cargar () : void{
-    this.subscription.add(
-      this.activatedRoute.params.subscribe(
-        e=>{
-          let id = e['id'];
-          if(id){
-            this.isEdit=true;
-            this.subscription.add(
-              this.servicioProducto.getProductoById(id).subscribe({
-                next : (res : ResultadoGenerico) =>{
-                  if(res.ok && res.resultado){
-                    this.producto=res.resultado[0];
-                    this.formulario.patchValue(this.producto);
-                  }else{
-                    Swal.fire({title:'Error!', text:`${res.mensaje}`, icon: 'error'});               
-                  }
-                },
-                error : (err) =>{
-                  Swal.fire({title:'Atención!', text:`No posee los permisos necesarios para acceder a este recurso`, icon: 'warning'});
-                  console.log(err);
-                }
+cargar(): void {
+  this.subscription.add(
+    this.activatedRoute.params.subscribe(e => {
+      let id = e['id'];
+      if (id) {
+        this.isEdit = true;
+        this.subscription.add(
+          this.servicioProducto.getProductoById(id).subscribe({
+            next: (res: ResultadoGenerico) => {
+              if (res.ok && res.resultado) {
+                this.producto = res.resultado[0];
+                this.formulario.patchValue(this.producto);
+                this.urlImagen = `http://localhost:3000/${this.producto.urlImagen}`;
+              } else {
+                Swal.fire({ title: 'Error!', text: `${res.mensaje}`, icon: 'error' });
               }
-            )
-          )}else{
-            this.isEdit=false;
-          }
-        }
-      ) 
-    )
-  }
+            },
+            error: (err) => {
+              Swal.fire({ title: 'Atención!', text: `No posee los permisos necesarios para acceder a este recurso`, icon: 'warning' });
+              console.log(err);
+            }
+          })
+        );
+      } else {
+        this.isEdit = false;
+      }
+    })
+  );
+}
+
 
   selectImage(event : any){
     if(event.target.files.length > 0){     
