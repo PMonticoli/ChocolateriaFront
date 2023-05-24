@@ -189,11 +189,6 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
     });
   }
   
-  
-  
-  
-  
-
   descargarPDF(): void {
     let DATA: any = document.getElementById('htmlData');
     html2canvas(DATA).then((canvas) => {
@@ -204,9 +199,8 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
       let position = 0;
       let pageHeight = ArchivoPDF.internal.pageSize.getHeight();
   
-      // Verifica si la altura de la imagen supera la altura de la página
       if (altura > pageHeight - 20) {
-        altura = pageHeight - 20; // Resta el alto de los márgenes superior e inferior
+        altura = pageHeight - 20; 
       }
   
       ArchivoPDF.addImage(urlArchivo, 'PNG', 10, 10, ancho, altura);
@@ -215,6 +209,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
       ArchivoPDF.save(`Reporte Productos (${new Date().toLocaleDateString("es-AR")}).pdf`);
     });
   }
+  
   
 
   get controlFechaDesde () : FormControl{

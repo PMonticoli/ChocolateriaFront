@@ -114,7 +114,7 @@ descargarPDF(): void {
     ArchivoPDF.addImage(urlArchivo, 'PNG', 10, 10, ancho, altura);
 
     console.log(new Date().toLocaleDateString("es-AR"));
-    ArchivoPDF.save(`Reporte Productos (${new Date().toLocaleDateString("es-AR")}).pdf`);
+    ArchivoPDF.save(`Reporte Promociones (${new Date().toLocaleDateString("es-AR")}).pdf`);
   });
 }
 
