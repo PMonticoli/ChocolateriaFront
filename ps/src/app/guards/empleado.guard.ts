@@ -8,7 +8,7 @@ import { UsuarioService } from '../services/usuario.service';
   providedIn: 'root'
 })
 export class EmpleadoGuard implements CanActivate {
-  constructor(private router: Router, private servicioUsuario : UsuarioService) {}
+  constructor(private router: Router, private servicioUsuario: UsuarioService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -25,13 +25,20 @@ export class EmpleadoGuard implements CanActivate {
           title: 'ERROR!',
           text: 'No tienes los permisos adecuados para acceder a este recurso',
           icon: 'error'
+        }).then(() => {
+          this.router.navigate(['/home']);
         });
-        return this.router.parseUrl('/home');
+        return false;
       }
-    } 
-    else {
-      return this.router.parseUrl('/login');
+    } else {
+      Swal.fire({
+        title: 'ERROR!',
+        text: 'Necesitas iniciar sesión para acceder a este recurso',
+        icon: 'error'
+      }).then(() => {
+        this.router.navigate(['/login']);
+      });
+      return false;
     }
   }
-  
 }
