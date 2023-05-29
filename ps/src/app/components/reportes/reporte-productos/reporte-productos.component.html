@@ -66,9 +66,10 @@
                     <div class="botones">
                       <button class="btn btn-primary bi bi-arrow-left" (click)="prevPage()"></button>
                       &nbsp;
-                    <button class="btn btn-primary bi bi-arrow-right" (click)="nextPage()"
-                      [disabled]="(resultadoPromedio | filtroReporte:page :search).length===0"
-                      ></button>
+                      <button class="btn btn-primary bi bi-arrow-right" (click)="nextPage()"
+                      [disabled]="(resultadoCantidad | filtroReporteCantidad: page : search ).length < 4 || 
+                                      (resultadoCantidad | filtroReporteCantidad: page+4 : search).length === 0"
+                        ></button>
                   </div>
             </div>
             </div>
@@ -94,9 +95,10 @@
                   <div class="botones">
                     <button class="btn btn-primary bi bi-arrow-left" (click)="prevPageProm()"></button>
                     &nbsp;
-                  <button class="btn btn-primary bi bi-arrow-right" (click)="nextPageProm()"
-                    [disabled]="(resultadoPromedio | filtroReporte:pageProm :search).length===0"
-                    ></button>
+                    <button class="btn btn-primary bi bi-arrow-right" (click)="nextPageProm()"
+                    [disabled]="(resultadoPromedio | filtroReporte: pageProm : search ).length < 4 || 
+                                    (resultadoPromedio | filtroReporte: pageProm+4 : search).length === 0"
+                      ></button>
                 </div>
               </div>
           </div>

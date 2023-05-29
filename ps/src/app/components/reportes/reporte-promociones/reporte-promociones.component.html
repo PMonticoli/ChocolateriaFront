@@ -82,8 +82,9 @@
                                 <button class="btn btn-primary bi bi-arrow-left" (click)="prevPage()"></button>
                                 &nbsp;
                                 <button class="btn btn-primary bi bi-arrow-right" (click)="nextPage()"
-                                [disabled]="(resultadoReporte | filtroReportePromocion :page :search).length===0"
-                                ></button>
+                                [disabled]="(resultadoReporte | filtroReportePromocion: page : search ).length < 5 || 
+                                                (resultadoReporte | filtroReportePromocion: page+5 : search).length === 0"
+                                  ></button>
                             </div>
                           </div>
                       </div>
