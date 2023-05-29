@@ -110,7 +110,7 @@
 }
 
 
-.login h1 {
+h1 {
   color: #fff;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   letter-spacing: 1px;
@@ -135,5 +135,5 @@
   background-image: url("../../../assets/img/login.jpg");
   background-size: cover;
   background-position: center;
-  min-height: 105vh;
+  min-height: 100vh;
 }

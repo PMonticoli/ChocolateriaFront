@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -18,6 +18,7 @@ export class LoginComponent implements AfterViewInit {
   private subscription = new Subscription();
   formulario: FormGroup;
   fieldTextType: boolean;
+  @Input() modalId: number = 1;
   constructor(
     private servicioUsuario: UsuarioService,
     private formBuilder: FormBuilder,
@@ -26,7 +27,8 @@ export class LoginComponent implements AfterViewInit {
   ) {
     this.formulario = this.formBuilder.group({
       usuario : [,Validators.required],
-      contrasenia : [,Validators.required]
+      contrasenia : [,Validators.required],
+      terminos : [,Validators.required]
     })
   }
 
@@ -44,6 +46,10 @@ export class LoginComponent implements AfterViewInit {
 
   get controlContrasenia() : FormControl{
     return this.formulario.controls['contrasenia'] as FormControl;
+  }
+
+  get controlTerminos() : FormControl{
+    return this.formulario.controls['terminos'] as FormControl;
   }
 
   iniciarSesion(): void {
