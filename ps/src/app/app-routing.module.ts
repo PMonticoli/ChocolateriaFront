@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactoComponent } from './components/contacto/contacto.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NoEncontradoComponent } from './components/no-encontrado/no-encontrado.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path: 'reportes/productos', component: ReporteProductosComponent, canActivate: [ AdminGuard ]},
   {path: 'reportes/promociones', component: ReportePromocionesComponent, canActivate: [ AdminGuard ]},
   {path: 'reportes/cobros', component: ReporteCobrosComponent, canActivate: [ AdminGuard  ]},
+  {path: 'contacto', component : ContactoComponent},
   {path: '**', component: NoEncontradoComponent}
 ];
 

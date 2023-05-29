@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand bi bi-house" *ngIf="rol=== 'Admin' || rol==='Empleado'" href="#"> AdminOlbap</a>
+      <a class="navbar-brand bi bi-house-fill" *ngIf="rol=== 'Admin' || rol==='Empleado'" href="#"> AdminOlbap</a>
       <a class="navbar-brand" href="#" *ngIf="rol === 'Socio' || rol=== 'sinIniciarSesion'">OlbapChocolates</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -82,7 +82,7 @@
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="rol === 'Socio'">
           <li class="nav-item">
-            <a class="nav-link text-uppercase bi bi-house" aria-current="page" routerLinkActive="active" routerLink="home"> Inicio</a>
+            <a class="nav-link text-uppercase bi bi-house-fill" aria-current="page" routerLinkActive="active" routerLink="home"> Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-uppercase bi bi-cart4" aria-current="page" routerLinkActive="active" routerLink="pedido/nuevo"> Realizar un pedido</a>
@@ -93,6 +93,9 @@
           <li class="nav-item">
             <a class="nav-link text-uppercase bi bi-tag" aria-current="page" routerLinkActive="active" routerLink="promocion/listado/disponibles"> Promociones</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase bi bi-telephone-fill" aria-current="page" routerLinkActive="active" routerLink="contacto"> Contáctanos</a>
+          </li>
         </ul>
 
 
@@ -100,7 +103,7 @@
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="rol === 'sinIniciarSesion'">
           <li class="nav-item">
-            <a class="nav-link text-uppercase bi bi-house" aria-current="page" routerLinkActive="active" routerLink="home"> Inicio</a>
+            <a class="nav-link text-uppercase bi bi-house-fill" aria-current="page" routerLinkActive="active" routerLink="home"> Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-uppercase bi bi-cart4" aria-current="page" routerLinkActive="active" routerLink="pedido/nuevo"> Realizar un pedido</a>
@@ -108,6 +111,9 @@
 
           <li class="nav-item">
             <a class="nav-link text-uppercase bi bi-people-fill" aria-current="page" routerLinkActive="active" routerLink="socio/nuevo"> Quiero hacerme socio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase bi bi-telephone-fill" aria-current="page" routerLinkActive="active" routerLink="contacto"> Contáctanos</a>
           </li>
         </ul>
 
