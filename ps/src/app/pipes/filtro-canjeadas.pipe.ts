@@ -5,9 +5,6 @@ import { DtoPromociones } from '../models/dto-promociones';
   name: 'filtroCanjeadas'
 })
 export class FiltroCanjeadasPipe implements PipeTransform {
-  // transform(promocion: DtoPromociones[], page: number=0): DtoPromociones[] {
-  //   return promocion.slice(page, page+5);
-  // }
   transform(promocion: DtoPromociones[], page: number=0, search : string): DtoPromociones[] {
     if(search.length === 0){
       return promocion.slice(page, page+5);
