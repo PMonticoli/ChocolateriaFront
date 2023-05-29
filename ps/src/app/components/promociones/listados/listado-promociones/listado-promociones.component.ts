@@ -53,11 +53,11 @@ export class ListadoPromocionesComponent implements OnInit,OnDestroy{
 
   prevPage(){
     if(this.page>0){
-      this.page-=6;
+      this.page-=5;
     }
   }
 
   nextPage(){
-    this.page+=6;
+    this.page+=5;
   }
 }

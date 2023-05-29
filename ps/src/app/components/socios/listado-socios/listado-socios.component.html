@@ -16,9 +16,10 @@
 
       <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
         &nbsp;
-      <button class="btn btn-primary" (click)="nextPage()"
-        [disabled]="(listado |filtroSocio: page :search).length===0"
-        >Siguientes</button>
+        <button class="btn btn-primary" (click)="nextPage()"
+        [disabled]="(listado | filtroSocio: page : search ).length < 5 || 
+                        (listado | filtroSocio: page+5 : search).length === 0"
+          >Siguientes</button>
 
 
       <div class="table-responsive-sm">
@@ -28,7 +29,6 @@
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">DNI</th>
-              <!-- <th scope="col">Activo</th> -->
               <th scope="col" class="text-center">Acciones</th>
             </tr>
           </thead>
@@ -37,7 +37,6 @@
               <td>{{s.nombre}}</td>
               <td>{{s.apellido}}</td>
               <td>{{s.dni}}</td>
-              <!-- <td>{{s.fechaBaja ? 'No' : 'Si'}}</td> -->
               <td class="text-center">
                 <app-detalles-socio [socio]="s"></app-detalles-socio>
                 <app-baja-socio ngClass="ms-2" [socio]="s" (onEliminado)="cargarTabla()" [deshabilitado]="s.fechaBaja!==null"></app-baja-socio>

@@ -16,9 +16,10 @@
     
           <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
             &nbsp;
-          <button class="btn btn-primary" (click)="nextPage()"
-            [disabled]="(listado |filtroSocio: page :search).length===0"
-            >Siguientes</button> 
+            <button class="btn btn-primary" (click)="nextPage()"
+            [disabled]="(listado | filtroPromocion: page : search ).length < 5 || 
+                            (listado | filtroPromocion: page+5 : search).length === 0"
+              >Siguientes</button>
     
     
           <div class="table-responsive-sm">
