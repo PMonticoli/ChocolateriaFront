@@ -137,3 +137,12 @@ h1 {
   background-position: center;
   min-height: 100vh;
 }
+.container.align-center {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
