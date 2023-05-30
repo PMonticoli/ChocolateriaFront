@@ -25,8 +25,8 @@ export class RecuperarClaveComponent {
     private servicioSocio : SocioService
   ) {
     this.formulario = this.formBuilder.group({
-      usuario : [,Validators.required],
-      contrasenia : [,Validators.required],
+      usuario: [, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      contrasenia: [, [Validators.required, Validators.minLength(8), Validators.maxLength(32)]],
       dni: [null, 
         [Validators.required, Validators.minLength(6), Validators.maxLength(8)], 
         [ValidadorSocio.validadorDNI(this.servicioSocio)]]
