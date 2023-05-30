@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { UsuarioLogin } from 'src/app/models/usuario-login';
+import { SocioService } from 'src/app/services/socio.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { ValidadorSocio } from 'src/app/validators/validador-socio';
 const Swal = require('sweetalert2');
 @Component({
   selector: 'app-recuperar-clave',
@@ -19,11 +21,15 @@ export class RecuperarClaveComponent {
   constructor(
     private servicioUsuario: UsuarioService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private servicioSocio : SocioService
   ) {
     this.formulario = this.formBuilder.group({
       usuario : [,Validators.required],
-      contrasenia : [,Validators.required]
+      contrasenia : [,Validators.required],
+      dni: [null, 
+        [Validators.required, Validators.minLength(6), Validators.maxLength(8)], 
+        [ValidadorSocio.validadorDNI(this.servicioSocio)]]
     })
   }
   get controlUsuario(): FormControl {
@@ -33,7 +39,9 @@ export class RecuperarClaveComponent {
   get controlContrasenia() : FormControl{
     return this.formulario.controls['contrasenia'] as FormControl;
   }
-
+  get controlDNI() : FormControl{
+    return this.formulario.controls['dni'] as FormControl;
+  }
   recuperarClave(): void {
     if (this.formulario.valid) {
       let usuarioLogin = new UsuarioLogin();

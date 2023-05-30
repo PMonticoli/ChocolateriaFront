@@ -25,8 +25,19 @@
                       [class.is-invalid]="controlUsuario.touched && controlUsuario.hasError('required')"
                       #inputUsuario
                     />
-                    <span *ngIf="controlUsuario.touched && controlUsuario.hasError('required')" class="invalid-feedback">
+                    <span *ngIf="controlUsuario.touched && controlUsuario.hasError('required')" class="invalid-feedback text fw-semibold">
                       Usuario es requerido, complete el campo
+                    </span>
+                  </div>
+                   <br>
+                  <label for="inputUsuario"class="form-label text-white text" style="font-size: 1.2rem">DNI</label>
+
+                  <div class="input-group">
+                    <input type="text"placeholder="Ingrese su DNI" required="required" formControlName="dni" class="form-control"
+                      [class.is-invalid]="controlDNI.touched && controlDNI.hasError('required')"/>
+                    <span
+                      *ngIf="controlDNI.touched && controlDNI.hasError('required')"class="invalid-feedback text fw-semibold">
+                      DNI es requerido,complete el campo
                     </span>
                   </div>
                   
@@ -74,7 +85,7 @@
                         controlContrasenia.touched &&
                         controlContrasenia.hasError('required')
                       "
-                      class="invalid-feedback"
+                      class="invalid-feedback text fw-semibold"
                     >
                       Contraseña es requerida,complete el campo
                     </span>
