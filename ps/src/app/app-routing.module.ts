@@ -21,6 +21,7 @@ import { ReportePromocionesComponent } from './components/reportes/reporte-promo
 import { ReporteSociosComponent } from './components/reportes/reporte-socios/reporte-socios.component';
 import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
+import { RecuperarClaveComponent } from './components/usuarios/recuperar-clave/recuperar-clave.component';
 import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-usuario-externo/registro-usuario-externo.component';
 import { AdminGuard } from './guards/admin.guard';
 import { EmpleadoGuard } from './guards/empleado.guard';
@@ -49,6 +50,7 @@ const routes: Routes = [
   {path: 'reportes/promociones', component: ReportePromocionesComponent, canActivate: [ AdminGuard ]},
   {path: 'reportes/cobros', component: ReporteCobrosComponent, canActivate: [ AdminGuard  ]},
   {path: 'contacto', component : ContactoComponent},
+  {path: 'recuperarclave', component : RecuperarClaveComponent},
   {path: '**', component: NoEncontradoComponent}
 ];
 

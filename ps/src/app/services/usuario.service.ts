@@ -30,4 +30,8 @@ export class UsuarioService {
    registrarUsuExterno(usuario : UsuarioLogin) : Observable<ResultadoGenerico>{
     return this.http.post<ResultadoGenerico>(this.API_URL+ 'nuevoUsuarioSocio', usuario);
    }
+
+   modificarClave(usuario : UsuarioLogin) : Observable<ResultadoGenerico>{
+    return this.http.put<ResultadoGenerico>(this.API_URL+ 'nuevaClave',usuario);
+   }
 }
