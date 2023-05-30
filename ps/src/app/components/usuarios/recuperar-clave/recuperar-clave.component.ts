@@ -33,28 +33,7 @@ export class RecuperarClaveComponent {
   get controlContrasenia() : FormControl{
     return this.formulario.controls['contrasenia'] as FormControl;
   }
-  // recuperarClave() : void{
-  //   if (this.formulario.valid) {
-  //     let usuarioLogin = new UsuarioLogin();
-  //     usuarioLogin = this.formulario.value as UsuarioLogin;
-  //     this.subscription.add(
-  //       this.servicioUsuario.modificarClave(usuarioLogin).subscribe({
-  //         next: (res: ResultadoGenerico) => {
-  //           if (res.ok && res.resultado != null) {
-  //             Swal.fire({title:'Actualizaste la contraseña con éxito!', icon:'success'});
-  //             this.router.navigate(['home']);
-  //           } else {
-  //             Swal.fire({title:'Error', text:`${res.mensaje}`, icon: 'error'})
-  //           }
-  //         },
-  //         error: (err) => { Swal.fire({title:'Error al actualizar contraseña', text: `${err.message}`, icon: 'error'}); }
-  //       })
-  //     );
-  //   }
-  //   else {
-  //     Swal.fire({title:'Atención', text: 'Complete los campos por favor', icon: 'warning'});
-  //   }
-  // }
+
   recuperarClave(): void {
     if (this.formulario.valid) {
       let usuarioLogin = new UsuarioLogin();
