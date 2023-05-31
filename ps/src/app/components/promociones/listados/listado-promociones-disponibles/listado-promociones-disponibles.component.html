@@ -16,9 +16,10 @@
 
       <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
         &nbsp;
-      <button class="btn btn-primary" (click)="nextPage()"
-        [disabled]="(listado |filtroSocio: page :search).length===0"
-        >Siguientes</button> 
+        <button class="btn btn-primary" (click)="nextPage()"
+        [disabled]="(listado | filtroCanjeadas: page : search ).length < 5 || 
+                        (listado | filtroCanjeadas: page+5 : search).length === 0"
+          >Siguientes</button> 
 
       <h4 class="text-white puntos text-uppercase">Puntos disponibles: {{this.puntos}}</h4>
       <div class="table-responsive-sm">
