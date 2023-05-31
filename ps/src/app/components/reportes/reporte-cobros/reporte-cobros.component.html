@@ -24,7 +24,7 @@
                     <div class="col-md-4">
                         <div class="mb-3">
                           <label for="inputFechaDesde" class="form-label fw-semibold">Fecha hasta</label>
-                          <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
+                          <input [min]="formulario.controls['fechaDesde'].value" type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
                               [class.is-invalid]="
                               controlFechaHasta.touched &&
                               controlFechaHasta.hasError('required')

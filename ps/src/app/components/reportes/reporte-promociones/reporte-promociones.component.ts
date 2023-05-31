@@ -54,6 +54,11 @@ solicitarReporte(){
       this.servicioPromocion.reportePromociones(this.body).subscribe({
         next: (res: ResultadoGenerico) => {
           if (res.ok) {
+            if(this.body.fechaDesde> this.body.fechaHasta){
+              Swal.fire({title : 'Atención!', text:`Ingrese fechas validas:`, icon: 'warning'});
+              this.visibilidadReporte= false;
+              return;
+            }
             this.resultadoReporte = res.resultado ? res.resultado : [];
             this.cargar();
           }

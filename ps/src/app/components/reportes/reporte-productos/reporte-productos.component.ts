@@ -97,6 +97,11 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
         this.servicioProducto.reportePromedio(this.body).subscribe({
           next: (res: ResultadoGenerico) => {
             if (res.ok) {
+              if(this.body.fechaDesde> this.body.fechaHasta){
+                Swal.fire({title : 'Atención!', text:`Ingrese fechas validas:`, icon: 'warning'});
+                this.visibilidadReporte= false;
+                return;
+              }
               this.promedioProd = res.resultado ? res.resultado[0].promedioProd : 0;
               this.resultadoPromedio = res.resultado ? res.resultado : [];
               this.cargar();

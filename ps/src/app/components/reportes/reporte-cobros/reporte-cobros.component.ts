@@ -57,6 +57,11 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy{
     this.subscription.add(
       this.servicioCobro.reporteCobro(this.body).subscribe({
         next : (res : ResultadoGenerico)=>{
+          if(this.body.fechaDesde> this.body.fechaHasta){
+            Swal.fire({title : 'Atención!', text:`Ingrese fechas validas:`, icon: 'warning'});
+            this.visibilidadReporte= false;
+            return;
+          }
           this.resultadoReporte = res.resultado ? res.resultado : [];
           this.cantidadCobros=res.resultado ? res.resultado[0].cantidadCobros : 0;
           this.totalCobro=res.resultado ? res.resultado[0].totalCobro : 0;
