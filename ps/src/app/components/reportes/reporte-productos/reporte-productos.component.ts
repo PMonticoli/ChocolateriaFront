@@ -58,7 +58,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
       this.body.fechaHasta.setMinutes(this.body.fechaHasta.getMinutes() + 59);
   
       this.subscription.add(
-        this.servicioProducto.reporteCantidad(this.body).subscribe({
+        this.servicioProducto.reporteCantidad(8,this.body).subscribe({
           next: (res: ResultadoGenerico) => {
             if (res.ok) {
               this.cantidadProd = res.resultado ? res.resultado[0].cantidadProd : 0;
@@ -94,7 +94,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
       this.body.fechaHasta.setMinutes(this.body.fechaHasta.getMinutes() + 59);
   
       this.subscription.add(
-        this.servicioProducto.reportePromedio(this.body).subscribe({
+        this.servicioProducto.reportePromedio(8,this.body).subscribe({
           next: (res: ResultadoGenerico) => {
             if (res.ok) {
               if(this.body.fechaDesde> this.body.fechaHasta){
