@@ -28,3 +28,9 @@
       align-items: flex-end;
       margin-top: 10px;
     }
+
+    .chart-container {
+      max-width: 100%;
+      height: auto; 
+    }
+    
