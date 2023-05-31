@@ -28,6 +28,7 @@
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Stock disponible</th>
+              <th scope="col">Ultima modificación</th>
               <th scope="col">Acción</th>
             </tr>
           </thead>
@@ -35,6 +36,7 @@
             <tr *ngFor="let p of listado |filtro:page :search">
               <td>{{p.nombre}}</td>
               <td>{{p.stock ? p.stock : "-"}}</td>
+              <td>{{p.fecha | date:'mediumDate':'UTC'}}</td>
               <td>
                 <app-alta-stock (onAgregarStock)="cargarTabla()" [producto]="p"></app-alta-stock>
               </td>

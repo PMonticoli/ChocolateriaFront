@@ -9,5 +9,6 @@ export class Producto {
     puntosGanados : number;
     urlImagen : string;
     stock : number;
+    fecha : Date;
 }
 
