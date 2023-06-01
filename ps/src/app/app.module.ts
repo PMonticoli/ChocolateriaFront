@@ -67,6 +67,7 @@ import { FiltroReporteCantidadPipe } from './pipes/filtro-reporte-cantidad.pipe'
 import { NoEncontradoComponent } from './components/no-encontrado/no-encontrado.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { RecuperarClaveComponent } from './components/usuarios/recuperar-clave/recuperar-clave.component';
+import { RankingProductosComponent } from './components/reportes/ranking-productos/ranking-productos.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { RecuperarClaveComponent } from './components/usuarios/recuperar-clave/r
     FiltroReporteCantidadPipe,
     NoEncontradoComponent,
     ContactoComponent,
-    RecuperarClaveComponent
+    RecuperarClaveComponent,
+    RankingProductosComponent
   ],
   imports: [
     BrowserModule,

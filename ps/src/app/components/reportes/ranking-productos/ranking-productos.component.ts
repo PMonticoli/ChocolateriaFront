@@ -8,13 +8,12 @@ import { ChartData} from 'chart.js';
 import { jsPDF } from "jspdf";
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { DtoReporte } from 'src/app/models/dto-reporte';
-
 @Component({
-  selector: 'app-reporte-productos',
-  templateUrl: './reporte-productos.component.html',
-  styleUrls: ['./reporte-productos.component.css']
+  selector: 'app-ranking-productos',
+  templateUrl: './ranking-productos.component.html',
+  styleUrls: ['./ranking-productos.component.css']
 })
-export class ReporteProductosComponent implements OnInit, OnDestroy{
+export class RankingProductosComponent implements OnInit, OnDestroy{
   private subscription = new Subscription();
   formulario : FormGroup;
   visibilidadReporte : boolean= false;
@@ -58,7 +57,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
       this.body.fechaHasta.setMinutes(this.body.fechaHasta.getMinutes() + 59);
   
       this.subscription.add(
-        this.servicioProducto.reporteCantidad(this.body).subscribe({
+        this.servicioProducto.rankingCantidad(8,this.body).subscribe({
           next: (res: ResultadoGenerico) => {
             if (res.ok) {
               this.cantidadProd = res.resultado ? res.resultado[0].cantidadProd : 0;
@@ -94,7 +93,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
       this.body.fechaHasta.setMinutes(this.body.fechaHasta.getMinutes() + 59);
   
       this.subscription.add(
-        this.servicioProducto.reportePromedio(this.body).subscribe({
+        this.servicioProducto.rankingPromedio(8,this.body).subscribe({
           next: (res: ResultadoGenerico) => {
             if (res.ok) {
               if(this.body.fechaDesde> this.body.fechaHasta){
@@ -253,3 +252,5 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
   }
 
 }
+
+

@@ -103,7 +103,7 @@ export class ProductoService {
     return this.http.put<ResultadoGenerico>(this.API_URL + 'stock',body,requestOptions);
    }
    
-   reporteCantidad(limite: number, body: any): Observable<ResultadoGenerico> {
+   rankingCantidad(limite: number, body: any): Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ export class ProductoService {
   }
   
   
-  reportePromedio(limite: number, body: any): Observable<ResultadoGenerico> {
+  rankingPromedio(limite: number, body: any): Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -125,6 +125,31 @@ export class ProductoService {
     const requestOptions = { headers: headers };
     const requestBody = { ...body, limite };
     return this.http.post<ResultadoGenerico>(`${this.API_URL}promedioProd`, requestBody, requestOptions);
+  }
+
+
+  reporteCantidad(body: any): Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+    return this.http.post<ResultadoGenerico>(this.API_URL + 'reporteCantidad', body, requestOptions);
+  }
+  
+  
+  reportePromedio(body: any): Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_token}`
+      });
+    const requestOptions = { headers: headers };
+    return this.http.post<ResultadoGenerico>(this.API_URL + 'reportePromedio', body, requestOptions);
   }
   
   

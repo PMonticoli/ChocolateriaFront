@@ -15,6 +15,7 @@ import { AltaPromocionComponent } from './components/promociones/alta-promocion/
 import { ListadoPromocionesCanjeadasComponent } from './components/promociones/listados/listado-promociones-canjeadas/listado-promociones-canjeadas.component';
 import { ListadoPromocionesDisponiblesComponent } from './components/promociones/listados/listado-promociones-disponibles/listado-promociones-disponibles.component';
 import { ListadoPromocionesComponent } from './components/promociones/listados/listado-promociones/listado-promociones.component';
+import { RankingProductosComponent } from './components/reportes/ranking-productos/ranking-productos.component';
 import { ReporteCobrosComponent } from './components/reportes/reporte-cobros/reporte-cobros.component';
 import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
 import { ReportePromocionesComponent } from './components/reportes/reporte-promociones/reporte-promociones.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path: 'stock/listado', component: ListadoStockComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
   {path: 'reportes/socios', component: ReporteSociosComponent, canActivate: [ AdminGuard ]},
   {path: 'reportes/productos', component: ReporteProductosComponent, canActivate: [ AdminGuard ]},
+  {path: 'ranking/productos', component: RankingProductosComponent, canActivate: [ AdminGuard ]},
   {path: 'reportes/promociones', component: ReportePromocionesComponent, canActivate: [ AdminGuard ]},
   {path: 'reportes/cobros', component: ReporteCobrosComponent, canActivate: [ AdminGuard  ]},
   {path: 'contacto', component : ContactoComponent},
