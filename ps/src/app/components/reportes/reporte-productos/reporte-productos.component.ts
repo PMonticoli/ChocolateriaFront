@@ -226,23 +226,23 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
   }
 
   nextPage(){
-    this.page+=4;
+    this.page+=8;
   }
 
   prevPage(){
     if(this.page>0){
-      this.page-=4;
+      this.page-=8;
     }
   }
 
   pageProm : number=0;
   nextPageProm(){
-    this.pageProm+=4;
+    this.pageProm+=8;
   }
 
   prevPageProm(){
     if(this.pageProm>0){
-      this.pageProm-=4;
+      this.pageProm-=8;
     }
   }
 

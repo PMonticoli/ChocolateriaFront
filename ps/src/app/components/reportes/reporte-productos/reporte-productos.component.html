@@ -1,6 +1,6 @@
 <div class="fondo">
   <div class="container p-3" id="htmlData">
-    <h1 class="titulo my-3 text-center text-uppercase">Reportes de Productos</h1>
+    <h1 class="titulo my-3 text-center text-uppercase">Ranking de Productos</h1>
     <form [formGroup]="formulario">
       <div class="form-group">
         <div class="row">
@@ -38,46 +38,38 @@
 
         <div class="container" *ngIf="visibilidadReporte">
           <div class="row">
-            <div class="col">
-              <h3 class="text-center text-uppercase">Ranking de unidades vendidas por producto</h3>
-              <div class="row">
-                <div class="col-sm-3">
-                  <div class="input-group mb-2">
-                    <input type="text" class="form-control" placeholder="Buscar producto" #txtSearch (keyup)="onSearchProduct(txtSearch.value)">
-                    <span class="input-group-text"><i class="bi bi-search"></i></span>
-                  </div>
-                </div>
-              </div> 
-                <div class="table-responsive table-container">
-                   <table class="table table-dark table-hover">
-                      <thead>
-                        <tr>
-                          <th scope="col">Productos</th>
-                          <th scope="col">Cantidad de unidades</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let res of resultadoCantidad | filtroReporteCantidad : page : search">
-                          <td>{{ res.nombre }}</td>  
-                          <td>{{ res.cantidad }}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div class="botones">
-                      <button class="btn btn-primary bi bi-arrow-left" (click)="prevPage()"></button>
-                      &nbsp;
-                      <button class="btn btn-primary bi bi-arrow-right" (click)="nextPage()"
-                      [disabled]="(resultadoCantidad | filtroReporteCantidad: page : search ).length < 4 || 
-                                      (resultadoCantidad | filtroReporteCantidad: page+4 : search).length === 0"
-                        ></button>
-                  </div>
+            <div class="col-sm-3">
+              <div class="input-group mb-2">
+                <input type="text" class="form-control" placeholder="Buscar producto" #txtSearch (keyup)="onSearchProduct(txtSearch.value)">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+              </div>
             </div>
-            </div>
-          </div>
-      
+          </div> 
           <div class="row">
-            <h3 class="text-center text-uppercase">Promedio de unidades vendidas por pedido</h3>
+            <div class="col">
+              <h5 class="text-center text-uppercase">Ranking de unidades vendidas por producto</h5>
               <div class="table-responsive table-container">
+                <table class="table table-dark table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Productos</th>
+                      <th scope="col">Cantidad de unidades</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let res of resultadoCantidad | filtroReporteCantidad : page : search">
+                      <td>{{ res.nombre }}</td>  
+                      <td>{{ res.cantidad }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        
+            <div class="col-md-6 col-sm-12">
+              <div class="row">
+                <h5 class="text-center text-uppercase">Promedio de unidades vendidas por pedido</h5>
+                <div class="table-responsive table-container">
                   <table class="table table-dark table-hover">
                     <thead>
                       <tr>
@@ -92,17 +84,12 @@
                       </tr>
                     </tbody>
                   </table>
-                  <div class="botones">
-                    <button class="btn btn-primary bi bi-arrow-left" (click)="prevPageProm()"></button>
-                    &nbsp;
-                    <button class="btn btn-primary bi bi-arrow-right" (click)="nextPageProm()"
-                    [disabled]="(resultadoPromedio | filtroReporte: pageProm : search ).length < 4 || 
-                                    (resultadoPromedio | filtroReporte: pageProm+4 : search).length === 0"
-                      ></button>
                 </div>
               </div>
+            </div>
           </div>
         </div>
+        
       
         
           <div class="container-fluid mt-2" *ngIf="visibilidadReporte">
