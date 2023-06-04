@@ -68,7 +68,7 @@
                             <select class="form-control form-select" name="productos" id="productos"
                             (change)="controlCantidad.setValue(1)"
                             [formControl]="controlProductos">
-                                <option value="" disabled>--Seleccione un producto--</option>
+                                <option value=0>--Seleccione un producto--</option>
                                 <option *ngFor="let p of productos" [ngValue]="p">
                                     {{p.nombre}}
                                 </option>
