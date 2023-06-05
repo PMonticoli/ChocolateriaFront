@@ -20,7 +20,7 @@ export class UsuarioService {
       'Authorization': `Bearer ${auth_token}`
     });
     const requestOptions = { headers: headers };
-    return this.http.get<ResultadoGenerico>(this.API_URL +'/rol',requestOptions);
+    return this.http.get<ResultadoGenerico>(this.API_URL +'rol',requestOptions);
   }
 
   existeSocioConDNI(dni : number): Observable<boolean> {
