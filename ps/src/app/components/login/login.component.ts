@@ -28,7 +28,7 @@ export class LoginComponent implements AfterViewInit {
     this.formulario = this.formBuilder.group({
       usuario : [,Validators.required],
       contrasenia : [,Validators.required],
-      terminos : [,Validators.required]
+      terminos : []
     })
   }
 
@@ -77,6 +77,8 @@ export class LoginComponent implements AfterViewInit {
       Swal.fire({title:'Atención', text: 'Complete los campos por favor', icon: 'warning'});
     }
   }
+
+  
 
 toggleFieldTextType() {
   this.fieldTextType = !this.fieldTextType;

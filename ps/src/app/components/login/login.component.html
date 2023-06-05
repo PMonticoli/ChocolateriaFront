@@ -85,20 +85,7 @@
                 <div class="mb-3 form-check mt-2">
                   <label class="form-check-label text-white fw-semibold" for="exampleCheck1">Acepto terminos y condiciones</label>
                   <input type="checkbox" class="form-check-input" id="exampleCheck1"
-                  data-bs-toggle="modal" attr.data-bs-target="#modal{{modalId}}" formControlName="terminos"
-                  [class.is-invalid]="
-                    controlTerminos.touched &&
-                    controlTerminos.hasError('required')
-                  ">
-                  <span
-                  *ngIf="
-                    controlTerminos.touched &&
-                    controlTerminos.hasError('required')
-                  "
-                  class="invalid-feedback"
-                >
-                 Debes aceptar los terminos y condiciones
-                </span>
+                  data-bs-toggle="modal" attr.data-bs-target="#modal{{modalId}}" formControlName="terminos">
                 </div>
                  <!-- Ventana Modal -->
                 <div class="modal fade" [id]="'modal'+modalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
