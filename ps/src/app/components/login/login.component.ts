@@ -19,6 +19,7 @@ export class LoginComponent implements AfterViewInit {
   formulario: FormGroup;
   fieldTextType: boolean;
   @Input() modalId: number = 1;
+  mostrarCheckboxTerminos: boolean = false;
   constructor(
     private servicioUsuario: UsuarioService,
     private formBuilder: FormBuilder,
@@ -52,7 +53,6 @@ export class LoginComponent implements AfterViewInit {
     return this.formulario.controls['terminos'] as FormControl;
   }
 
-  mostrarCheckboxTerminos: boolean = false;
 
   iniciarSesion(): void {
     if (this.formulario.valid) {
@@ -66,6 +66,7 @@ export class LoginComponent implements AfterViewInit {
               this.servicioSesion.cambiarEstadoSesion(true);
               this.router.navigate(['home']);
             } else if (res.mensaje === 'Debes aceptar los Términos y condiciones') {
+              Swal.fire({ title: 'Atención', text: `${res.mensaje}`, icon: 'info' });
               this.mostrarCheckboxTerminos = true;
             } else {
               Swal.fire({ title: 'Error', text: `${res.mensaje}`, icon: 'error' });
