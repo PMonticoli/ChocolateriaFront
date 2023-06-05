@@ -52,31 +52,35 @@ export class LoginComponent implements AfterViewInit {
     return this.formulario.controls['terminos'] as FormControl;
   }
 
-  iniciarSesion(): void {
+  mostrarCheckboxTerminos: boolean = false;
 
+  iniciarSesion(): void {
     if (this.formulario.valid) {
-      let usuarioLogin = new UsuarioLogin();
-      usuarioLogin = this.formulario.value as UsuarioLogin;
+      let usuarioLogin = this.formulario.value as UsuarioLogin;
       this.subscription.add(
         this.servicioUsuario.login(usuarioLogin).subscribe({
           next: (res: ResultadoGenerico) => {
             if (res.ok && res.resultado != null) {
-              localStorage.setItem('token',res.resultado[0]);
-              Swal.fire({title:'Bienvenido/a!', icon:'success'});
+              localStorage.setItem('token', res.resultado[0]);
+              Swal.fire({ title: 'Bienvenido/a!', icon: 'success' });
               this.servicioSesion.cambiarEstadoSesion(true);
               this.router.navigate(['home']);
+            } else if (res.mensaje === 'Debes aceptar los Términos y condiciones') {
+              this.mostrarCheckboxTerminos = true;
             } else {
-              Swal.fire({title:'Error', text:`${res.mensaje}`, icon: 'error'})
+              Swal.fire({ title: 'Error', text: `${res.mensaje}`, icon: 'error' });
             }
           },
-          error: (err) => { Swal.fire({title:'Error al iniciar sesión', text: `${err.message}`, icon: 'error'}); }
+          error: (err) => {
+            Swal.fire({ title: 'Error al iniciar sesión', text: `${err.message}`, icon: 'error' });
+          }
         })
       );
-    }
-    else {
-      Swal.fire({title:'Atención', text: 'Complete los campos por favor', icon: 'warning'});
+    } else {
+      Swal.fire({ title: 'Atención', text: 'Complete los campos por favor', icon: 'warning' });
     }
   }
+  
 
   
 
