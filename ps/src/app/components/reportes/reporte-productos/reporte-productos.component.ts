@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { ProductoService } from 'src/app/services/producto.service';
 const Swal = require('sweetalert2');
 import html2canvas from 'html2canvas';
-import { ChartData} from 'chart.js';
 import { jsPDF } from "jspdf";
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { DtoReporte } from 'src/app/models/dto-reporte';
@@ -18,8 +17,6 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
   private subscription = new Subscription();
   formulario : FormGroup;
   visibilidadReporte : boolean= false;
-  datosCantidad: ChartData<'bar'>;
-  datosPromedio: ChartData<'bar'>;
   body : any;
   resultadoCantidad : DtoReporte[] = [];
   resultadoPromedio: DtoReporte[] = [];
@@ -63,7 +60,6 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
             if (res.ok) {
               this.cantidadProd = res.resultado ? res.resultado[0].cantidadProd : 0;
               this.resultadoCantidad = res.resultado ? res.resultado : [];
-              this.cargar();
             } else {
               console.error(res.mensaje);
             }
@@ -104,7 +100,6 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
               }
               this.promedioProd = res.resultado ? res.resultado[0].promedioProd : 0;
               this.resultadoPromedio = res.resultado ? res.resultado : [];
-              this.cargar();
             } else {
               console.error(res.mensaje);
             }
@@ -130,69 +125,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
   }
   
   
-  cargar(): void {
-    const colores: { [producto: string]: string } = {};
-  
-    this.datosCantidad = {
-      labels: ['Cantidad vendida por cada producto'],
-      datasets: [],
-    };
-  
-    this.datosPromedio = {
-      labels: ['Promedio de venta por cada producto'],
-      datasets: [],
-    };
-  
-    // Crear un mapa de cantidad por nombre de producto
-    const cantidadPorProducto: { [nombre: string]: number } = {};
-    for (const fila of this.resultadoCantidad) {
-      cantidadPorProducto[fila.nombre] = fila.cantidad;
-    }
-  
-    // Iterar sobre los resultados de promedio y construir los conjuntos de datos
-    for (const fila of this.resultadoPromedio) {
-      const nombreProducto = fila.nombre;
-  
-      // Generar un color aleatorio si el producto aún no tiene uno asignado
-      if (!colores[nombreProducto]) {
-        const r = Math.floor(Math.random() * 256);
-        const g = Math.floor(Math.random() * 256);
-        const b = Math.floor(Math.random() * 256);
-        const color = `rgb(${r}, ${g}, ${b})`;
-        colores[nombreProducto] = color;
-      }
-  
-      const colorProducto = colores[nombreProducto];
-      const cantidad = cantidadPorProducto[nombreProducto] || 0;
-  
-      this.datosCantidad.datasets.push({
-        label: nombreProducto,
-        data: [cantidad],
-        backgroundColor: colorProducto,
-      });
-  
-      this.datosPromedio.datasets.push({
-        label: nombreProducto,
-        data: [fila.promedio],
-        backgroundColor: colorProducto,
-      });
-    }
-  
-    // Ordenar los datos en ambos conjuntos de datos en el mismo orden
-    this.datosCantidad.datasets.sort((a, b) => {
-      if (a.data && b.data && typeof a.data[0] === 'number' && typeof b.data[0] === 'number') {
-        return b.data[0] - a.data[0];
-      }
-      return 0;
-    });
-  
-    this.datosPromedio.datasets.sort((a, b) => {
-      if (a.data && b.data && typeof a.data[0] === 'number' && typeof b.data[0] === 'number') {
-        return b.data[0] - a.data[0];
-      }
-      return 0;
-    });
-  }
+
   
   descargarPDF(): void {
     let DATA: any = document.getElementById('htmlData');
