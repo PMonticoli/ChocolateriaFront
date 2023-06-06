@@ -186,12 +186,12 @@ descargarPDF(): void {
   });
 }
 nextPage(){
-  this.page+=4;
+  this.page+=8;
 }
 
 prevPage(){
   if(this.page>0){
-    this.page-=4;
+    this.page-=8;
   }
 }
 
