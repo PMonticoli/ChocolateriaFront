@@ -21,7 +21,6 @@ body : any;
 search : string= '';
 page : number = 0;
 private subscription = new Subscription();
-private encabezado : string[] = ['Gráfico Promociones'];
 datos: ChartData<'bar'>;
 cantidadCanjeos : number = 0;
 constructor(private servicioPromocion : PromocionService,
@@ -76,7 +75,7 @@ solicitarReporte(){
 }
 
 
-cargar(): void {
+private cargar(): void {
   const colores: string[] = [];
   for (let i = 0; i < this.resultadoReporte.length; i++) {
     const r = Math.floor(Math.random() * 256);

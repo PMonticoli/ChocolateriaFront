@@ -49,7 +49,7 @@ get controlFechaHasta() : FormControl{
   return this.formulario.controls['fechaHasta'] as FormControl
 }
 
-getCantSociosNuevos(){
+private getCantSociosNuevos(){
   const {fechaDesde, fechaHasta} = this.formulario.value;
   this.body = {
     fechaDesde : new Date(fechaDesde),
@@ -78,7 +78,7 @@ getCantSociosNuevos(){
   )
 }
 
-getSociosConMasPedidos() {
+private getSociosConMasPedidos() {
   this.subscription.add(
     this.servicioSocio.sociosConMasPedidos(this.body).subscribe({
       next : (res: ResultadoGenerico) =>{    
@@ -95,7 +95,7 @@ getSociosConMasPedidos() {
   )
 }
 
-getCantSociosBaja() {
+private getCantSociosBaja() {
   this.subscription.add(
     this.servicioSocio.sociosBaja(this.body).subscribe({
       next : (res: ResultadoGenerico) =>{    
@@ -112,7 +112,7 @@ getCantSociosBaja() {
   )
 }
 
-obtenerSociosConMasPuntos(): void {
+private obtenerSociosConMasPuntos(): void {
   this.subscription.add(
     this.servicioSocio.getSociosConMasPuntos(8).subscribe({
       next: (r: ResultadoGenerico) => {
@@ -132,7 +132,7 @@ obtenerSociosConMasPuntos(): void {
 }
 
 
-cargar(): void {
+private cargar(): void {
   this.datos = {
     labels: this.encabezado,
     datasets: [

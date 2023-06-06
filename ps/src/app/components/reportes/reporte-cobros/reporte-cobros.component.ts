@@ -76,7 +76,7 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy{
     )
   }
 
-  cargar(): void {
+  private cargar(): void {
     const colores: string[] = [];
     for (let i = 0; i < this.resultadoReporte.length; i++) {
       const r = Math.floor(Math.random() * 256);

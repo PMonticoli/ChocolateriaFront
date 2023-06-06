@@ -45,7 +45,7 @@ constructor(private servicioPromocion : PromocionService,
     this.subscription.unsubscribe();
   }
 
-  cargarCbo(): void {
+  private cargarCbo(): void {
     this.subscription.add(
       this.servicioProducto.obtenerTodos().subscribe({
         next: (res: ResultadoGenerico) => {

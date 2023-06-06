@@ -41,7 +41,7 @@ export class RankingProductosComponent implements OnInit, OnDestroy{
     this.subscription.unsubscribe();
   }
 
-  getCantidad() {
+  private getCantidad() {
     if (!this.formulario.valid) {
       Swal.fire({title:'Atención!', text:'¡Debes seleccionar previamente una fecha desde y hasta para generar el reporte!', icon: 'warning'});
       return;
@@ -77,7 +77,7 @@ export class RankingProductosComponent implements OnInit, OnDestroy{
     }
   }
   
-  getPromedio() {
+  private getPromedio() {
     if (!this.formulario.valid) {
       Swal.fire({title:'Atención!', text:'¡Debes seleccionar previamente una fecha desde y hasta para generar el reporte!', icon: 'warning'});
       return;
@@ -129,7 +129,7 @@ export class RankingProductosComponent implements OnInit, OnDestroy{
   }
   
   
-  cargar(): void {
+  private cargar(): void {
     const colores: { [producto: string]: string } = {};
   
     this.datosCantidad = {
