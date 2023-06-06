@@ -130,12 +130,12 @@ onSearchProduct(buscar : string){
 }
 
 nextPage(){
-  this.page+=5;
+  this.page+=6;
 }
 
 prevPage(){
   if(this.page>0){
-    this.page-=5;
+    this.page-=6;
   }
 }
 
