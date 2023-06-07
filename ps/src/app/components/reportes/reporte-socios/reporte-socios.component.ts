@@ -8,6 +8,7 @@ import html2canvas from 'html2canvas';
 import { ChartData } from 'chart.js';
 import { jsPDF } from "jspdf";
 import { DtoSocios } from 'src/app/models/dto-socios';
+import autoTable from 'jspdf-autotable'
 @Component({
   selector: 'app-reporte-socios',
   templateUrl: './reporte-socios.component.html',
@@ -78,7 +79,7 @@ private getCantSociosNuevos(){
   )
 }
 
-private getSociosConMasPedidos() {
+private getSociosConMasPedidos(generarPDF = false) {
   this.subscription.add(
     this.servicioSocio.sociosConMasPedidos(this.body).subscribe({
       next : (res: ResultadoGenerico) =>{    
@@ -87,6 +88,9 @@ private getSociosConMasPedidos() {
           this.pedidosSocios=res.resultado ? res.resultado: [];
         }
         this.obtenerSociosConMasPuntos();
+        if (generarPDF) {
+          this.descargarTablaPDF();
+        }
       },
       error :(e) =>{
         Swal.fire({title:'Error!', text:`Error al generar reporte socios: ${e}`, icon: 'error'});
@@ -185,6 +189,51 @@ descargarPDF(): void {
     ArchivoPDF.save(`Reporte Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
   });
 }
+
+
+descargarTablaPDF() {
+  const doc = new jsPDF('p', 'mm', 'a4');
+  const elementosTablaCantidad = this.obtenerElementosCantidadTabla();
+  const elementosTablaRanking = this.obtenerElementosRankingTabla();
+
+  const cantidadTituloY = 20;
+  const rankingTituloY = cantidadTituloY + elementosTablaCantidad.length * 10 + 10;
+  
+  doc.setFontSize(20);
+  doc.text('Reporte de Socios', 10, 10);
+  
+  doc.setFontSize(14);
+  doc.text('Listado de pedidos por socio', 10, cantidadTituloY);
+  autoTable(doc, { body: elementosTablaCantidad, startY: cantidadTituloY + 10 });
+
+  doc.text('Ranking de socios con más puntos', 10, rankingTituloY);
+  autoTable(doc, { body: elementosTablaRanking, startY: rankingTituloY + 10 });
+
+  console.log(new Date().toLocaleDateString("es-AR"));
+  doc.save(`Reporte Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
+}
+
+
+
+obtenerElementosCantidadTabla(): string[][] {
+  const elementos: string[][] = [];
+  this.pedidosSocios.forEach((res) => {
+    const datosFila: string[] = [res.socio, res.dni.toString(),res.cantPedidos.toString()];
+    elementos.push(datosFila);
+  });
+  return elementos;
+}
+
+obtenerElementosRankingTabla(): string[][] {
+  const elementos: string[][] = [];
+  this.sociosConMasPuntos.forEach((res) => {
+    const datosFila: string[] = [res.socio, res.dni.toString(),res.puntos.toString()];
+    elementos.push(datosFila);
+  });
+  return elementos;
+}
+
+
 nextPage(){
   this.page+=8;
 }
