@@ -8,6 +8,7 @@ import { jsPDF } from "jspdf";
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { DtoReportePromociones } from 'src/app/models/dto-reporte-promociones';
 import { ChartData } from 'chart.js';
+import autoTable from 'jspdf-autotable'
 @Component({
   selector: 'app-reporte-promociones',
   templateUrl: './reporte-promociones.component.html',
@@ -34,7 +35,7 @@ ngOnInit(): void {
 ngOnDestroy(): void {
   this.subscription.unsubscribe();
 }
-solicitarReporte(){
+solicitarReporte(generarPDF = false){
   if (!this.formulario.valid) {
     Swal.fire({title:'Atención!', text:'¡Debes seleccionar previamente una fecha desde y hasta para generar el reporte!', icon: 'warning'});
     return;
@@ -60,6 +61,9 @@ solicitarReporte(){
             }
             this.resultadoReporte = res.resultado ? res.resultado : [];
             this.cargar();
+            if (generarPDF) {
+              this.descargarTablaPDF();
+            }
           }
           else {
             console.error(res.mensaje);
@@ -110,9 +114,8 @@ descargarPDF(): void {
     let position = 0;
     let pageHeight = ArchivoPDF.internal.pageSize.getHeight();
 
-    // Verifica si la altura de la imagen supera la altura de la página
     if (altura > pageHeight - 20) {
-      altura = pageHeight - 20; // Resta el alto de los márgenes superior e inferior
+      altura = pageHeight - 20; 
     }
 
     ArchivoPDF.addImage(urlArchivo, 'PNG', 10, 10, ancho, altura);
@@ -122,6 +125,31 @@ descargarPDF(): void {
   });
 }
 
+descargarTablaPDF() {
+  const doc = new jsPDF('p', 'mm', 'a4');
+  const elementosTablaCantidad = this.obtenerElementosCantidadTabla();
+  const cantidadTituloY = 20;
+  doc.setFontSize(20);
+  doc.text('Reporte de Promociones', 10, 10);
+  
+  doc.setFontSize(14);
+  doc.text('Cantidad de veces que se canjeo cada promoción', 10, cantidadTituloY);
+  autoTable(doc, { body: elementosTablaCantidad, startY: cantidadTituloY + 10 });
+
+  console.log(new Date().toLocaleDateString("es-AR"));
+  doc.save(`Reporte Promociones (${new Date().toLocaleDateString("es-AR")}).pdf`);
+}
+
+
+
+obtenerElementosCantidadTabla(): string[][] {
+  const elementos: string[][] = [];
+  this.resultadoReporte.forEach((res) => {
+    const datosFila: string[] = [res.nombrePromocion, res.descripcion,res.cantidadCanjeos.toString()];
+    elementos.push(datosFila);
+  });
+  return elementos;
+}
 
 onSearchProduct(buscar : string){
     this.page=0;
