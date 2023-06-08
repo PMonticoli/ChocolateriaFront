@@ -62,6 +62,9 @@ export class ReporteProductosComponent implements OnInit, OnDestroy{
                 Swal.fire({ title: 'Atención!', text: 'Ingrese fechas válidas:', icon: 'warning' });
                 this.visibilidadReporte = false;
                 return;
+              }else if(res.resultado?.length===0){
+                Swal.fire({title : 'Atención!', text:`No hay resultados para el período de fechas ingresado`, icon: 'warning'});
+                this.visibilidadReporte= false;
               }
               this.promedioProd = res.resultado ? res.resultado[0].promedioProd : 0;
               this.resultadoPromedio = res.resultado ? res.resultado : [];
