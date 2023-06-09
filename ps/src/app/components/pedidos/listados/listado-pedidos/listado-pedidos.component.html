@@ -30,7 +30,6 @@
             <th scope="col">Socio</th>
             <th scope="col">Empleado</th>
             <th scope="col">Estado</th>
-            <th scope="col">Observaciones</th>
             <th scope="col">Fecha</th>
             <th scope="col">Detalles</th>
             <th scope="col">Accion</th>
@@ -47,7 +46,6 @@
               'estado-cancelado': p.estado === 'Cancelado'}">
               {{p.estado}}
             </td>
-            <td>{{p.observaciones ? p.observaciones : '-'}}</td>
             <td>{{p.fechaPedido | date:'mediumDate':'UTC'}}</td>
             <td>
                 <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
