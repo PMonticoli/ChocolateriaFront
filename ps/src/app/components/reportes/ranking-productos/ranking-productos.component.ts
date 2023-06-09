@@ -131,7 +131,6 @@ export class RankingProductosComponent implements OnInit, OnDestroy{
     }
   }
   
-  
   private cargar(): void {
     const colores: { [producto: string]: string } = {};
   
@@ -145,15 +144,11 @@ export class RankingProductosComponent implements OnInit, OnDestroy{
       datasets: [],
     };
   
-    // Crear un mapa de cantidad por nombre de producto
-    const cantidadPorProducto: { [nombre: string]: number } = {};
-    for (const fila of this.resultadoCantidad) {
-      cantidadPorProducto[fila.nombre] = fila.cantidad;
-    }
-  
-    // Iterar sobre los resultados de promedio y construir los conjuntos de datos
-    for (const fila of this.resultadoPromedio) {
-      const nombreProducto = fila.nombre;
+    // Construir el conjunto de datos para cantidades
+    for (let i = 0; i < 8; i++) {
+      const cantidadFila = this.resultadoCantidad[i];
+      const nombreProducto = cantidadFila.nombre;
+      const cantidad = cantidadFila.cantidad;
   
       // Generar un color aleatorio si el producto aún no tiene uno asignado
       if (!colores[nombreProducto]) {
@@ -165,36 +160,30 @@ export class RankingProductosComponent implements OnInit, OnDestroy{
       }
   
       const colorProducto = colores[nombreProducto];
-      const cantidad = cantidadPorProducto[nombreProducto] || 0;
   
       this.datosCantidad.datasets.push({
         label: nombreProducto,
         data: [cantidad],
         backgroundColor: colorProducto,
       });
+    }
+  
+    // Construir el conjunto de datos para promedios
+    for (let i = 0; i < 8; i++) {
+      const promedioFila = this.resultadoPromedio[i];
+      const nombreProducto = promedioFila.nombre;
+      const promedio = promedioFila.promedio;
+      const colorProducto = colores[nombreProducto];
   
       this.datosPromedio.datasets.push({
         label: nombreProducto,
-        data: [fila.promedio],
+        data: [promedio],
         backgroundColor: colorProducto,
       });
     }
-  
-    // Ordenar los datos en ambos conjuntos de datos en el mismo orden
-    this.datosCantidad.datasets.sort((a, b) => {
-      if (a.data && b.data && typeof a.data[0] === 'number' && typeof b.data[0] === 'number') {
-        return b.data[0] - a.data[0];
-      }
-      return 0;
-    });
-  
-    this.datosPromedio.datasets.sort((a, b) => {
-      if (a.data && b.data && typeof a.data[0] === 'number' && typeof b.data[0] === 'number') {
-        return b.data[0] - a.data[0];
-      }
-      return 0;
-    });
   }
+  
+  
   
   descargarPDF(): void {
     let DATA: any = document.getElementById('htmlData');
