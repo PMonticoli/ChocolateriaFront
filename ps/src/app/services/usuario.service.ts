@@ -10,7 +10,7 @@ export class UsuarioService {
   constructor(private http : HttpClient) { }
 
   login(usuario: UsuarioLogin): Observable<ResultadoGenerico> {
-    return this.http.post<ResultadoGenerico>(`${this.API_URL}/iniciarSesion`,usuario);
+    return this.http.post<ResultadoGenerico>(this.API_URL+ 'iniciarSesion',usuario);
   }
 
   obtenerRol() : Observable<ResultadoGenerico>{
