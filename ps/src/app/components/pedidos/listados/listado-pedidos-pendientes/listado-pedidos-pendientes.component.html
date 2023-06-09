@@ -40,7 +40,11 @@
             <td>{{p.puntoVenta}}</td>
             <td>{{p.socio ? p.socio : '-'}}</td>
             <td>{{p.empleado ? p.empleado : '-'}}</td>
-            <td>{{p.estado}}</td>
+            <td [ngClass]="{
+              'estado-creado': p.estado === 'Creado', 
+              'estado-pagado': p.estado === 'Pagado'}">
+              {{p.estado}}
+            </td>
             <td>{{p.observaciones ? p.observaciones : '-'}}</td>
             <td>{{p.fechaPedido | date:'mediumDate':'UTC'}}</td>
             <td>

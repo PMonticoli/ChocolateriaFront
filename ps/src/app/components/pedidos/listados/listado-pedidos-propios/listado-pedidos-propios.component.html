@@ -32,7 +32,12 @@
         </thead>
         <tbody class="text-center">
           <tr *ngFor="let p of listado | filtroPedido: page : search">
-            <td>{{p.estado}}</td>
+            <td [ngClass]="{
+              'estado-creado': p.estado === 'Creado', 
+              'estado-pagado': p.estado === 'Pagado', 
+              'estado-cancelado': p.estado === 'Cancelado'}">
+              {{p.estado}}
+            </td>
             <td>{{p.fechaPedido | date:'mediumDate':'UTC'}}</td>
             <td>
                 <app-detalles-pedido [pedido]="p"></app-detalles-pedido>

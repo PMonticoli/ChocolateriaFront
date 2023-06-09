@@ -29,3 +29,17 @@
     filter: none;
     background-color: #4ea15c;
   }
+
+  .estado-creado {
+    color: yellow;
+  }
+  
+  .estado-pagado {
+    color: green;
+  }
+  
+  .estado-cancelado {
+    color: red;
+  }
+  
+  
