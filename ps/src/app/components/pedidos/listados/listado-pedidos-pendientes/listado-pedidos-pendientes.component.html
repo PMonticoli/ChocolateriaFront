@@ -32,7 +32,6 @@
             <th scope="col">Observaciones</th>
             <th scope="col">Fecha</th>
             <th scope="col">Detalles</th>
-            <th scope="col">Accion</th>
             <th scope="col">Cobro</th>
           </tr>
         </thead>
@@ -46,9 +45,6 @@
             <td>{{p.fechaPedido | date:'mediumDate':'UTC'}}</td>
             <td>
                 <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
-            </td>
-            <td>
-              <app-estado-pedido (onActualizado)="cargarTabla()" [pedido]="p"></app-estado-pedido>
             </td>
             <td>
               <app-cobro (onCobrado)="cargarTabla()" [pedido]="p.estado=='Creado'?p:{}" [abonaCliente]="false"></app-cobro>
