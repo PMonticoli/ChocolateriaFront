@@ -25,27 +25,27 @@ import { ListadoSociosComponent } from './components/socios/listado-socios/lista
 import { RecuperarClaveComponent } from './components/usuarios/recuperar-clave/recuperar-clave.component';
 import { RegistroUsuarioExternoComponent } from './components/usuarios/registro-usuario-externo/registro-usuario-externo.component';
 import { AdminGuard } from './guards/admin.guard';
-import { EmpleadoGuard } from './guards/empleado.guard';
+
 const routes: Routes = [
   {path:'home', component : HomeComponent},
   {path: '', component : HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'pedido/nuevo', component: AltaPedidoComponent},
-  {path: 'pedido/listado', component: ListadoPedidosComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
-  {path: 'pedido/pendiente', component: ListadoPedidosPendientesComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
+  {path: 'pedido/listado', component: ListadoPedidosComponent, canActivate: [ AdminGuard]},
+  {path: 'pedido/pendiente', component: ListadoPedidosPendientesComponent, canActivate: [ AdminGuard]},
   {path: 'pedido/propios', component: ListadoPedidosPropiosComponent},
   {path: 'socio/nuevo', component: AltaSocioComponent},
   {path:'socio/nuevo/:id', component : AltaSocioComponent},
-  {path: 'socio/listado', component: ListadoSociosComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
-  {path: 'producto/nuevo', component : AltaProductoComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
-  {path: 'producto/nuevo/:id', component : AltaProductoComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
-  {path: 'producto/listado', component : ListadoProductosComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
+  {path: 'socio/listado', component: ListadoSociosComponent, canActivate: [ AdminGuard]},
+  {path: 'producto/nuevo', component : AltaProductoComponent, canActivate: [ AdminGuard]},
+  {path: 'producto/nuevo/:id', component : AltaProductoComponent, canActivate: [ AdminGuard]},
+  {path: 'producto/listado', component : ListadoProductosComponent, canActivate: [ AdminGuard]},
   {path: 'registro', component : RegistroUsuarioExternoComponent},
-  {path: 'promocion/nuevo', component: AltaPromocionComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
-  {path: 'promocion/listado', component: ListadoPromocionesComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
+  {path: 'promocion/nuevo', component: AltaPromocionComponent, canActivate: [ AdminGuard]},
+  {path: 'promocion/listado', component: ListadoPromocionesComponent, canActivate: [ AdminGuard]},
   {path: 'promocion/listado/disponibles', component: ListadoPromocionesDisponiblesComponent},
-  {path: 'promocion/listado/canjeadas', component: ListadoPromocionesCanjeadasComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
-  {path: 'stock/listado', component: ListadoStockComponent, canActivate: [ AdminGuard ,EmpleadoGuard]},
+  {path: 'promocion/listado/canjeadas', component: ListadoPromocionesCanjeadasComponent, canActivate: [ AdminGuard]},
+  {path: 'stock/listado', component: ListadoStockComponent, canActivate: [ AdminGuard]},
   {path: 'reportes/socios', component: ReporteSociosComponent, canActivate: [ AdminGuard ]},
   {path: 'reportes/productos', component: ReporteProductosComponent, canActivate: [ AdminGuard ]},
   {path: 'ranking/productos', component: RankingProductosComponent, canActivate: [ AdminGuard ]},

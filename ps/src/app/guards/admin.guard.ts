@@ -18,7 +18,7 @@ export class AdminGuard implements CanActivate {
     if (token) {
       const body = token.split('.')[1];
       const buff = JSON.parse(atob(body));
-      if (buff.rol === 'Admin') {
+      if (buff.rol === 'Admin' || buff.rol === 'Empleado') {
         return true;
       } else {
         Swal.fire({
