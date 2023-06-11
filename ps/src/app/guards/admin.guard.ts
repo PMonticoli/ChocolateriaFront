@@ -32,9 +32,9 @@ export class AdminGuard implements CanActivate {
       }
     } else {
       Swal.fire({
-        title: 'ERROR!',
+        title: 'ATENCIÓN!',
         text: 'Necesitas iniciar sesión para acceder a este recurso',
-        icon: 'error'
+        icon: 'warning'
       }).then(() => {
         this.router.navigate(['/login']);
       });
