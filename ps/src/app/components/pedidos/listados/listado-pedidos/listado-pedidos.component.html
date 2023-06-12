@@ -41,8 +41,7 @@
             <td>{{p.socio ? p.socio : '-'}}</td>
             <td>{{p.empleado ? p.empleado : '-'}}</td>
             <td [ngClass]="{
-              'estado-creado': p.estado === 'Creado', 
-              'estado-pagado': p.estado === 'Pagado', 
+              'estado-entregado': p.estado === 'Entregado', 
               'estado-cancelado': p.estado === 'Cancelado'}">
               {{p.estado}}
             </td>
