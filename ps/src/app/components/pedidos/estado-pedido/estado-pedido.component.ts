@@ -33,14 +33,25 @@ export class EstadoPedidoComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+
   getEstados(): void {
     this.subscription.add(
       this.servicioEstado.obtenerTodos().subscribe({
         next: (r: ResultadoGenerico) => {
-          if(r.ok && r.resultado){
-            this.estadosPedido = r.resultado.filter((x) => {
-              return x.nombre == 'Entregado' || x.nombre == 'Cancelado'
-            }) as EstadoPedido[];
+          if (r.ok && r.resultado) {
+            if (this.pedido.estado === 'Pagado') {
+              this.estadosPedido = r.resultado.filter((x) => {
+                return x.nombre === 'Entregado' || x.nombre === 'Cancelado';
+              }) as EstadoPedido[];
+            } else if (this.pedido.estado === 'Creado') {
+              this.estadosPedido = r.resultado.filter((x) => {
+                return x.nombre === 'Cancelado';
+              }) as EstadoPedido[];
+            } else if (this.pedido.estado === 'Entregado') {
+              this.estadosPedido = r.resultado.filter((x) => {
+                return x.nombre === 'Cancelado';
+              }) as EstadoPedido[];
+            }
           } else {
             console.error(r.mensaje);
           }
@@ -49,7 +60,7 @@ export class EstadoPedidoComponent implements OnInit, OnDestroy {
           console.error(e);
         }
       })
-    )
+    );
   }
 
   modificoEstado() : void{
