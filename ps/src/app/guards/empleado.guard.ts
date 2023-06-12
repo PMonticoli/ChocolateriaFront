@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../services/usuario.service';
-
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class EmpleadoGuard implements CanActivate {
   constructor(private router: Router, private servicioUsuario: UsuarioService) {}
 
   canActivate(
@@ -18,7 +17,7 @@ export class AdminGuard implements CanActivate {
     if (token) {
       const body = token.split('.')[1];
       const buff = JSON.parse(atob(body));
-      if (buff.rol === 'Admin') {
+      if (buff.rol === 'Empleado' || buff.rol ==='Admin') {
         return true;
       } else {
         Swal.fire({
@@ -41,4 +40,5 @@ export class AdminGuard implements CanActivate {
       return false;
     }
   }
+  
 }
