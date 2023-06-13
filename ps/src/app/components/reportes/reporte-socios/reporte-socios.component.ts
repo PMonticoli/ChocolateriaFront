@@ -210,7 +210,7 @@ descargarTablaPDF() {
   autoTable(doc, { body: elementosTablaRanking, startY: rankingTituloY + 10 });
 
   console.log(new Date().toLocaleDateString("es-AR"));
-  doc.save(`Reporte Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
+  doc.save(`Tablas de Reportes Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
 }
 
 

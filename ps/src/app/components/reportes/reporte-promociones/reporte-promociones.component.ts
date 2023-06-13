@@ -140,7 +140,7 @@ descargarTablaPDF() {
   autoTable(doc, { body: elementosTablaCantidad, startY: cantidadTituloY + 10 });
 
   console.log(new Date().toLocaleDateString("es-AR"));
-  doc.save(`Reporte Promociones (${new Date().toLocaleDateString("es-AR")}).pdf`);
+  doc.save(`Tabla Reporte Promociones (${new Date().toLocaleDateString("es-AR")}).pdf`);
 }
 
 
