@@ -13,9 +13,11 @@ export class BajaPromocionComponent implements OnInit, OnDestroy{
 @Output() onEliminado = new EventEmitter();
 private subscription : Subscription;
 constructor(private servicioPromocion : PromocionService){}
+deshabilitado :boolean = false;
 
 ngOnInit(): void {
     this.subscription = new Subscription();
+    this.verificarFechaDesde();
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -34,4 +36,11 @@ ngOnInit(): void {
         })
     )
   }
+
+  verificarFechaDesde() {
+    const fechaHastaTabla = new Date(this.promocion.fechaHasta);
+    const fechaActual = new Date();
+    this.deshabilitado = fechaActual >= fechaHastaTabla;
+  }
+  
 }
