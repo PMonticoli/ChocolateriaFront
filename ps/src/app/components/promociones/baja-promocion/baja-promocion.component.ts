@@ -12,7 +12,6 @@ export class BajaPromocionComponent implements OnInit, OnDestroy{
 @Input() promocion : Promocion;
 @Output() onEliminado = new EventEmitter();
 private subscription : Subscription;
-
 constructor(private servicioPromocion : PromocionService){}
 
 ngOnInit(): void {
@@ -26,11 +25,11 @@ ngOnInit(): void {
     this.subscription.add(
         this.servicioPromocion.eliminar(this.promocion).subscribe({
             next : ()=>{
-                Swal.fire({title:'Listo!', text:`Elimino la promoción con id ${this.promocion.id} correctamente`, icon: 'success'});
+                Swal.fire({title:'Listo!', text:`Finalizo la promoción "${this.promocion.nombre}" correctamente`, icon: 'success'});
                 this.onEliminado.emit();
             },
             error :(e)=>{
-                Swal.fire({title:'Error!', text:`Error al eliminar promoción: ${e}`, icon: 'error'});
+                Swal.fire({title:'Error!', text:`Error al finalizar promoción: ${e}`, icon: 'error'});
             }
         })
     )

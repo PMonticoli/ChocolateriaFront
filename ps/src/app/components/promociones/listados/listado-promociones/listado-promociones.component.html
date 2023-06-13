@@ -39,8 +39,14 @@
                     <td>{{p.nombre}}</td>
                     <td>{{p.descripcion}}</td>
                     <td>{{p.precioPuntos}}</td>
-                    <td>{{p.fechaDesde | date:'mediumDate':'UTC'}}</td>
-                    <td>{{p.fechaHasta | date:'mediumDate':'UTC'}}</td>
+                    <td [ngClass]="{
+                      'fechaDesde': p.fechaDesde}">
+                      {{p.fechaDesde | date:'mediumDate':'UTC'}}
+                    </td>
+                    <td [ngClass]="{
+                      'fechaHasta': p.fechaHasta}">
+                      {{p.fechaHasta  | date:'mediumDate':'UTC'}}
+                    </td>
                     <td>
                       <app-baja-promocion [promocion]="p" (onEliminado)="cargarTabla()"></app-baja-promocion>
                     </td>

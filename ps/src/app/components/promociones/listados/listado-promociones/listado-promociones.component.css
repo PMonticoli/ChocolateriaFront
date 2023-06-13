@@ -18,3 +18,9 @@
     font-family: "Lora", serif;
     font-weight: 700;
   }
+  .fechaDesde {
+    color: green;
+  }
+  .fechaHasta {
+    color: red;
+  }
