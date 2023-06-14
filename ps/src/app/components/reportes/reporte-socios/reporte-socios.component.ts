@@ -67,6 +67,9 @@ private getCantSociosNuevos(){
             Swal.fire({title : 'Atención!', text:`Ingrese fechas validas:`, icon: 'warning'});
             this.visibilidadReporte= false;
             return;
+          }else if(res.resultado?.length===0){
+            Swal.fire({title : 'Atención!', text:`No hay resultados para el período de fechas ingresado`, icon: 'warning'});
+            this.visibilidadReporte= false;
           }
           this.cantSociosNuevos=res.resultado ? res.resultado[0].cantSociosNuevos : 0;
           this.getCantSociosBaja();
@@ -85,6 +88,14 @@ private getSociosConMasPedidos(generarPDF = false) {
       next : (res: ResultadoGenerico) =>{    
         console.log('Socios con mas pedidos :'+ JSON.stringify(res));
         if(res.ok){ 
+          if(this.body.fechaDesde> this.body.fechaHasta){
+            Swal.fire({title : 'Atención!', text:`Ingrese fechas validas:`, icon: 'warning'});
+            this.visibilidadReporte= false;
+            return;
+          }else if(res.resultado?.length===0){
+            Swal.fire({title : 'Atención!', text:`No hay resultados para el período de fechas ingresado`, icon: 'warning'});
+            this.visibilidadReporte= false;
+          }
           this.pedidosSocios=res.resultado ? res.resultado: [];
         }
         this.obtenerSociosConMasPuntos();
@@ -104,7 +115,15 @@ private getCantSociosBaja() {
     this.servicioSocio.sociosBaja(this.body).subscribe({
       next : (res: ResultadoGenerico) =>{    
         console.log(res);
-        if(res.ok){ 
+        if(res.ok){
+          if(this.body.fechaDesde> this.body.fechaHasta){
+            Swal.fire({title : 'Atención!', text:`Ingrese fechas validas:`, icon: 'warning'});
+            this.visibilidadReporte= false;
+            return;
+          }else if(res.resultado?.length===0){
+            Swal.fire({title : 'Atención!', text:`No hay resultados para el período de fechas ingresado`, icon: 'warning'});
+            this.visibilidadReporte= false;
+          } 
           this.cantidadSociosBaja=res.resultado ? res.resultado[0].cantidadSociosBaja : 0;
         }
         this.getSociosConMasPedidos();
@@ -121,6 +140,14 @@ private obtenerSociosConMasPuntos(): void {
     this.servicioSocio.getSociosConMasPuntos(8).subscribe({
       next: (r: ResultadoGenerico) => {
         if(r.ok) {
+          if(this.body.fechaDesde> this.body.fechaHasta){
+            Swal.fire({title : 'Atención!', text:`Ingrese fechas validas:`, icon: 'warning'});
+            this.visibilidadReporte= false;
+            return;
+          }else if(r.resultado?.length===0){
+            Swal.fire({title : 'Atención!', text:`No hay resultados para el período de fechas ingresado`, icon: 'warning'});
+            this.visibilidadReporte= false;
+          }
           this.sociosConMasPuntos = r.resultado? r.resultado : [];
           this.cargar();
         } else {
