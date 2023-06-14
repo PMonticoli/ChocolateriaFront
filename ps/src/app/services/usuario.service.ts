@@ -34,4 +34,14 @@ export class UsuarioService {
    modificarClave(usuario : UsuarioLogin) : Observable<ResultadoGenerico>{
     return this.http.put<ResultadoGenerico>(this.API_URL+ 'nuevaClave',usuario);
    }
+
+   eliminarUsuario(idUsuario : number) : Observable<any>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_token}`
+      });
+    const requestOptions = { headers: headers }
+    return this.http.delete(this.API_URL+idUsuario,requestOptions);
+  }
 }

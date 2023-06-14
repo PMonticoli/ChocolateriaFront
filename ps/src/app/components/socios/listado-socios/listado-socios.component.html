@@ -40,6 +40,7 @@
               <td class="text-center">
                 <app-detalles-socio [socio]="s"></app-detalles-socio>
                 <app-baja-socio ngClass="ms-2" [socio]="s" (onEliminado)="cargarTabla()" [deshabilitado]="s.fechaBaja!==null"></app-baja-socio>
+                <app-baja-usuario ngClass="ms-2" [idUsuario]="s.idUsuario" (onEliminado)="cargarTabla()" [deshabilitado]="!s.idUsuario"></app-baja-usuario>
                 <button class="btn btn-success bi bi-pencil ms-2" [routerLink]="['/socio/nuevo',s.id]"> Editar</button>
               </td>
             </tr>

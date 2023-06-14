@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { Subscription } from 'rxjs';
 import { Socio } from 'src/app/models/socio';
 import { SocioService } from 'src/app/services/socio.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 const Swal = require('sweetalert2');
 @Component({
   selector: 'app-baja-socio',

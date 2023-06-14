@@ -68,6 +68,7 @@ import { NoEncontradoComponent } from './components/no-encontrado/no-encontrado.
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { RecuperarClaveComponent } from './components/usuarios/recuperar-clave/recuperar-clave.component';
 import { RankingProductosComponent } from './components/reportes/ranking-productos/ranking-productos.component';
+import { BajaUsuarioComponent } from './components/usuarios/baja-usuario/baja-usuario.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import { RankingProductosComponent } from './components/reportes/ranking-product
     NoEncontradoComponent,
     ContactoComponent,
     RecuperarClaveComponent,
-    RankingProductosComponent
+    RankingProductosComponent,
+    BajaUsuarioComponent
   ],
   imports: [
     BrowserModule,
