@@ -40,7 +40,7 @@ export class BajaSocioComponent implements OnInit,OnDestroy {
         this.subscription.add(
           this.servicioSocio.eliminar(this.socio).subscribe({
             next : ()=>{
-              Swal.fire({title: 'Listo', text : 'Diste de baja al socio con id: ' + this.socio.id + ' correctamente', icon: 'success'});
+              Swal.fire({title: 'Listo', text : 'Diste de baja al socio: ' + this.socio.apellido + ' ' +this.socio.nombre +' correctamente', icon: 'success'});
               this.onEliminado.emit();
             },
             error : (err)=>{
