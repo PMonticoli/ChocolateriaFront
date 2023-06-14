@@ -37,6 +37,7 @@ export class BajaUsuarioComponent implements OnInit,OnDestroy{
             this.servicioUsuario.eliminarUsuario(this.idUsuario).subscribe({
               next : ()=>{
                 Swal.fire({title: 'Listo', text : 'Diste de baja al usuario correctamente', icon: 'success'});
+                this.deshabilitado=true;
                 this.onUsuarioEliminado.emit();
               },
               error : (err)=>{
