@@ -28,6 +28,7 @@
             <tr>
                 <th scope="col">Socio</th>
                 <th scope="col">Promoción</th>
+                <th scope="col">Fecha de canjeo</th>
                 <th scope="col">Acción</th>
               </tr>
           </thead>
@@ -35,6 +36,7 @@
             <tr *ngFor="let p of listado | filtroCanjeadas:page : search">
                 <td>{{p.socio}}</td>
                 <td>{{p.promocion}}</td>
+                <td>{{p.fechaCanjeada | date:'mediumDate':'UTC'}}</td>
                 <td>
                   <app-detalles-promocion-canjeada [promocion]="p"></app-detalles-promocion-canjeada>
                 </td>

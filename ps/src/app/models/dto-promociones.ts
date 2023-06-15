@@ -12,4 +12,5 @@ export class DtoPromociones {
     producto : Producto;
     cantidad : DetallePromocion;
     puntos : MovimientosPuntos;
+    fechaCanjeada : Date;
 }
