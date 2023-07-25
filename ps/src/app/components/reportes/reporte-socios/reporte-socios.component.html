@@ -71,14 +71,14 @@
                             <tr>
                             <th scope="col">Socio</th>
                             <th scope="col">DNI</th>
-                            <th scope="col">Cantidad de pedidos</th>
+                            <th class="text-end" scope="col">Cantidad de pedidos</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of pedidosSocios | filtroReporteSocio :page :search">
                             <td>{{ p.socio }}</td>
                             <td>{{ p.dni }}</td>
-                            <td>{{ p.cantPedidos }}</td>
+                            <td class="text-end">{{ p.cantPedidos }}</td>
                             </tr>
                         </tbody>
                       </table>
@@ -102,14 +102,14 @@
                           <tr>
                             <th scope="col">Socio</th>
                             <th scope="col">DNI</th>
-                            <th scope="col">Puntos</th>
+                            <th class="text-end" scope="col">Puntos</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor="let s of sociosConMasPuntos">
                             <td>{{ s.socio }}</td>
                             <td>{{ s.dni }}</td>
-                            <td>{{ s.puntos }}</td>
+                            <td class="text-end">{{ s.puntos }}</td>
                           </tr>
                         </tbody>
                       </table>

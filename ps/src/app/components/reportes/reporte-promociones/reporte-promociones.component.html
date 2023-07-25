@@ -70,14 +70,14 @@
                                 <tr>
                                     <th scope="col">Promoción</th>
                                     <th scope="col">Descripción</th>
-                                    <th scope="col">Cantidad de veces canjeada</th>
+                                    <th class="text-end"scope="col">Cantidad de veces canjeada</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr *ngFor="let r of resultadoReporte | filtroReportePromocion: page : search">
                                     <td>{{ r.nombrePromocion }}</td>
                                     <td>{{ r.descripcion }}</td>
-                                    <td>{{ r.cantidadCanjeos }}</td>
+                                    <td class="text-end">{{ r.cantidadCanjeos }}</td>
                                 </tr>
                                 </tbody>
                             </table>

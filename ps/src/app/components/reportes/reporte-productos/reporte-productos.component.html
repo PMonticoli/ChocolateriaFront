@@ -53,13 +53,13 @@
                   <thead>
                     <tr>
                       <th scope="col">Productos</th>
-                      <th scope="col">Cantidad de unidades</th>
+                      <th class="text-end" scope="col">Cantidad de unidades</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let res of resultadoCantidad | filtroReporteCantidad : page : search">
                       <td>{{ res.nombre }}</td>  
-                      <td>{{ res.cantidad }}</td>
+                      <td class="text-end">{{ res.cantidad }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -82,13 +82,13 @@
                     <thead>
                       <tr>
                         <th scope="col">Productos</th>
-                        <th scope="col">Promedio por pedido</th>
+                        <th class="text-end" scope="col">Promedio por pedido</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let res of resultadoPromedio | filtroReporte : pageProm : search">
                         <td>{{ res.nombre }}</td>  
-                        <td>{{ res.promedio }}</td>
+                        <td class="text-end">{{ res.promedio }}</td>
                       </tr>
                     </tbody>
                   </table>
