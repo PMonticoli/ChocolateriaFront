@@ -9,4 +9,5 @@ export class Socio {
     telefono : string;
     fechaAlta: Date;
     fechaBaja :Date;
+    fechaBajaUsuario :Date;
 }
